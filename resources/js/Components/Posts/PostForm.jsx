@@ -93,9 +93,6 @@ export default function PostForm({ post, postCategories, copyPost }) {
 
                     <InputError message={errors.title} className="mt-2" />
                 </div>
-                <div>
-                    <Label htmlFor="status">Status</Label>
-                </div>
                 {/* Slug */}
                 <div>
                     <SlugInput
