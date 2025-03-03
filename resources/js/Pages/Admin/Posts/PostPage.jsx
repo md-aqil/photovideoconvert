@@ -35,7 +35,7 @@ import PostForm from "@/Components/Posts/PostForm";
 
 export default function PostPage({ post, postCategories }) {
     let params = new URLSearchParams(window.location.search);
-    const copyPost = JSON.parse(params.get('copyPost')) || null;
+    const copyPost = JSON.parse(params.get("copyPost")) || null;
     return (
         <TwoColumnLayout>
             <Head>
@@ -60,11 +60,20 @@ export default function PostPage({ post, postCategories }) {
                         )}
                     </PageHeading.Title>
                     <PageHeading.Actions>
-                        {(post && post.status) && <Button asChild size="icon" variant="link">
-                            <a href={route("blog.post", post.slug)} target="_blank"><Eye className="h-4 w-4" /></a>
-                        </Button>}
+                        {post && post.status && (
+                            <Button asChild size="icon" variant="link">
+                                <a
+                                    href={route("blog.post", post.slug)}
+                                    target="_blank"
+                                >
+                                    <Eye className="h-4 w-4" />
+                                </a>
+                            </Button>
+                        )}
                         <Button asChild variant="outline">
-                            <Link href={route("admin.posts.index")}>Cancel</Link>
+                            <Link href={route("admin.posts.index")}>
+                                Cancel
+                            </Link>
                         </Button>
                         <Can permit="create posts">
                             <Button asChild>
@@ -91,38 +100,32 @@ export default function PostPage({ post, postCategories }) {
             </TwoColumnLayout.Heading>
             <TwoColumnLayout.Content>
                 <TwoColumnLayout.Main>
-                        <ShadcnCard
-                            className=""
-                            title="General"
-                            description={<></>}
-                        >
-                            <PostForm post={post} copyPost={copyPost} postCategories={postCategories}/>
-                        </ShadcnCard>
-                        <TwoColumnLayout.Actions>
-                        </TwoColumnLayout.Actions>
+                    <ShadcnCard
+                        className=""
+                        title="General"
+                        description={<></>}
+                    >
+                        <PostForm
+                            post={post}
+                            copyPost={copyPost}
+                            postCategories={postCategories}
+                        />
+                    </ShadcnCard>
+                    <TwoColumnLayout.Actions></TwoColumnLayout.Actions>
                 </TwoColumnLayout.Main>
                 <TwoColumnLayout.Aside>
-                    <Screenshot
-                        screenshotName={`post_${post?.title}`}
-                        moduleName="posts"
-                    >
-                        {post && (
-                            <ShadcnCard title={post?.full_name}>
-                                <TextMuted className="inline-block">
-                                    Created at
-                                </TextMuted>
-                                <TextLarge>
-                                    {post.created_at_string}
-                                </TextLarge>
-                                <TextMuted className="inline-block pt-2">
-                                    Last Updated
-                                </TextMuted>
-                                <TextLarge>
-                                    {post.updated_at_string}
-                                </TextLarge>
-                            </ShadcnCard>
-                        )}
-                    </Screenshot>
+                    {post && (
+                        <ShadcnCard title={post?.full_name}>
+                            <TextMuted className="inline-block">
+                                Created at
+                            </TextMuted>
+                            <TextLarge>{post.created_at_string}</TextLarge>
+                            <TextMuted className="inline-block pt-2">
+                                Last Updated
+                            </TextMuted>
+                            <TextLarge>{post.updated_at_string}</TextLarge>
+                        </ShadcnCard>
+                    )}
                 </TwoColumnLayout.Aside>
             </TwoColumnLayout.Content>
         </TwoColumnLayout>

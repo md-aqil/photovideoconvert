@@ -14,6 +14,7 @@ import MultiCarousel from "@/Components/MultiCarousel";
 import TopicsTagsTabs from "@/Components/TopicsTagsTabs";
 import Search from "@/Components/Search";
 import { Separator } from "@/shadcn/ui/separator";
+import AboutIntro from "@/Components/AboutIntro";
 
 const topUniversities = [
     {
@@ -375,7 +376,7 @@ const Homepage = ({ page, topics }) => {
                                     >
                                         <Link
                                             href={route(
-                                                "mentors.register.create"
+                                                "mentors.register.create",
                                             )}
                                         >
                                             Be a Mentor
@@ -400,7 +401,7 @@ const Homepage = ({ page, topics }) => {
                                     >
                                         <Link
                                             href={route(
-                                                "mentors.register.create"
+                                                "mentors.register.create",
                                             )}
                                         >
                                             Be a Mentor
@@ -425,8 +426,9 @@ const Homepage = ({ page, topics }) => {
                     </div>
                 </div>
             </div>
+            <AboutIntro />
 
-            <div className="max-w-7xl mx-auto py-10 sm:pt-16 px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">
+            {/* <div className="max-w-7xl mx-auto py-10 sm:pt-16 px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">
                 <div>
                     <div className="text-xl sm:text-3xl text-left font-semibold ">
                         Connect Learn Succeed — The Mentors You Need for Every
@@ -438,6 +440,18 @@ const Homepage = ({ page, topics }) => {
                         unlock new opportunities to elevate your career to new
                         heights.
                     </p>
+                </div>
+            </div> */}
+
+            <div
+                id="mentors"
+                className="max-w-7xl mx-auto py-12 sm:py-0 sm:pt-20 sm:pb-20 px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4"
+            >
+                <div className="text-xl sm:text-[34px] text-left font-extrabold sm:font-bold ">
+                    All the mentors you need in one place
+                </div>
+                <div className="pt-8 sm:pt-10">
+                    <TopicsTagsTabs topics={topics} isHomePage={true} />
                 </div>
             </div>
             <div className="py-8 sm:py-0 sm:pb-0 bg-fomoLight-0 sm:bg-white">
@@ -467,7 +481,7 @@ const Homepage = ({ page, topics }) => {
                         </div>
                     </div>
                 </div>
-                <div className="py-1 sm:py-4">
+                {/* <div className="py-1 sm:py-4">
                     <div className="pt-6 sm:pt-8">
                         <div className="text-center font-semibold text-sm sm:text-base">
                             Top Countries
@@ -476,19 +490,7 @@ const Homepage = ({ page, topics }) => {
                             <MultiCarousel speed={2500} data={topCountries} />
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div
-                id="mentors"
-                className="max-w-7xl mx-auto py-12 sm:py-0 sm:pt-20 sm:pb-20 px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4"
-            >
-                <div className="text-xl sm:text-[34px] text-left font-extrabold sm:font-bold ">
-                    All the mentors you need in one place
-                </div>
-                <div className="pt-8 sm:pt-10">
-                    <TopicsTagsTabs topics={topics} isHomePage={true} />
-                </div>
+                </div> */}
             </div>
         </div>
     );
