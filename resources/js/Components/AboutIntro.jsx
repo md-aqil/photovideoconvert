@@ -1,71 +1,76 @@
+import { Button } from "@/shadcn/ui/button";
+import { Link } from "@inertiajs/react";
+import { ArrowRight } from "lucide-react";
 import React from "react";
 import CountUp from "react-countup";
 
-const MissionVission = () => {
-    return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 lg:space-x-8">
-            <div className="relative">
-                <img src="/images/about.png" alt="" />
-            </div>
-            <div className="space-y-4">
-                <div className="flex flex-col gap-4">
-                    <div className="p-6 rounded-xl shadow-md bg-blue-100">
-                        <h3 className="text-xl font-semibold">
-                            Dedication to Compassionate Care for Every Patient
-                        </h3>
-                        <p className="text-gray-600 mt-2">
-                            Our ad campaign strategies are designed to maximize
-                            your brand’s reach and impact, ensuring effective
-                            engagement and measurable results.
-                        </p>
-                        <button className="mt-4 text-blue-600 flex items-center gap-1">
-                            Read More →
-                        </button>
-                    </div>
+// const MissionVission = () => {
+//     return (
+//         <div className="grid grid-cols-1 lg:grid-cols-2 lg:space-x-8">
+//             <div className="relative">
+//                 <img src="/images/about.png" alt="" />
+//             </div>
+//             <div className="space-y-4">
+//                 <div className="flex flex-col gap-4">
+//                     <div className="p-6 rounded-xl shadow-md bg-blue-100">
+//                         <h3 className="text-xl font-semibold">
+//                             Dedication to Compassionate Care for Every Patient
+//                         </h3>
+//                         <p className="text-gray-600 mt-2">
+//                             Our ad campaign strategies are designed to maximize
+//                             your brand’s reach and impact, ensuring effective
+//                             engagement and measurable results.
+//                         </p>
+//                         <button className="mt-4 text-blue-600 flex items-center gap-1">
+//                             Read More →
+//                         </button>
+//                     </div>
 
-                    <div className="p-6 rounded-xl shadow-md bg-gray-100">
-                        <h3 className="text-xl font-semibold">
-                            Content Strategy
-                        </h3>
-                        <p className="text-gray-600 mt-2">
-                            Our content strategy focuses on creating engaging,
-                            relevant material that drives audience interaction
-                            and supports your business goals.
-                        </p>
-                        <button className="mt-4 text-blue-600 flex items-center gap-1">
-                            Read More →
-                        </button>
-                    </div>
+//                     <div className="p-6 rounded-xl shadow-md bg-gray-100">
+//                         <h3 className="text-xl font-semibold">
+//                             Content Strategy
+//                         </h3>
+//                         <p className="text-gray-600 mt-2">
+//                             Our content strategy focuses on creating engaging,
+//                             relevant material that drives audience interaction
+//                             and supports your business goals.
+//                         </p>
+//                         <button className="mt-4 text-blue-600 flex items-center gap-1">
+//                             Read More →
+//                         </button>
+//                     </div>
 
-                    <div className="p-6 rounded-xl shadow-md bg-gray-100">
-                        <h3 className="text-xl font-semibold">
-                            Business Scaling
-                        </h3>
-                        <p className="text-gray-600 mt-2">
-                            Our expert strategies in business scaling help you
-                            expand your operations efficiently, ensuring
-                            sustainable growth and increased market presence.
-                            Partner with us to elevate your business to new
-                            heights.
-                        </p>
-                        <button className="mt-4 text-blue-600 flex items-center gap-1">
-                            Read More →
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
+//                     <div className="p-6 rounded-xl shadow-md bg-gray-100">
+//                         <h3 className="text-xl font-semibold">
+//                             Business Scaling
+//                         </h3>
+//                         <p className="text-gray-600 mt-2">
+//                             Our expert strategies in business scaling help you
+//                             expand your operations efficiently, ensuring
+//                             sustainable growth and increased market presence.
+//                             Partner with us to elevate your business to new
+//                             heights.
+//                         </p>
+//                         <button className="mt-4 text-blue-600 flex items-center gap-1">
+//                             Read More →
+//                         </button>
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// };
 const StatsSection = () => {
     return (
-        <div className="xl:flex justify-center items-center bg-white shadow-md rounded-lg p-6 xl:space-x-8 border border-gray-200">
-            <StatItem value="820" label="Mentees" />
-            <Divider />
-            <StatItem value="350" label="Mentors" />
-            <Divider />
-            <StatItem value="120" label="User Reviews" />
-        </div>
+        <>
+            <div className="xl:flex justify-center items-center bg-white shadow-md rounded-lg p-6 xl:space-x-8 border border-gray-200">
+                <StatItem value="820" label="Mentees" />
+                <Divider />
+                <StatItem value="350" label="Mentors" />
+                <Divider />
+                <StatItem value="120" label="User Reviews" />
+            </div>{" "}
+        </>
     );
 };
 
@@ -118,9 +123,28 @@ const Intro = () => (
                 Access a network of skilled mentors who will guide you through
                 challenges, help set meaningful goals, and unlock new
                 opportunities to elevate your career to new heights.
+                <Link
+                    className="text-blue-600 ml-2 underline underline-offset-2"
+                    href={route("aboutUs")}
+                >
+                    Read more..
+                </Link>
             </p>
 
             <StatsSection />
+
+            <div className="flex justify-end">
+                <Button
+                    asChild
+                    className="bg-gradient-to-l hover:bg-gradient-to-r from-slate-900 to-slate-700 text-white"
+                    size="lg"
+                >
+                    <Link href="#mentors">
+                        Browse Mentors{" "}
+                        <ArrowRight className="ml-2 animate-pulse" />
+                    </Link>
+                </Button>
+            </div>
         </div>
     </div>
 );

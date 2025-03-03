@@ -326,14 +326,6 @@ const Homepage = ({ page, topics }) => {
                         </div>
                         {/* This Buttons is for the mobile view */}
                         <div className="flex gap-3 pt-0 sm:hidden">
-                            {" "}
-                            <Button
-                                asChild
-                                className="bg-gradient-to-l hover:bg-gradient-to-r from-slate-900 to-slate-700 text-white"
-                                size="sm"
-                            >
-                                <Link href="#mentors">Browse Mentors</Link>
-                            </Button>
                             {!pageProp?.auth?.user && (
                                 <Button
                                     asChild
