@@ -222,7 +222,7 @@ const Homepage = ({ page, topics }) => {
         }
     };
     const pageProp = usePage().props;
-    const { testimonials, blogPost = [] } = usePage().props;
+    const { testimonials, latestPosts = [] } = usePage().props;
     return (
         <div>
             <Header isHomePage={true} />
@@ -291,7 +291,7 @@ const Homepage = ({ page, topics }) => {
                     </div>
                 </div> */}
             </div>
-            {blogPost.length > 0 && <RecentPosts blogPost={blogPost} />}
+            {latestPosts.length > 0 && <RecentPosts blogPost={latestPosts} />}
         </div>
     );
 };

@@ -1,39 +1,44 @@
+import SectionWrapper from "@/Components/SectionWrapper";
 import PageLayout from "@/Layouts/PageLayout";
 import { Badge } from "@/shadcn/ui/badge";
 import { formatDate } from "date-fns";
 
 const Post = ({ post }) => {
-    console.log("🚀 ~ Post ~ post:", post);
     return (
-        <div className="max-w-7xl mx-auto py-10 sm:pt-16 px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4 sm:mt-24">
+        <SectionWrapper.Boxed>
+            <SectionWrapper.Spacer />
+            <SectionWrapper.Spacer />
+            <SectionWrapper.Spacer />
             <img
-                src={post.data.image.full_url}
-                alt={post.data.title}
+                src={post.image.full_path}
+                alt={post.title}
                 className="rounded-xl w-full"
             />
 
             <div className="flex gap-x-2 items-center">
                 <time
-                    dateTime={post.data.created_at}
+                    dateTime={post.created_at}
                     className="text-sm text-muted-foreground"
                 >
-                    {formatDate(post.data.created_at, "dd MMMM yyyy")}
+                    {formatDate(post.created_at, "dd MMMM yyyy")}
                 </time>
-                {post.data.categories.map((c) => (
+                {post.categories.map((c) => (
                     <Badge>{c.name}</Badge>
                 ))}
             </div>
 
-            <h1 className="text-start">{post.data.title}</h1>
+            <SectionWrapper.Heading level="h1" className={`text-start`}>
+                {post.title}
+            </SectionWrapper.Heading>
             <blockquote className="text-start text-gray-600 pt-2">
-                {post.data.short_description}
+                {post.short_description}
             </blockquote>
 
             <div
                 className="no-tailwindcss-base"
-                dangerouslySetInnerHTML={{ __html: post.data.body }}
+                dangerouslySetInnerHTML={{ __html: post.body }}
             />
-        </div>
+        </SectionWrapper.Boxed>
     );
 };
 

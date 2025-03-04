@@ -43,7 +43,7 @@ export default function Header({
                     className="flex items-center gap-2 text-lg font-semibold md:text-base"
                 >
                     <img
-                        src={"/images/logo.jpeg"}
+                        src={"/images/logo-transparent.png"}
                         className={`h-16 w-full transition-all duration-300 ${
                             scrolling || isPaymentPage
                                 ? "mt-0 sm:h-16"
