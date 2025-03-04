@@ -15,7 +15,7 @@ return new class extends Migration
 			$table->id();
 			$table->foreignId('mentor_profile_id')->nullable()->constrained('mentor_profiles');
 			$table->foreignId('user_id')->nullable()->constrained('users');
-			$table->boolean('interested')->default(false);
+			$table->boolean('isInterested')->default(false);
 			$table->json('preferred_modes')->nullable()->default(null);
 			$table->json('interested_institutions')->nullable()->default(null);
 			$table->json('minimum_hourly_rate')->nullable()->default(null);
