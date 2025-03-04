@@ -20,8 +20,8 @@ class HomepageController extends Controller
 			$q->status()->whereNotNull('activated_at');
 		}, 'activeTags.mentors.profilePicture'])->active()->orderBy('title', 'ASC')->get();
 
-		$posts = Post::with('categories')->latest()->published()->limit(5)->get();
+		$latestPosts = Post::with('categories')->latest()->published()->limit(5)->get();
 
-		return Inertia::render('Homepage', ['page' => $page, 'topics' => $topics, 'latestPosts' => PostResource::collection($posts)]);
+		return Inertia::render('Homepage', ['page' => $page, 'topics' => $topics, 'latestPosts' => PostResource::collection($latestPosts)]);
 	}
 }
