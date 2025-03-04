@@ -36,7 +36,7 @@ export default function Header({
                     : "sm:fixed shadow-sm sm:shadow-none transition-all duration-300"
             } w-full top-0 h-16 z-50 flex`}
         >
-            <div className="container max-w-7xl mx-auto flex justify-between items-center gap-4 px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">
+            <div className="container flex items-center gap-4 h-16 justify-between">
                 <MobileNavbar />
                 <Link
                     href="/"
@@ -44,7 +44,7 @@ export default function Header({
                 >
                     <img
                         src={"/images/logo.jpeg"}
-                        className={`h-16 w-full shadow-lg transition-all duration-300 ${
+                        className={`h-16 w-full transition-all duration-300 ${
                             scrolling || isPaymentPage
                                 ? "mt-0 sm:h-16"
                                 : "sm:mt-14 sm:h-20"

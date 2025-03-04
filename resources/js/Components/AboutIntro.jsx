@@ -3,6 +3,7 @@ import { Link } from "@inertiajs/react";
 import { ArrowRight } from "lucide-react";
 import React from "react";
 import CountUp from "react-countup";
+import SectionWrapper from "./SectionWrapper";
 
 // const MissionVission = () => {
 //     return (
@@ -89,8 +90,8 @@ const Divider = () => (
     <div className="w-10 mx-auto h-px my-2 xl:h-10 xl:w-px bg-gray-300" />
 );
 
-const Intro = () => (
-    <div className="grid grid-cols-1 lg:grid-cols-2 lg:space-x-8 items-center">
+const Intro = ({ pageProp }) => (
+    <div className="grid grid-cols-1 lg:grid-cols-2 lg:space-x-8 items-center space-y-3">
         <div className="relative">
             <img src="/images/about.jpg" alt="" className="rounded-xl" />
             {/* <div className="absolute top-0 right-0 ">
@@ -112,11 +113,10 @@ const Intro = () => (
         <div className="space-y-4">
             <div className="space-y-2">
                 <p>FomoEdge</p>
-                <h1 className={"text-start text-2xl sm:text-3xl"}>
-                    {" "}
+                <SectionWrapper.Heading level="h2" className={`text-start`}>
                     Connect Learn Succeed — The Mentors You Need for Every
                     Professional Journey
-                </h1>
+                </SectionWrapper.Heading>
             </div>
 
             <p>
@@ -133,8 +133,20 @@ const Intro = () => (
 
             <StatsSection />
 
-            <div className="flex justify-end">
-                <Button
+            <div className="flex justify-end gap-x-4">
+                {!pageProp?.auth?.user && (
+                    <Button
+                        asChild
+                        variant="outline"
+                        size="lg"
+                        className="bg-gradient-to-l hover:bg-gradient-to-r from-slate-900 to-slate-700 text-white"
+                    >
+                        <Link href={route("mentors.register.create")}>
+                            Be a Mentor
+                        </Link>
+                    </Button>
+                )}
+                {/* <Button
                     asChild
                     className="bg-gradient-to-l hover:bg-gradient-to-r from-slate-900 to-slate-700 text-white"
                     size="lg"
@@ -143,16 +155,16 @@ const Intro = () => (
                         Browse Mentors{" "}
                         <ArrowRight className="ml-2 animate-pulse" />
                     </Link>
-                </Button>
+                </Button> */}
             </div>
         </div>
     </div>
 );
 
-export default function AboutIntro() {
+export default function AboutIntro({ pageProp }) {
     return (
-        <div className="max-w-7xl mx-auto py-12 sm:py-0 sm:pt-20 sm:pb-20 px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">
-            <Intro />
-        </div>
+        <SectionWrapper.Boxed>
+            <Intro pageProp={pageProp} />
+        </SectionWrapper.Boxed>
     );
 }

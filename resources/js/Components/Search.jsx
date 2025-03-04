@@ -1,20 +1,14 @@
 import React from "react";
-import { Link, router, useForm, usePage } from "@inertiajs/react";
-import { Label } from "@/shadcn/ui/label";
-import { Button } from "@/shadcn/ui/button";
+import { Link } from "@inertiajs/react";
 import { Input } from "@/shadcn/ui/input";
 import { ChevronRightIcon, Loader2, SearchIcon } from "lucide-react";
 import axios from "axios";
 import {
     Command,
-    CommandDialog,
     CommandEmpty,
     CommandGroup,
-    CommandInput,
     CommandItem,
     CommandList,
-    CommandSeparator,
-    CommandShortcut,
 } from "@/shadcn/ui/command";
 // import useDebounce from "@/hooks/use-debounce";
 import { useDebounce } from "use-debounce";
@@ -45,7 +39,7 @@ export default function Search() {
 
         try {
             const res = await axios.get(
-                route("course.search", { keyword: keyword })
+                route("course.search", { keyword: keyword }),
             );
             packagesSet(res?.data?.courses);
         } catch (error) {
@@ -71,7 +65,7 @@ export default function Search() {
                         required
                         autoComplete="off"
                         onChange={(e) => keywordSet(e.target.value)}
-                        className="py-3 px-5 pr-10 rounded-sm text-sm focus:outline-none border bg-slate-100 w-full group-hover:bg-fomoExtraLight-0 transition-all duration-150 ease-in-out"
+                        className="py-6 px-5 pr-10 rounded-sm text-sm focus:outline-none border bg-white w-full transition-all duration-150 ease-in-out"
                     />
                     <span className="absolute right-0 -top-0.5 mt-3 mr-4 text-fomoPrimary-0 group-hover:text-gray-700 transition-all duration-150 ease-in-out">
                         {!searching && <SearchIcon />}
@@ -105,7 +99,7 @@ export default function Search() {
                                                                 "course.find-by-slug",
                                                                 {
                                                                     slug: item?.slug,
-                                                                }
+                                                                },
                                                             )}
                                                             className="flex items-center justify-between w-full"
                                                         >

@@ -1,7 +1,7 @@
 import React from "react";
 // import MentorCategoryTabs from "@/Components/MentorCategoryTabs";
 import Header from "@/Layouts/Header";
-
+import { useRef } from "react";
 import { Head, Link, usePage } from "@inertiajs/react";
 import BlankLayout from "@/Layouts/blank-layout";
 import { Button } from "@/shadcn/ui/button";
@@ -12,9 +12,10 @@ import { TypeAnimation } from "react-type-animation";
 // import Search from "@/Components/Search";
 import MultiCarousel from "@/Components/MultiCarousel";
 import TopicsTagsTabs from "@/Components/TopicsTagsTabs";
-import Search from "@/Components/Search";
-import { Separator } from "@/shadcn/ui/separator";
+
 import AboutIntro from "@/Components/AboutIntro";
+import RecentPosts from "@/Components/RecentPosts";
+import Hero from "@/Components/Hero";
 
 const topUniversities = [
     {
@@ -213,213 +214,20 @@ const topCountries = [
 ];
 
 const Homepage = ({ page, topics }) => {
+    const nextSectionRef = useRef(null);
+
+    const scrollToNextSection = () => {
+        if (nextSectionRef.current) {
+            nextSectionRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    };
     const pageProp = usePage().props;
+    const { testimonials, blogPost = [] } = usePage().props;
     return (
         <div>
             <Header isHomePage={true} />
-            <div className="header-gradient w-full mx-auto relative">
-                <div className="sm:grid grid-cols-1 sm:grid-cols-2 max-w-7xl mx-auto px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">
-                    <div className="mx-auto py-12 sm:pt-40">
-                        <div className="text-4xl sm:text-5xl font-bold py-5 w-[320px] sm:w-[615px]">
-                            {/* <p className="text-xl mb-4 inline-block">
-                                    <span className="font-bold italic">
-                                        An ISB Alumni Initiative
-                                    </span>
-                                </p> */}
-                            <div className="text-sm sm:text-lg mb-2 sm:mb-4 font-semibold lg:w-[650px]">
-                                Expert insights | Connect with vetted experts |
-                                Unlock Your Potential <br></br>
-                                <div className="pt-2">
-                                    <span className="text-3xl font-semibold text-center">
-                                        1-on-1 mentorship
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="h-[70px] w-full">
-                                <TypeAnimation
-                                    sequence={[
-                                        "Career Switch ",
-                                        1000,
-                                        "LinkedIn Optimization",
-                                        1000,
-                                        "Study Abroad",
-                                        1000,
-                                        "Growth Strategy",
-                                        1000,
-                                        "GMAT Exam",
-                                        1000,
-                                        "CAT Exam 	",
-                                        1000,
-                                        "GRE Exam	",
-                                        1000,
-                                        "Product Management",
-                                        1000,
-                                        "CFA Exam	",
-                                        1000,
-                                        "Go to Market Strategy",
-                                        1000,
-                                        "FRM Exam",
-                                        1000,
-                                        "Start-Up Support	",
-                                        1000,
-                                        "Exams Coaching	 	",
-                                        1000,
-                                        "Product Strategy",
-                                        1000,
-                                        "Overseas Career 	",
-                                        1000,
-                                        "Airbnb Start-Up Model	",
-                                        1000,
-                                        "Job Application	",
-                                        1000,
-                                        "Resume Building",
-                                        1000,
-                                        "Digital Marketing",
-                                        1000,
-                                        "Finance Careers",
-                                        1000,
-                                        "Product Management Careers",
-                                        1000,
-                                        "Social Media Growth	",
-                                        1000,
-                                        "Influencer Marketing	",
-                                        1000,
-                                        "Human Resources Careers",
-                                        1000,
-                                        "International Scholarships 	",
-                                        1000,
-                                        "Technology Careers",
-                                        1000,
-                                        "Data Science Careers",
-                                        1000,
-                                        "Jobs Abroad",
-                                        1000,
-                                        "IELTS Exam 	",
-                                        1000,
-                                        "Analytics Careers",
-                                        1000,
-                                        "Immigration 	",
-                                        1000,
-                                        "Global Job Market	",
-                                        1000,
-                                        "Project Management	",
-                                        1000,
-                                        "MBA Preparation	",
-                                        1000,
-                                        "Quantitative Aptitude	",
-                                        1000,
-                                        "Verbal Reasoning	",
-                                        1000,
-                                        "Pitch Deck Creation",
-                                        1000,
-                                        "Foreign Languages 	",
-                                        1000,
-                                        "Phd & careers",
-                                        1000,
-                                    ]}
-                                    wrapper="span"
-                                    speed={50}
-                                    className="text-[30px] sm:text-[50px] font-bold inline-block"
-                                    repeat={Infinity}
-                                />
-                            </div>
-                        </div>
-                        {/* This Buttons is for the mobile view */}
-                        <div className="flex gap-3 pt-0 sm:hidden">
-                            {!pageProp?.auth?.user && (
-                                <Button
-                                    asChild
-                                    variant="outline"
-                                    size="sm"
-                                    className="bg-transparent border-slate-900 text-slate-900"
-                                    // onClick={() => setOpen(true)}
-                                >
-                                    <Link
-                                        href={route("mentors.register.create")}
-                                    >
-                                        Be a Mentor
-                                    </Link>
-                                </Button>
-                            )}
-                        </div>
-                        <div className="flex gap-3 pt-8 sm:pt-6">
-                            <div className="w-full sm:w-[300px]">
-                                <Search />
-                            </div>
-                            <Separator
-                                orientation="vertical"
-                                className="bg-fomoPrimary-0 h-100 hidden sm:block"
-                            />
-                            <div className="hidden sm:block">
-                                <Button
-                                    asChild
-                                    className="bg-gradient-to-l hover:bg-gradient-to-r from-slate-900 to-slate-700 text-white"
-                                    size="lg"
-                                >
-                                    <Link href="#mentors">Browse Mentors</Link>
-                                </Button>
-                            </div>
-                            <div className="hidden sm:flex lg:hidden xl:hidden">
-                                {!pageProp?.auth?.user && (
-                                    <Button
-                                        asChild
-                                        className="bg-gradient-to-l hover:bg-gradient-to-r from-slate-900 to-slate-700 text-white"
-                                        size="lg"
-                                    >
-                                        <Link
-                                            href={route(
-                                                "mentors.register.create",
-                                            )}
-                                        >
-                                            Be a Mentor
-                                        </Link>
-                                    </Button>
-                                )}
-                            </div>{" "}
-                        </div>
-                        <div className="text-xs text-black sm:text-sm mt-8 sm:mt-10 bg-[#fff0c6] shadow-xl p-4 sm:p-5 font-semibold rounded-3xl rounded-tr-none rounded-bl-none">
-                            Just Expert Advice Tailored for You—Because You
-                            Deserve the Edge to Succeed
-                        </div>
-                    </div>
-                    <div className="hidden sm:hidden lg:block xl:block">
-                        <div className="flex justify-end pt-[315px] relative z-10 ">
-                            <div className="pt-[67px] ">
-                                {!pageProp?.auth?.user && (
-                                    <Button
-                                        asChild
-                                        className="bg-gradient-to-l hover:bg-gradient-to-r from-slate-900 to-slate-700 text-white"
-                                        size="lg"
-                                    >
-                                        <Link
-                                            href={route(
-                                                "mentors.register.create",
-                                            )}
-                                        >
-                                            Be a Mentor
-                                        </Link>
-                                    </Button>
-                                )}
-                            </div>{" "}
-                            <img
-                                // src="./images/studentBanner3.png"
-                                src="./images/heroBanner.svg"
-                                className="h-[260px] w-[340px] object-cover"
-                                alt=""
-                            />
-                            <div className="absolute bottom-0 right-0 rotating z-[-1]">
-                                <img
-                                    src="./images/dotBanner.svg"
-                                    className="h-[390px] w-[390px] object-cover"
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <AboutIntro />
-
+            <Hero />
+            <AboutIntro pageProp={pageProp} />
             {/* <div className="max-w-7xl mx-auto py-10 sm:pt-16 px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">
                 <div>
                     <div className="text-xl sm:text-3xl text-left font-semibold ">
@@ -434,7 +242,6 @@ const Homepage = ({ page, topics }) => {
                     </p>
                 </div>
             </div> */}
-
             <div
                 id="mentors"
                 className="max-w-7xl mx-auto py-12 sm:py-0 sm:pt-20 sm:pb-20 px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4"
@@ -484,6 +291,7 @@ const Homepage = ({ page, topics }) => {
                     </div>
                 </div> */}
             </div>
+            {blogPost.length > 0 && <RecentPosts blogPost={blogPost} />}
         </div>
     );
 };
