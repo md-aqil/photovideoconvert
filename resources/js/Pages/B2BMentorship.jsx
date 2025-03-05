@@ -16,7 +16,7 @@ const B2BMentorship = ({ page, topics }) => {
             <Header />
             <PageBanner title={page.title} />
             <div className="container">
-                <Card>
+                <Card className="my-8">
                     <CardHeader>
                         <CardTitle>B2B Mentorship Program</CardTitle>
                         <CardDescription>
