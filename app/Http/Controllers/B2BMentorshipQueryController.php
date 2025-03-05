@@ -26,7 +26,7 @@ class B2BMentorshipQueryController extends Controller
 				'isInterested' => [['label' => 'Yes', 'value' => true], ['label' => 'No', 'value' => false]],
 				'preferred_modes' => ['Virual', 'In-Person'],
 				'interested_institutions' => ['Start-ups', 'Corporate', 'Universities/Colleges'],
-				'minimum_hourly_rate' => ['Virual', 'In-Person'],
+				'minimum_hourly_rate' => [['label' => 'Virtual', 'rate' => ""], ['label' => 'In-Person', 'rate' => ""]],
 				'open_to_long_duration_mentorship' => [['label' => 'Yes', 'value' => true], ['label' => 'No', 'value' => false]]
 			],
 		]);

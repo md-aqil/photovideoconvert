@@ -13,6 +13,7 @@ import React from "react";
 import MultiSelectTopics from "./MultiSelectTopics/MultiSelectTopics";
 import { Input } from "@/shadcn/ui/input";
 import { Textarea } from "@/shadcn/ui/textarea";
+import LoadingButton from "./LoadingButton";
 
 export default function B2BMentorshipForm() {
     const { b2BMentorshipFormData, mentorProfile } = usePage().props;
@@ -20,14 +21,23 @@ export default function B2BMentorshipForm() {
         isInterested: true,
         topic_ids: [],
         topic_tag_ids: [],
-        preferred_modes: ["Virtual"],
-        interested_institutions: [b2BMentorshipFormData.isInterested[1]],
+        preferred_modes: [b2BMentorshipFormData.preferred_modes[0]],
+        interested_institutions: [
+            b2BMentorshipFormData.interested_institutions[1],
+        ],
         minimum_hourly_rate: b2BMentorshipFormData.minimum_hourly_rate,
         open_to_long_duration_mentorship: true,
         about: "",
     });
+
+    const submit = (e) => {
+        e.preventDefault();
+        // post(route)
+        console.log("data", data);
+    };
+
     return (
-        <form>
+        <form onSubmit={submit}>
             <ol className="list-decimal ml-4 space-y-4">
                 <li>
                     <Label>Are you interested in B2B mentorship?</Label>
@@ -66,19 +76,19 @@ export default function B2BMentorshipForm() {
                                 <Checkbox
                                     value={f}
                                     id={f}
+                                    checked={data.preferred_modes.includes(f)}
                                     onCheckedChange={() => {
                                         if (data.preferred_modes.includes(f)) {
                                             setData(
                                                 "preferred_modes",
                                                 data.preferred_modes.filter(
-                                                    (m) => m == f
+                                                    (m) => m != f
                                                 )
                                             );
                                         } else {
-                                            setData(
-                                                "preferred_modes",
-                                                data.preferred_modes.push(f)
-                                            );
+                                            const temp = data.preferred_modes;
+                                            temp.push(f);
+                                            setData("preferred_modes", temp);
                                         }
                                     }}
                                 />
@@ -99,6 +109,9 @@ export default function B2BMentorshipForm() {
                                     <Checkbox
                                         value={f}
                                         id={f}
+                                        checked={data.interested_institutions.includes(
+                                            f
+                                        )}
                                         onCheckedChange={() => {
                                             if (
                                                 data.interested_institutions.includes(
@@ -108,15 +121,16 @@ export default function B2BMentorshipForm() {
                                                 setData(
                                                     "interested_institutions",
                                                     data.interested_institutions.filter(
-                                                        (m) => m == f
+                                                        (m) => m != f
                                                     )
                                                 );
                                             } else {
+                                                const temp =
+                                                    data.interested_institutions;
+                                                temp.push(f);
                                                 setData(
                                                     "interested_institutions",
-                                                    data.interested_institutions.push(
-                                                        f
-                                                    )
+                                                    temp
                                                 );
                                             }
                                         }}
@@ -130,26 +144,31 @@ export default function B2BMentorshipForm() {
                 <li>
                     <Label>Minimum Hourly Rate (in ₹)</Label>
                     <div className="space-y-2">
-                        {b2BMentorshipFormData.minimum_hourly_rate.map((f) => (
-                            <div
-                                key={f}
-                                className="grid grid-cols-3 sm:grid-cols-7 items-center space-x-2"
-                            >
-                                <Label for={f}>{f}</Label>
-                                <Input
-                                    type="text"
-                                    className="col-span-2 sm:col-span-3"
-                                    name={`minimum_hourly_rate[${f}]`}
-                                    value={data[`minimum_hourly_rate[${f}]`]}
-                                    onChange={(e) =>
-                                        setData(
-                                            `minimum_hourly_rate[${f}]`,
-                                            e.target.value
-                                        )
-                                    }
-                                />
-                            </div>
-                        ))}
+                        {b2BMentorshipFormData.minimum_hourly_rate.map(
+                            (f, i) => (
+                                <div
+                                    key={f.label}
+                                    className="grid grid-cols-3 sm:grid-cols-7 items-center space-x-2"
+                                >
+                                    <Label htmlFor={f.label}>{f.label}</Label>
+                                    <Input
+                                        type="text"
+                                        className="col-span-2 sm:col-span-3"
+                                        name={`minimum_hourly_rate[${i}][rate]`}
+                                        value={data.minimum_hourly_rate[i].rate}
+                                        onChange={(e) => {
+                                            const temp =
+                                                data.minimum_hourly_rate;
+                                            temp[i].rate = e.target.value;
+                                            setData(
+                                                "minimum_hourly_rate",
+                                                temp
+                                            );
+                                        }}
+                                    />
+                                </div>
+                            )
+                        )}
                     </div>
                 </li>
                 <li>
@@ -190,6 +209,15 @@ export default function B2BMentorshipForm() {
                     />
                 </li>
             </ol>
+            <div className="flex justify-end">
+                <LoadingButton
+                    loading={processing}
+                    type="submit"
+                    className="mt-4 ml-auto"
+                >
+                    Submit
+                </LoadingButton>
+            </div>
         </form>
     );
 }
