@@ -64,8 +64,7 @@ export default function Register() {
                                     decoding="async"
                                     src={globalSettings?.general?.app_logo}
                                     alt={
-                                        globalSettings?.general?.app_logo ||
-                                        appName
+                                        globalSettings?.general?.app_logo || ""
                                     }
                                     className="object-cover"
                                 />
@@ -102,7 +101,7 @@ export default function Register() {
                                             onChange={(e) =>
                                                 setData(
                                                     "first_name",
-                                                    e.target.value
+                                                    e.target.value,
                                                 )
                                             }
                                         />
@@ -127,7 +126,7 @@ export default function Register() {
                                             onChange={(e) =>
                                                 setData(
                                                     "last_name",
-                                                    e.target.value
+                                                    e.target.value,
                                                 )
                                             }
                                         />
@@ -154,7 +153,7 @@ export default function Register() {
                                         onChange={(e) =>
                                             setData(
                                                 "alias_name",
-                                                e.target.value
+                                                e.target.value,
                                             )
                                         }
                                     />
@@ -267,7 +266,7 @@ export default function Register() {
                                             onChange={(e) =>
                                                 setData(
                                                     "password",
-                                                    e.target.value
+                                                    e.target.value,
                                                 )
                                             }
                                         />
@@ -294,7 +293,7 @@ export default function Register() {
                                             onChange={(e) =>
                                                 setData(
                                                     "password_confirmation",
-                                                    e.target.value
+                                                    e.target.value,
                                                 )
                                             }
                                         />

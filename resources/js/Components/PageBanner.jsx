@@ -1,28 +1,26 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
 import { Home } from "lucide-react";
+import SectionWrapper from "./SectionWrapper";
 
 export default function PageBanner({ title, imgSrc, breadcrumbs }) {
     return (
-        <div className="relative h-[240px] sm:h-[350px] bg-gradient-to-r from-fomoLight-0 via-fomoPrimary-0 to-fomoLight-0">
-            <div className="absolute inset-0 bg-black opacity-40"></div>
-            <img
-                src={"/images/pageBanner.webp"}
-                className="w-full h-[240px] sm:h-[350px] object-cover"
-                alt="course"
-            />
-            <div className="absolute inset-0 flex flex-col justify-center text-yellow-50 items-center px-3 sm:px-0">
-                <h2 className="text-3xl text-center sm:text-5xl font-bold">
+        <div className="relative hero-bg">
+            {/* <div className="relative bg-[#ffc93d]"> */}
+            <div className="absolute inset-x-0 bottom-0">
+                <svg
+                    viewBox="0 0 224 12"
+                    fill="currentColor"
+                    className="w-full -mb-1 text-white"
+                    preserveAspectRatio="none"
+                >
+                    <path d="M0,0 C48.8902582,6.27314026 86.2235915,9.40971039 112,9.40971039 C137.776408,9.40971039 175.109742,6.27314026 224,0 L224,12.0441132 L0,12.0441132 L0,0 Z" />
+                </svg>
+            </div>
+            <div className="max-w-7xl mx-auto py-12 sm:py-20 px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">
+                <SectionWrapper.Heading level="div" className={`space-y-2`}>
                     {title}
-                </h2>
-                {/* {breadcrumbs && (
-                    <div className="flex justify-center items-center sm:gap-1 pt-6">
-                        <Link href={"/"}>
-                            <Home className="h-5 w-5" />
-                        </Link>
-                        {breadcrumbs}
-                    </div>
-                )} */}
+                </SectionWrapper.Heading>
             </div>
         </div>
     );

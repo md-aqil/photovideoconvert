@@ -128,7 +128,7 @@ export default function KycDetails({ courseTypeEnum, course, mentorProfile }) {
                                                 <Calendar size={13} />
                                                 {formatDate(
                                                     course?.created_at,
-                                                    "dd MMM, yyyy hh:mm aa"
+                                                    "dd MMM, yyyy hh:mm aa",
                                                 )}
                                             </span>
                                         )}
@@ -163,7 +163,7 @@ export default function KycDetails({ courseTypeEnum, course, mentorProfile }) {
                                                         </span>
                                                     </div>
                                                 </div>
-                                            )
+                                            ),
                                         )}
                                     </div>
                                 </div>
@@ -258,7 +258,7 @@ export default function KycDetails({ courseTypeEnum, course, mentorProfile }) {
                                                                     }
                                                                 </div>
                                                             </div>
-                                                        )
+                                                        ),
                                                     )}
                                                 </AccordionContent>
                                             </AccordionItem>
@@ -290,7 +290,7 @@ export default function KycDetails({ courseTypeEnum, course, mentorProfile }) {
                                                                 >
                                                                     {tag?.title}
                                                                 </div>
-                                                            )
+                                                            ),
                                                         )}
                                                     </div>
                                                 </AccordionContent>
