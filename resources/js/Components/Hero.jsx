@@ -97,7 +97,7 @@ const TypingText = () => {
 };
 export default function Hero() {
     return (
-        <div className="relative hero-bg">
+        <div className="relative hero-bg bg-fixed">
             {/* <div className="relative bg-[#ffc93d]"> */}
             <div className="absolute inset-x-0 bottom-0">
                 <svg

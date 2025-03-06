@@ -16,6 +16,7 @@ import TopicsTagsTabs from "@/Components/TopicsTagsTabs";
 import AboutIntro from "@/Components/AboutIntro";
 import RecentPosts from "@/Components/RecentPosts";
 import Hero from "@/Components/Hero";
+import HowItWorks from "@/Components/HowItWorks";
 
 const topUniversities = [
     {
@@ -253,6 +254,7 @@ const Homepage = ({ page, topics }) => {
                     <TopicsTagsTabs topics={topics} isHomePage={true} />
                 </div>
             </div>
+            <HowItWorks />
             <div className="py-8 sm:py-0 sm:pb-0 bg-fomoLight-0 sm:bg-white">
                 <div className="sm:py-0">
                     <div className="text-xl sm:text-3xl text-center font-semibold pt-4 max-w-7xl mx-auto px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">

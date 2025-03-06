@@ -1,0 +1,97 @@
+import React from "react";
+import SectionWrapper from "./SectionWrapper";
+
+export default function HowItWorks() {
+    return (
+        <div className="relative hero-bg pt-8 pb-12">
+            {/* <div className="relative bg-[#ffc93d]"> */}
+            <div className="absolute inset-x-0 bottom-0">
+                <svg
+                    viewBox="0 0 224 12"
+                    fill="currentColor"
+                    className="w-full -mb-1 text-white"
+                    preserveAspectRatio="none"
+                >
+                    <path d="M0,0 C48.8902582,6.27314026 86.2235915,9.40971039 112,9.40971039 C137.776408,9.40971039 175.109742,6.27314026 224,0 L224,12.0441132 L0,12.0441132 L0,0 Z" />
+                </svg>
+            </div>
+
+            <SectionWrapper.Boxed level="div">
+                <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <div className="max-w-2xl mx-auto text-center">
+                        <SectionWrapper.Heading>
+                            How does it work?
+                        </SectionWrapper.Heading>
+                        <SectionWrapper.Subheading>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Enim corporis similique atque ipsa, odio
+                            placeat qui velit at sunt dolorum optio nobis id
+                            vero, ab sequi ipsam ducimus ratione ad!
+                        </SectionWrapper.Subheading>
+                    </div>
+                    <div className="relative mt-12 lg:mt-20">
+                        <div className="absolute inset-x-0 hidden xl:px-44 top-2 md:block md:px-20 lg:px-28">
+                            <img
+                                alt=""
+                                loading="lazy"
+                                width="1000"
+                                height="500"
+                                decoding="async"
+                                data-nimg="1"
+                                className="w-full brightness-0"
+                                src="https://cdn.rareblocks.xyz/collection/celebration/images/steps/2/curved-dotted-line.svg"
+                            />
+                        </div>
+                        <div className="relative grid grid-cols-1 text-center gap-y-12 md:grid-cols-3 gap-x-12">
+                            <div>
+                                <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
+                                    <span className="text-xl font-semibold text-gray-700">
+                                        1
+                                    </span>
+                                </div>
+                                <h3 className="mt-6 text-xl font-semibold leading-tight md:mt-10">
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit.
+                                </h3>
+                                <p className="mt-4 text-base text-slate-600 md:text-lg">
+                                    Select template Lorem, ipsum dolor.
+                                    accourding to your requirement
+                                </p>
+                            </div>
+                            <div>
+                                <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
+                                    <span className="text-xl font-semibold text-gray-700">
+                                        2
+                                    </span>
+                                </div>
+                                <h3 className="mt-6 text-xl font-semibold leading-tight md:mt-10">
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit.
+                                </h3>
+                                <p className="mt-4 text-base text-slate-600 md:text-lg">
+                                    Select template Lorem, ipsum dolor.
+                                    accourding to your requirement
+                                </p>
+                            </div>
+                            <div>
+                                <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
+                                    <span className="text-xl font-semibold text-gray-700">
+                                        3
+                                    </span>
+                                </div>
+                                <h3 className="mt-6 text-xl font-semibold leading-tight md:mt-10">
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit.
+                                </h3>
+                                <p className="mt-4 text-base text-slate-600 md:text-lg">
+                                    Select template Lorem, ipsum dolor.
+                                    accourding to your requirement
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </SectionWrapper.Boxed>
+        </div>
+    );
+}
