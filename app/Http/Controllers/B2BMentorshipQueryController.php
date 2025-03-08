@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\MentorProfileResource;
+use App\Models\B2BMentorshipQuery;
 use App\Models\Page;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -30,5 +31,29 @@ class B2BMentorshipQueryController extends Controller
 				'open_to_long_duration_mentorship' => [['label' => 'Yes', 'value' => true], ['label' => 'No', 'value' => false]]
 			],
 		]);
+	}
+
+	public function store(Request $request)
+	{
+		$user = $request->user();
+		if ($user) {
+			$request->merge(['user_id' => $user->id]);
+			$user->load('mentorProfile.topics', 'mentorProfile.topicTags');
+			$mentorProfile = $user->mentorProfile;
+			if ($mentorProfile) {
+				$request->merge(['mentor_profile_id' => $mentorProfile->id]);
+			}
+		}
+		$b2bMentorshipQuery = B2BMentorshipQuery::create($request->all());
+
+		if (!empty($request->topic_ids)) {
+			$b2bMentorshipQuery->topics()->sync($request->topic_ids);
+		}
+
+		if (!empty($request->topic_tag_ids)) {
+			$b2bMentorshipQuery->topicTags()->sync($request->topic_tag_ids);
+		}
+
+		return back()->with(['flash_type' => 'success', 'flash_message' => 'Your request has been saved successfully.']);
 	}
 }

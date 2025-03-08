@@ -21,7 +21,7 @@ return new class extends Migration
 			$table->json('minimum_hourly_rate')->nullable()->default(null);
 			$table->boolean('open_to_long_duration_mentorship')->default(false);
 			$table->longText('about')->nullable()->default(null);
-			$table->json('meta')->default(null);
+			$table->json('meta')->nullable()->default(null);
 			$table->longText('notes')->nullable()->default(null);
 			$table->timestamps();
 			$table->softDeletes();

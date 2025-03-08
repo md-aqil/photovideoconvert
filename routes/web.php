@@ -59,7 +59,7 @@ Route::prefix('booking')->name('booking.')->group(function () {
 
 // Route::redirect('/home', '/');
 Route::get('/b2b-mentorship', [B2BMentorshipQueryController::class, 'page'])->name('b2b-mentorship.page');
-// Route::get('/b2b-mentorship', [B2BMentorshipQueryController::class, 'store'])->name('b2b-mentorship.store');
+Route::post('/b2b-mentorship', [B2BMentorshipQueryController::class, 'store'])->name('b2b-mentorship.store');
 Route::get('/', HomepageController::class)->name('homepage');
 
 Route::get('{slug}', PageController::class)->name('page');

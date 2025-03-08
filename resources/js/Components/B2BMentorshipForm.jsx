@@ -32,7 +32,7 @@ export default function B2BMentorshipForm() {
 
     const submit = (e) => {
         e.preventDefault();
-        // post(route)
+        post(route("b2b-mentorship.store"));
         console.log("data", data);
     };
 
