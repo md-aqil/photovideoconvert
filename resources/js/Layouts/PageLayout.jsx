@@ -17,10 +17,14 @@ export default function PageLayout({ children, title, metaDescription }) {
                 description: flash.description,
                 position: "top-right",
             };
-            if (flash.type === "success") {
+            if (flash.type == "success") {
                 toast.success(flash.message, options);
-            } else {
+            } else if (flash.type == "warning") {
+                toast.warning(flash.message, options);
+            } else if (flash.type == "error") {
                 toast.error(flash.message, options);
+            } else {
+                toast(flash.message, options);
             }
         }
     }, [flash]);

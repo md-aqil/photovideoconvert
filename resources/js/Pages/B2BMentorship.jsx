@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "@/Layouts/Header";
-import BlankLayout from "@/Layouts/blank-layout";
 import B2BMentorshipForm from "@/Components/B2BMentorshipForm";
 import PageBanner from "@/Components/PageBanner";
 import {
@@ -10,6 +9,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/shadcn/ui/card";
+import PageLayout from "@/Layouts/PageLayout";
 const B2BMentorship = ({ page, topics }) => {
     return (
         <div>
@@ -34,7 +34,7 @@ const B2BMentorship = ({ page, topics }) => {
 };
 
 B2BMentorship.layout = (page) => (
-    <BlankLayout
+    <PageLayout
         children={page}
         title={
             page.props.page.meta_title
