@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 import { Input } from "@/shadcn/ui/input";
 import { ChevronRightIcon, Loader2, SearchIcon } from "lucide-react";
 import axios from "axios";
@@ -14,7 +14,10 @@ import {
 import { useDebounce } from "use-debounce";
 
 export default function Search() {
-    const [keyword, keywordSet] = React.useState("");
+    const queryParams = new URLSearchParams(window.location.search);
+    const [keyword, keywordSet] = React.useState(
+        queryParams.get("keyword") || ""
+    );
 
     const [packages, packagesSet] = React.useState([]);
     const [dropdownOpen, setDropdownOpen] = React.useState(false);
@@ -22,26 +25,27 @@ export default function Search() {
 
     const debouncedSearchTerm = useDebounce(keyword, 500);
 
-    React.useEffect(() => {
-        if (!debouncedSearchTerm) {
-            packagesSet([]);
-            return;
-        }
-        if (keyword.length >= 3) {
-            searchingSet(true);
-            handleSubmit?.(debouncedSearchTerm);
-        }
-    }, [keyword]);
+    // React.useEffect(() => {
+    //     if (!debouncedSearchTerm) {
+    //         packagesSet([]);
+    //         return;
+    //     }
+    //     if (keyword.length >= 3) {
+    //         searchingSet(true);
+    //         handleSubmit?.(debouncedSearchTerm);
+    //     }
+    // }, [keyword]);
 
     const handleSubmit = async (k) => {
         searchingSet(true);
-        setDropdownOpen(true);
+        // setDropdownOpen(true);
 
         try {
-            const res = await axios.get(
-                route("course.search", { keyword: keyword }),
-            );
-            packagesSet(res?.data?.courses);
+            router.visit(route("search", { keyword: k }));
+            // const res = await axios.get(
+            //     route("course.search", { keyword: keyword })
+            // );
+            // packagesSet(res?.data?.courses);
         } catch (error) {
             console.error(error);
         }
@@ -99,7 +103,7 @@ export default function Search() {
                                                                 "course.find-by-slug",
                                                                 {
                                                                     slug: item?.slug,
-                                                                },
+                                                                }
                                                             )}
                                                             className="flex items-center justify-between w-full"
                                                         >
