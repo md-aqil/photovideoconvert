@@ -4,6 +4,8 @@ import Footer from "./Footer";
 import { Head, usePage } from "@inertiajs/react";
 import { Toaster } from "@/shadcn/ui/sonner";
 import { toast } from "sonner";
+import ShadcnProvider from "./shadcn-provider";
+import BlankLayout from "./blank-layout";
 const AdminGlobalHeader = React.lazy(() =>
     import("@/Components/Admin/AdminGlobalHeader")
 );
@@ -29,18 +31,9 @@ export default function PageLayout({ children, title, metaDescription }) {
         }
     }, [flash]);
     return (
-        <>
-            <Head title={title}>
-                <meta name="description" content={metaDescription} />
-            </Head>
-            {/* {auth &&
-                auth.user &&
-                auth.userRoles &&
-                auth.userRoles.includes("admin") && <AdminGlobalHeader />} */}
+        <BlankLayout title={title} metaDescription={metaDescription}>
             <Header />
             <div className="content">{children}</div>
-            <Toaster position="top-right" richColors />
-            <Footer />
-        </>
+        </BlankLayout>
     );
 }
