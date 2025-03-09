@@ -17,7 +17,7 @@ import LoadingButton from "./LoadingButton";
 
 export default function B2BMentorshipForm() {
     const { b2BMentorshipFormData, mentorProfile } = usePage().props;
-    const { post, processing, errors, data, setData } = useForm({
+    const { post, processing, errors, data, setData, reset } = useForm({
         isInterested: true,
         topic_ids: [],
         topic_tag_ids: [],
@@ -32,8 +32,9 @@ export default function B2BMentorshipForm() {
 
     const submit = (e) => {
         e.preventDefault();
-        post(route("b2b-mentorship.store"));
-        console.log("data", data);
+        post(route("b2b-mentorship.store"), {
+            onSuccess: reset(),
+        });
     };
 
     return (
