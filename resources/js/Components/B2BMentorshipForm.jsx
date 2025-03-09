@@ -34,7 +34,19 @@ export default function B2BMentorshipForm() {
         e.preventDefault();
         post(route("b2b-mentorship.store"), {
             onSuccess: () => {
-                reset();
+                setData({
+                    isInterested: true,
+                    topic_ids: [],
+                    topic_tag_ids: [],
+                    preferred_modes: [b2BMentorshipFormData.preferred_modes[0]],
+                    interested_institutions: [
+                        b2BMentorshipFormData.interested_institutions[1],
+                    ],
+                    minimum_hourly_rate:
+                        b2BMentorshipFormData.minimum_hourly_rate,
+                    open_to_long_duration_mentorship: true,
+                    about: "",
+                });
             },
         });
     };
