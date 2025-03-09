@@ -28,6 +28,13 @@ export const navItems = [
     },
 
     {
+        title: "B2B Mentorship Queries",
+        label: "Mentors",
+        href: route("admin.b2b-mentorship-queries.index"),
+        icon: "page",
+    },
+
+    {
         title: "Topics & Tags",
         label: "Topics&Tags",
         href: route("admin.topics.index"),

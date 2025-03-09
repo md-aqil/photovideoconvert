@@ -23,6 +23,16 @@ class B2BMentorshipQuery extends Model
 		];
 	}
 
+	public function user()
+	{
+		return $this->belongsTo(User::class);
+	}
+
+	public function mentorProfile()
+	{
+		return $this->belongsTo(MentorProfile::class);
+	}
+
 	public function topics(): BelongsToMany
 	{
 		return $this->belongsToMany(Topic::class, 'b2b_mentorship_query_topics', 'b2b_mentorship_query_id', 'topic_id');
