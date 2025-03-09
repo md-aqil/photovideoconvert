@@ -54,6 +54,6 @@ class B2BMentorshipQueryController extends Controller
 			$b2bMentorshipQuery->topicTags()->sync($request->topic_tag_ids);
 		}
 
-		return back()->with(['flash_type' => 'success', 'flash_message' => 'Your request has been saved successfully.']);
+		return redirect(route('b2b-mentorship.page'))->with(['flash_type' => 'success', 'flash_message' => 'Your request has been saved successfully.']);
 	}
 }

@@ -33,7 +33,9 @@ export default function B2BMentorshipForm() {
     const submit = (e) => {
         e.preventDefault();
         post(route("b2b-mentorship.store"), {
-            onSuccess: reset(),
+            onSuccess: () => {
+                reset();
+            },
         });
     };
 
@@ -206,6 +208,7 @@ export default function B2BMentorshipForm() {
                     <Textarea
                         name="about"
                         id="about"
+                        value={data.about}
                         onChange={(e) => setData("about", e.target.value)}
                     />
                 </li>
