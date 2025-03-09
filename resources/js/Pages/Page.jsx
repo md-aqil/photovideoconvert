@@ -20,20 +20,29 @@ import { Render } from "@measured/puck";
 //     />
 
 // export default Page;
-export default function Page({ page }) {
+function Page({ page }) {
     return (
-        <BlankLayout>
-            <div>
-                <Head title={page.meta_title ? page.meta_title : page.title}>
-                    <meta name="description" content={page.meta_description} />
-                </Head>
-                <Header />
-                {/* <div dangerouslySetInnerHTML={{ __html: page?.body }}></div> */}
-                <PageBanner title={page.title} />
-                <div className="content overflow-y-visible h-auto">
-                    <Render config={config} data={page.puck_body} />
-                </div>
+        <div>
+            <Header />
+            {/* <div dangerouslySetInnerHTML={{ __html: page?.body }}></div> */}
+            <PageBanner title={page.title} />
+            <div className="content overflow-y-visible h-auto">
+                <Render config={config} data={page.puck_body} />
             </div>
-        </BlankLayout>
+        </div>
     );
 }
+
+Page.layout = (page) => (
+    <BlankLayout
+        children={page}
+        title={
+            page.props.page.meta_title
+                ? page.props.page.meta_title
+                : page.props.page.title
+        }
+        metaDescription={page.props.page.meta_description}
+    />
+);
+
+export default Page;

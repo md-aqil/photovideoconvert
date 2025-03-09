@@ -10,6 +10,7 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\MentorProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -60,6 +61,7 @@ Route::prefix('booking')->name('booking.')->group(function () {
 // Route::redirect('/home', '/');
 Route::get('/b2b-mentorship', [B2BMentorshipQueryController::class, 'page'])->name('b2b-mentorship.page');
 Route::post('/b2b-mentorship', [B2BMentorshipQueryController::class, 'store'])->name('b2b-mentorship.store');
+Route::get('/search', SearchController::class)->name('search');
 Route::get('/', HomepageController::class)->name('homepage');
 
 Route::get('{slug}', PageController::class)->name('page');
