@@ -4,12 +4,6 @@ import Header from "@/Layouts/Header";
 import { useRef } from "react";
 import { Head, Link, usePage } from "@inertiajs/react";
 import BlankLayout from "@/Layouts/blank-layout";
-import { Button } from "@/shadcn/ui/button";
-// import { MoveRight } from "lucide-react";
-// import CustomDialog from "@/Components/CustomDialog";
-import Register from "./Auth/Register";
-import { TypeAnimation } from "react-type-animation";
-// import Search from "@/Components/Search";
 import MultiCarousel from "@/Components/MultiCarousel";
 import TopicsTagsTabs from "@/Components/TopicsTagsTabs";
 
@@ -17,6 +11,7 @@ import AboutIntro from "@/Components/AboutIntro";
 import RecentPosts from "@/Components/RecentPosts";
 import Hero from "@/Components/Hero";
 import HowItWorks from "@/Components/HowItWorks";
+import UserReviewsCarousel from "@/Components/UserReviewsCarousel";
 
 const topUniversities = [
     {
@@ -156,74 +151,68 @@ const topCompanies = [
     },
 ];
 
-const topCountries = [
-    {
-        id: 1,
-        path: "/images/topCountries/Canada.webp",
-        name: "Canada",
-    },
-    {
-        id: 2,
-        path: "/images/topCountries/UAE.png",
-        name: "UAE",
-    },
-    {
-        id: 3,
-        path: "/images/topCountries/USA.webp",
-        name: "USA",
-    },
-    {
-        id: 4,
-        path: "/images/topCountries/CzechRepublic.webp",
-        name: "Czech Republic",
-    },
-    {
-        id: 5,
-        path: "/images/topCountries/Germany.webp",
-        name: "Germany",
-    },
-    {
-        id: 6,
-        path: "/images/topCountries/China.png",
-        name: "China",
-    },
-    {
-        id: 7,
-        path: "/images/topCountries/Japan.webp",
-        name: "Japan",
-    },
-    {
-        id: 8,
-        path: "/images/topCountries/Australia.webp",
-        name: "Australia",
-    },
-    {
-        id: 9,
-        path: "/images/topCountries/France.png",
-        name: "France",
-    },
-    {
-        id: 10,
-        path: "/images/topCountries/Switzerland.jpeg",
-        name: "Switzerland",
-    },
-    {
-        id: 11,
-        path: "/images/topCountries/UK.webp",
-        name: "United Kingdom",
-    },
-];
+// const topCountries = [
+//     {
+//         id: 1,
+//         path: "/images/topCountries/Canada.webp",
+//         name: "Canada",
+//     },
+//     {
+//         id: 2,
+//         path: "/images/topCountries/UAE.png",
+//         name: "UAE",
+//     },
+//     {
+//         id: 3,
+//         path: "/images/topCountries/USA.webp",
+//         name: "USA",
+//     },
+//     {
+//         id: 4,
+//         path: "/images/topCountries/CzechRepublic.webp",
+//         name: "Czech Republic",
+//     },
+//     {
+//         id: 5,
+//         path: "/images/topCountries/Germany.webp",
+//         name: "Germany",
+//     },
+//     {
+//         id: 6,
+//         path: "/images/topCountries/China.png",
+//         name: "China",
+//     },
+//     {
+//         id: 7,
+//         path: "/images/topCountries/Japan.webp",
+//         name: "Japan",
+//     },
+//     {
+//         id: 8,
+//         path: "/images/topCountries/Australia.webp",
+//         name: "Australia",
+//     },
+//     {
+//         id: 9,
+//         path: "/images/topCountries/France.png",
+//         name: "France",
+//     },
+//     {
+//         id: 10,
+//         path: "/images/topCountries/Switzerland.jpeg",
+//         name: "Switzerland",
+//     },
+//     {
+//         id: 11,
+//         path: "/images/topCountries/UK.webp",
+//         name: "United Kingdom",
+//     },
+// ];
 
 const Homepage = ({ page, topics }) => {
-    const nextSectionRef = useRef(null);
-
-    const scrollToNextSection = () => {
-        if (nextSectionRef.current) {
-            nextSectionRef.current.scrollIntoView({ behavior: "smooth" });
-        }
-    };
     const pageProp = usePage().props;
-    const { testimonials, latestPosts = [] } = usePage().props;
+    const { testimonials = [], latestPosts = [] } = usePage().props;
+    console.log("🚀 ~ Homepage ~ testimonials:", testimonials);
     return (
         <div>
             <Header isHomePage={true} />
@@ -294,6 +283,9 @@ const Homepage = ({ page, topics }) => {
                 </div> */}
             </div>
             {latestPosts.length > 0 && <RecentPosts blogPost={latestPosts} />}
+            {testimonials.length > 0 && (
+                <UserReviewsCarousel testimonials={testimonials} />
+            )}
         </div>
     );
 };
