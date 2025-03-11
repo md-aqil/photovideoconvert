@@ -59,12 +59,12 @@ export default function B2BMentorshipForm() {
                     <RadioGroup
                         value={data.isInterested}
                         onValueChange={(e) => setData("isInterested", e)}
-                        className=""
+                        className="flex items-center space-x-2"
                     >
                         {b2BMentorshipFormData.isInterested.map((f) => (
                             <div
                                 key={f.value}
-                                className="flex items-center space-x-2"
+                                className="flex items-center space-x-2 bg-slate-50 border py-1.5 px-4 rounded-sm"
                             >
                                 <RadioGroupItem value={f.value} id={f.label} />
                                 <Label htmlFor={f.label}>{f.label}</Label>
@@ -82,11 +82,11 @@ export default function B2BMentorshipForm() {
                 </li>
                 <li>
                     <Label>Preferred Mentorship Mode:</Label>
-                    <div className="space-y-2">
+                    <div className="flex items-center space-x-2">
                         {b2BMentorshipFormData.preferred_modes.map((f) => (
                             <div
                                 key={f}
-                                className="flex items-center space-x-2"
+                                className="flex items-center space-x-2 bg-slate-50 border py-1.5 px-4 rounded-sm"
                             >
                                 <Checkbox
                                     value={f}
@@ -97,8 +97,8 @@ export default function B2BMentorshipForm() {
                                             setData(
                                                 "preferred_modes",
                                                 data.preferred_modes.filter(
-                                                    (m) => m != f
-                                                )
+                                                    (m) => m != f,
+                                                ),
                                             );
                                         } else {
                                             const temp = data.preferred_modes;
@@ -114,30 +114,30 @@ export default function B2BMentorshipForm() {
                 </li>
                 <li>
                     <Label>Institutions You Are Interested In:</Label>
-                    <div className="space-y-2">
+                    <div className="flex items-center space-x-2">
                         {b2BMentorshipFormData.interested_institutions.map(
                             (f) => (
                                 <div
                                     key={f}
-                                    className="flex items-center space-x-2"
+                                    className="flex items-center space-x-2 bg-slate-50 border py-1.5 px-4 rounded-sm"
                                 >
                                     <Checkbox
                                         value={f}
                                         id={f}
                                         checked={data.interested_institutions.includes(
-                                            f
+                                            f,
                                         )}
                                         onCheckedChange={() => {
                                             if (
                                                 data.interested_institutions.includes(
-                                                    f
+                                                    f,
                                                 )
                                             ) {
                                                 setData(
                                                     "interested_institutions",
                                                     data.interested_institutions.filter(
-                                                        (m) => m != f
-                                                    )
+                                                        (m) => m != f,
+                                                    ),
                                                 );
                                             } else {
                                                 const temp =
@@ -145,14 +145,14 @@ export default function B2BMentorshipForm() {
                                                 temp.push(f);
                                                 setData(
                                                     "interested_institutions",
-                                                    temp
+                                                    temp,
                                                 );
                                             }
                                         }}
                                     />
                                     <Label htmlFor={f}>{f}</Label>
                                 </div>
-                            )
+                            ),
                         )}
                     </div>
                 </li>
@@ -177,12 +177,12 @@ export default function B2BMentorshipForm() {
                                             temp[i].rate = e.target.value;
                                             setData(
                                                 "minimum_hourly_rate",
-                                                temp
+                                                temp,
                                             );
                                         }}
                                     />
                                 </div>
-                            )
+                            ),
                         )}
                     </div>
                 </li>
@@ -193,13 +193,13 @@ export default function B2BMentorshipForm() {
                         onValueChange={(e) =>
                             setData("open_to_long_duration_mentorship", e)
                         }
-                        className=""
+                        className="flex items-center space-x-2"
                     >
                         {b2BMentorshipFormData.open_to_long_duration_mentorship.map(
                             (f) => (
                                 <Label
                                     key={f.value}
-                                    className="flex items-center space-x-2"
+                                    className="flex items-center space-x-2 bg-slate-50 border py-1.5 px-4 rounded-sm"
                                 >
                                     <RadioGroupItem
                                         value={f.value}
@@ -207,7 +207,7 @@ export default function B2BMentorshipForm() {
                                     />
                                     <span>{f.label}</span>
                                 </Label>
-                            )
+                            ),
                         )}
                     </RadioGroup>
                 </li>

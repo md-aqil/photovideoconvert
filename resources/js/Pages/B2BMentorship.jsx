@@ -10,13 +10,15 @@ import {
     CardTitle,
 } from "@/shadcn/ui/card";
 import PageLayout from "@/Layouts/PageLayout";
+import { formatEnum } from "@/Helpers/GlobalFunctions";
+import SectionWrapper from "@/Components/SectionWrapper";
 const B2BMentorship = ({ page, topics }) => {
     return (
         <div>
             <Header />
-            <PageBanner title={page.title} />
-            <div className="container">
-                <Card className="my-8">
+            <PageBanner title={"B2B Mentorship"} />
+            <SectionWrapper.Boxed>
+                <Card className="max-w-2xl mx-auto">
                     <CardHeader>
                         <CardTitle>B2B Mentorship Program</CardTitle>
                         <CardDescription>
@@ -28,7 +30,7 @@ const B2BMentorship = ({ page, topics }) => {
                         <B2BMentorshipForm />
                     </CardContent>
                 </Card>
-            </div>
+            </SectionWrapper.Boxed>
         </div>
     );
 };
