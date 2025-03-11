@@ -2,21 +2,25 @@ import PageBanner from "@/Components/PageBanner";
 import PageLayout from "@/Layouts/PageLayout";
 import { Card, CardContent, CardHeader } from "@/shadcn/ui/card";
 import SearchForm from "@/Components/Search";
+import SectionWrapper from "@/Components/SectionWrapper";
 
 function Search({ courses, keyword }) {
     return (
-        <div>
+        <>
             <PageBanner title={"Search"} />
-            <div className="overflow-y-visible h-auto container space-y-4">
-                <SearchForm />
+            <SectionWrapper.Boxed>
+                <div className="max-w-3xl mb-4">
+                    <SearchForm />
+                </div>
+
                 {courses.data.map((course) => (
-                    <Card key={course.id}>
+                    <Card key={course.id} className="mb-2">
                         <CardHeader>{course.title}</CardHeader>
                         <CardContent>{course.excerpt}</CardContent>
                     </Card>
                 ))}
-            </div>
-        </div>
+            </SectionWrapper.Boxed>
+        </>
     );
 }
 
