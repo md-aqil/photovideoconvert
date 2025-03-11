@@ -12,7 +12,7 @@ export default function MentorsWithFilter({ topics }) {
     React.useEffect(() => {
         // Show all mentors by default
         const allMentors = topics.flatMap((topic) =>
-            topic.active_tags.flatMap((tag) => tag.mentors || []),
+            topic.active_tags.flatMap((tag) => tag.mentors || [])
         );
         setSelectedMentors(allMentors);
     }, [topics]);
@@ -29,14 +29,14 @@ export default function MentorsWithFilter({ topics }) {
         // Update mentors list based on selected tags
         if (updatedTags.length === 0) {
             const allMentors = topics.flatMap((topic) =>
-                topic.active_tags.flatMap((t) => t.mentors || []),
+                topic.active_tags.flatMap((t) => t.mentors || [])
             );
             setSelectedMentors(allMentors);
         } else {
             const mentors = topics.flatMap((topic) =>
                 topic.active_tags
                     .filter((t) => updatedTags.includes(t.slug))
-                    .flatMap((t) => t.mentors || []),
+                    .flatMap((t) => t.mentors || [])
             );
             setSelectedMentors(mentors);
         }
@@ -46,37 +46,41 @@ export default function MentorsWithFilter({ topics }) {
         <SectionWrapper.FullWidth className="grid grid-cols-12 w-full container">
             {/* Sidebar Filters */}
             <div className="col-span-3 border-r">
-                <SectionWrapper.Heading
-                    level="h3"
-                    className={`text-xl font-semibold text-start`}
-                >
-                    Filter by
-                </SectionWrapper.Heading>
-                <ScrollArea className="max-h-80 overflow-auto p-3">
-                    {topics.map((topic) => (
-                        <div key={topic.id} className="mb-4">
-                            <h4 className="font-semibold mb-2">
-                                {topic.title}
-                            </h4>
-                            {topic.active_tags.map((tag) => (
-                                <div
-                                    key={tag.id}
-                                    className="flex items-center mb-2"
-                                >
-                                    <Checkbox
-                                        checked={selectedTags.includes(
-                                            tag.slug,
-                                        )}
-                                        onCheckedChange={() =>
-                                            handleTagChange(tag)
-                                        }
-                                    />
-                                    <span className="ml-2">{tag.title}</span>
-                                </div>
-                            ))}
-                        </div>
-                    ))}
-                </ScrollArea>
+                <div className="sticky top-20">
+                    <SectionWrapper.Heading
+                        level="h3"
+                        className={`text-xl font-semibold text-start`}
+                    >
+                        Filter by
+                    </SectionWrapper.Heading>
+                    <ScrollArea className="overflow-auto p-3 max-h-[calc(100vh-200px)] ">
+                        {topics.map((topic) => (
+                            <div key={topic.id} className="mb-4">
+                                <h4 className="font-semibold mb-2">
+                                    {topic.title}
+                                </h4>
+                                {topic.active_tags.map((tag) => (
+                                    <div
+                                        key={tag.id}
+                                        className="flex items-center mb-2"
+                                    >
+                                        <Checkbox
+                                            checked={selectedTags.includes(
+                                                tag.slug
+                                            )}
+                                            onCheckedChange={() =>
+                                                handleTagChange(tag)
+                                            }
+                                        />
+                                        <span className="ml-2">
+                                            {tag.title}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
+                    </ScrollArea>
+                </div>
             </div>
 
             {/* Profile Cards Section */}
