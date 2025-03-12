@@ -35,6 +35,7 @@ Route::prefix('blog')->name('blog.')->controller(PostController::class)->group(f
 });
 
 Route::get('about-us', [PageController::class, 'aboutUs'])->name('aboutUs');
+Route::get('how-it-works', [PageController::class, 'howItWorks'])->name('howItWorks');
 Route::get('contact-us', [PageController::class, 'contactUs'])->name('contactUs');
 Route::post('contact-us', [ContactQueryController::class, 'store'])->name('contactUsStore');
 

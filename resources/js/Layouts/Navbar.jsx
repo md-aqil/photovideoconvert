@@ -12,21 +12,23 @@ const MenuLink = ({ item, scrolling, ...props }) => {
     return <a href={item.url} {...props} />;
 };
 
-const ParentItem = ({ item, scrolling, isHomePage }) => {
+const ParentItem = ({ item, scrolling, page, isHomePage }) => {
     return (
         <li
-            className={`${
-                scrolling
-                    ? "text-black hover:bg-fomoLight-0"
-                    : "text-white bg-transparent"
-            } group/dropdown relative inline-flex items-center transition duration-150 ease-in-out focus:outline-none cursor-pointer px-3`}
+            // className={`${
+            //     scrolling
+            //         ? "text-black hover:bg-fomoLight-0"
+            //         : "text-white bg-transparent"
+            // } group/dropdown relative inline-flex items-center transition duration-150 ease-in-out focus:outline-none cursor-pointer px-3`}
+            className={` group/dropdown relative inline-flex items-center transition duration-150 ease-in-out focus:outline-none cursor-pointer px-3`}
         >
             <MenuLink
-                className={`${
-                    scrolling
-                        ? "text-black"
-                        : `${isHomePage ? "text-yellow-600" : "text-white"}`
-                } p-3.5 py-2 flex justify-between items-center font-semibold text-base `}
+                // className={`${
+                //     scrolling
+                //         ? "text-black"
+                //         : `${isHomePage ? "text-yellow-600" : "text-white"}`
+                // } p-3.5 py-2 flex justify-between items-center font-semibold text-base `}
+                className={` p-3.5 py-2 flex justify-between items-center font-semibold text-base `}
                 item={item}
                 scrolling={scrolling}
             >
@@ -81,7 +83,7 @@ const ParentItem = ({ item, scrolling, isHomePage }) => {
 };
 
 const DesktopNav = ({ scrolling, isHomePage }) => {
-    const { primaryMenu } = usePage().props;
+    const { primaryMenu, page } = usePage().props;
     return (
         <ul className="flex">
             {primaryMenu &&
@@ -89,6 +91,7 @@ const DesktopNav = ({ scrolling, isHomePage }) => {
                 primaryMenu.items.map((item) => (
                     <ParentItem
                         isHomePage={isHomePage}
+                        page={page}
                         scrolling={scrolling}
                         key={item.id}
                         item={item}

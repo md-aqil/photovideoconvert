@@ -29,4 +29,10 @@ class PageController extends Controller
         $page->increment('views');
         return Inertia::render('ContactUs/ContactUs', ['page' => $page]);
     }
+    public function howItWorks(Request $request)
+    {
+        $page = Page::where('slug', 'how-it-works')->published()->firstOrFail();
+        $page->increment('views');
+        return Inertia::render('HowItWorks/HowItWorks', ['page' => $page]);
+    }
 }
