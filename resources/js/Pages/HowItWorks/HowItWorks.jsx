@@ -9,6 +9,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/shadcn/ui/accordion";
+import { Head } from "@inertiajs/react";
 
 const steps = [
     {
@@ -37,67 +38,110 @@ const steps = [
     },
 ];
 
-export const faqs = [
+const faqs = [
     {
-        id: 1,
-        question: "How do I sign up as a mentor?",
-        shortAnswer:
-            "Visit the signup page and select 'Mentor' during registration.",
-        fullAnswer:
-            "To sign up as a mentor, visit the signup page, fill in your personal details, and select the 'Mentor' option during registration. After that, you'll need to provide information about your skills, experience, and availability to complete your profile.",
+        category: "General Questions",
+        items: [
+            {
+                question: "What is Fomoedge?",
+                fullAnswer:
+                    "Fomoedge is a mentorship platform that connects mentors with individuals seeking career guidance, professional development, and industry insights—without any course selling, upselling, or promotional distractions.",
+            },
+            {
+                question: "How does Fomoedge work for mentors?",
+                fullAnswer:
+                    "As a mentor, you can share your expertise in Career Growth & Development, Resume Building, Job Applications, Product Strategy, Leadership Coaching, Start-Up Support, and more. You set your availability, determine your session fees, and provide one-on-one mentorship to mentees.",
+            },
+            {
+                question: "How are mentors selected on Fomoedge?",
+                fullAnswer:
+                    "Mentors on Fomoedge are vetted professionals with at least 3+ years of industry experience, ensuring high-quality guidance.",
+            },
+            {
+                question: "Do mentors sell courses on Fomoedge?",
+                fullAnswer:
+                    "No! Fomoedge is a no-course-selling platform. Mentors provide genuine guidance without promoting any courses, cross-selling, or marketing distractions.",
+            },
+            {
+                question: "Can I mentor in multiple categories?",
+                fullAnswer:
+                    "You can offer mentorship in maximum 3 topics to help professionals.",
+            },
+            {
+                question: "What makes Fomoedge different from online courses?",
+                fullAnswer:
+                    "Unlike courses, Fomoedge provides personalized mentorship, allowing real-time interaction with industry experts without any upselling or promotional content.",
+            },
+            {
+                question: "How can I leave a review for my mentor?",
+                fullAnswer:
+                    "After your session, you can rate and review mentors to help future mentees make informed decisions.",
+            },
+            {
+                question: "How does Fomoedge ensure mentor quality?",
+                fullAnswer:
+                    "All mentors are vetted for experience, expertise, and credibility before being listed on the platform.",
+            },
+            {
+                question:
+                    "Can I connect with international mentors on Fomoedge?",
+                fullAnswer:
+                    "Yes! You can connect with mentors from different countries and industries. Just search, book a session, and get expert advice.",
+            },
+        ],
     },
     {
-        id: 2,
-        question: "What is the eligibility criteria for becoming a mentee?",
-        shortAnswer:
-            "Open to students, professionals, or anyone seeking guidance.",
-        fullAnswer:
-            "Anyone who is eager to learn, improve their skills, or gain insights into a particular field can become a mentee. While no formal qualifications are required, being proactive and willing to take feedback will enhance your mentoring experience.",
-    },
-    {
-        id: 3,
-        question: "Can I switch from a mentee to a mentor?",
-        shortAnswer: "Yes, switching roles is possible.",
-        fullAnswer:
-            "Absolutely! If you have gained enough expertise and feel confident in guiding others, you can apply to become a mentor from your profile settings. The platform may review your experience and achievements before approving the switch.",
-    },
-    {
-        id: 4,
-        question: "How are mentors matched with mentees?",
-        shortAnswer: "Matches are based on skills, goals, and availability.",
-        fullAnswer:
-            "Our platform uses an intelligent matching system that considers mentors' skills, mentees' learning goals, and both parties' availability to ensure a meaningful and effective connection.",
-    },
-    {
-        id: 5,
-        question: "Is there a fee for mentorship sessions?",
-        shortAnswer: "Some mentors may charge a fee.",
-        fullAnswer:
-            "While many mentors volunteer their time for free, some experienced professionals may charge a fee. The details will be clearly mentioned on the mentor’s profile. Always discuss payment terms before confirming sessions.",
-    },
-    {
-        id: 6,
-        question: "How can I schedule a session?",
-        shortAnswer: "Use the scheduling tool in your dashboard.",
-        fullAnswer:
-            "To schedule a session, visit the mentor's profile and use the built-in scheduling tool. Select a suitable time slot, and both you and the mentor will receive confirmation and reminders for the session.",
-    },
-    // {
-    //     id: 7,
-    //     question: "What if I need to cancel a scheduled session?",
-    //     shortAnswer: "You can cancel or reschedule via your dashboard.",
-    //     fullAnswer:
-    //         "If you need to cancel or reschedule a session, go to your dashboard, locate the scheduled session, and select the 'Cancel' or 'Reschedule' option. Kindly notify your mentor or mentee in advance to maintain professionalism.",
-    // },
-    {
-        id: 8,
-        question: "How do I give feedback on a mentor or mentee?",
-        shortAnswer: "Feedback can be submitted after each session.",
-        fullAnswer:
-            "After completing a session, you’ll be prompted to provide feedback. Constructive feedback helps mentors and mentees improve their communication, skills, and overall experience on the platform.",
+        category: "FAQs for Mentees",
+        items: [
+            {
+                question: "How do I find the right mentor?",
+                fullAnswer:
+                    "Browse mentor profiles based on Career Domains, Job Applications, Industry-Specific Guidance, Personal Branding, Start-Up Support, and more.",
+            },
+            {
+                question: "How do I book a session?",
+                fullAnswer:
+                    "Simply search for a mentor, check their availability, and book a session directly through Fomoedge.",
+            },
+            {
+                question: "How much does mentorship cost?",
+                fullAnswer:
+                    "Session pricing is set by the mentor and displayed upfront before booking.",
+            },
+            {
+                question: "How can mentorship help in career growth?",
+                fullAnswer:
+                    "Mentorship can help with Job Applications, Resume Optimization, Interview Preparation, Industry Networking, Salary Negotiation, and Leadership Development.",
+            },
+            {
+                question: "Can I have multiple mentors?",
+                fullAnswer:
+                    "Yes! You can work with multiple mentors for different areas of expertise, such as Career Growth, Leadership, Business Strategy, International Mobility, and more.",
+            },
+            {
+                question: "Is online mentorship effective?",
+                fullAnswer:
+                    "Yes! Online mentorship provides flexibility, global access to experts, and personalized guidance just as effective as in-person coaching.",
+            },
+            {
+                question: "How can Fomoedge help with personal branding?",
+                fullAnswer:
+                    "Learn from experts about LinkedIn Optimization, Professional Networking, Thought Leadership, and Content Strategy.",
+            },
+            {
+                question: "Where can I find expert start-up advisors?",
+                fullAnswer:
+                    "Book a session with seasoned entrepreneurs and business leaders on Fomoedge.",
+            },
+            {
+                question:
+                    "How can I switch careers without experience in a new field?",
+                fullAnswer:
+                    "Fomoedge mentors offer career transition strategies, resume optimization tips, and skill-building advice for a seamless industry switch.",
+            },
+        ],
     },
 ];
-
 const HowItWorks = ({ page, topics }) => {
     return (
         <div>
@@ -117,19 +161,13 @@ const HowItWorks = ({ page, topics }) => {
 
                 <div className="z-10 space-y-2 max-w-5xl mx-auto">
                     <SectionWrapper.Heading level="h1" className={`space-y-2`}>
-                        How it works
+                        Don’t Wait – Start Your Mentorship Journey Today
                     </SectionWrapper.Heading>
                     <SectionWrapper.Subheading
                         level="p"
                         className={`text-slate-300`}
                     >
-                        Nullam egestas pellentesque sodales. Ut rhoncus placerat
-                        varius. Cras sit amet ante sem. Sed varius pretium nisl,
-                        nec commodo metus venenatis vitae. In hac habitasse
-                        platea dictumst. Nam vitae interdum massa. Sed dapibus
-                        sodales dui sed gravida. Integer nec malesuada orci.
-                        Integer ullamcorper arcu non felis convallis hendrerit
-                        at sit amet felis.
+                        Gain the knowledge and skills you need to succeed.
                     </SectionWrapper.Subheading>
                 </div>
             </section>
@@ -200,18 +238,32 @@ export const FAQComponent = () => {
     return (
         <div className="max-w-3xl mx-auto my-10">
             <Accordion type="single" collapsible>
-                {faqs.map((faq) => (
-                    <AccordionItem key={faq.id} value={`item-${faq.id}`}>
-                        <AccordionTrigger>{faq.question}</AccordionTrigger>
-                        <AccordionContent>
-                            <p className="text-sm text-gray-600 font-bold">
-                                {faq.shortAnswer}
-                            </p>
-                            <p className="text-sm text-gray-600">
-                                {faq.fullAnswer}
-                            </p>
-                        </AccordionContent>
-                    </AccordionItem>
+                {faqs.map((faq, index) => (
+                    <div key={index}>
+                        <SectionWrapper.Spacer />
+                        <SectionWrapper.Heading
+                            level="h2"
+                            className={`text-2xl text-start`}
+                        >
+                            {faq.category}
+                        </SectionWrapper.Heading>
+                        <SectionWrapper.Spacer />
+                        {faq.items.map((item, idx) => (
+                            <AccordionItem
+                                key={idx}
+                                value={`item-${index}-${idx}`}
+                            >
+                                <AccordionTrigger>
+                                    {item.question}
+                                </AccordionTrigger>
+                                <AccordionContent>
+                                    <p className="text-sm text-gray-600">
+                                        {item.fullAnswer}
+                                    </p>
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </div>
                 ))}
             </Accordion>
         </div>
@@ -225,7 +277,10 @@ HowItWorks.layout = (page) => (
                 ? page.props.page.meta_title
                 : page.props.page.title
         }
-        metaDescription={page.props.page.meta_description}
+        metaDescription={
+            page.props.page.meta_description ||
+            "Want to fast-track your career or personal growth? Join Fomoedge as a mentee and connect with experienced mentors for personalized, one-on-one guidance. Find the right mentor, book a session, and gain expert insights. Start your journey today!"
+        }
     />
 );
 

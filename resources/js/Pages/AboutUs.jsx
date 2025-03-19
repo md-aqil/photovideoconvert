@@ -1,15 +1,100 @@
 import { Link } from "@inertiajs/react";
-import { ChevronRight, CircleCheckBig, CircleDot, Home } from "lucide-react";
+import { Search, CalendarDays, Target } from "lucide-react";
 import React from "react";
 import BlankLayout from "@/Layouts/blank-layout";
 import Header from "@/Layouts/Header";
-import SocialShare from "@/Components/SocialShare";
 import { Button } from "@/shadcn/ui/button";
-// import CustomDialog from "@/Components/CustomDialog";
-import Register from "./Auth/Register";
 import PageBanner from "@/Components/PageBanner";
-import About from "./About";
+import SectionWrapper from "@/Components/SectionWrapper";
 
+const HowFomoedgeWorks = () => {
+    const steps = [
+        {
+            icon: <Search className="text-blue-500 w-10 h-10" />,
+            title: "Find the Perfect Mentor",
+            description:
+                "Search by industry, skill, career phase, or specific expertise to connect with the right expert for your needs.",
+        },
+        {
+            icon: <CalendarDays className="text-green-500 w-10 h-10" />,
+            title: "Book Personalized Sessions",
+            description:
+                "Schedule one-on-one or group mentorship sessions covering executive coaching, leadership training, career transitions, resume writing, and interview preparation.",
+        },
+        {
+            icon: <Target className="text-red-500 w-10 h-10" />,
+            title: "Gain Actionable Insights",
+            description:
+                "Get expert guidance on job market trends, skill enhancement, networking strategies, professional resume writing, career switching, industry-specific training, and personal branding.",
+        },
+    ];
+
+    return (
+        <SectionWrapper.Boxed className="bg-white py-12 px-6 md:px-16">
+            <SectionWrapper.Heading level="h2">
+                How Fomoedge Works
+            </SectionWrapper.Heading>
+            <SectionWrapper.Spacer />
+            <div className="grid md:grid-cols-3 gap-8">
+                {steps.map((step, index) => (
+                    <div
+                        key={index}
+                        className="bg-gray-100 p-6 rounded-2xl shadow-md text-center hover:scale-105 transition-transform duration-300"
+                    >
+                        <div className="mb-4 flex items-center justify-center">
+                            {step.icon}
+                        </div>
+                        <h3 className="text-xl font-semibold mb-2">
+                            {step.title}
+                        </h3>
+                        <p className="text-gray-600">{step.description}</p>
+                    </div>
+                ))}
+            </div>
+            <div className="grid lg:grid-cols-5 gap-8">
+                <div className="mt-12 bg-blue-50 p-8 rounded-2xl shadow-md text-center lg:col-span-3">
+                    <SectionWrapper.Heading
+                        level="h2"
+                        className="text-2xl font-bold mb-4"
+                    >
+                        Our Vision: Empowering Lives through Mentorship
+                    </SectionWrapper.Heading>
+                    <p className="text-gray-600 mb-4">
+                        With the right mentor, no dream is too big, and no goal
+                        is out of reach.
+                    </p>
+                    <p className="text-gray-600">
+                        At Fomoedge, we believe that the right mentor can
+                        transform careers and businesses. Whether you're seeking
+                        career clarity, start-up mentorship, leadership
+                        coaching, entrepreneurship guidance, investment
+                        strategies, or industry-specific expertise, our platform
+                        ensures you get authentic, distraction-free guidance
+                        from vetted experts. Leverage Fomoedge today and take
+                        the next step toward professional success, skill
+                        mastery, and career acceleration with expert mentorship!
+                    </p>
+                </div>
+                <div className="mt-12 bg-purple-50 p-8 rounded-2xl shadow-md text-center lg:col-span-2">
+                    <SectionWrapper.Heading
+                        level="h2"
+                        className="text-2xl font-bold mb-4"
+                    >
+                        Meet Our Founders
+                    </SectionWrapper.Heading>
+                    <p className="text-gray-600 mb-4">
+                        The founder is an ISB Hyderabad MBA graduate with 11+
+                        years of experience in corporate banking and start-up
+                        growth. The co-founder, NIT Allahabad alumna, skilfully
+                        balances building Fomoedge while raising a child—
+                        bringing real-world expertise and a passion for
+                        mentorship to the platform.
+                    </p>
+                </div>
+            </div>
+        </SectionWrapper.Boxed>
+    );
+};
 const AboutUs = ({ page }) => {
     return (
         <div>
@@ -20,9 +105,6 @@ const AboutUs = ({ page }) => {
                     // breadcrumbs={<GenerateBreadcrumbs />}
                 />
                 <section className="w-full mx-auto pt-12 sm:pt-20 px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">
-                    {/* <div className="text-2xl sm:text-5xl font-bold pb-4 max-w-7xl mx-auto ">
-                        Why Choose Us
-                    </div> */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div className="sm:py-52 relative">
                             <div className="hidden sm:block py-28 bg-fomoPrimary-0"></div>
@@ -33,30 +115,37 @@ const AboutUs = ({ page }) => {
                             />
                         </div>
                         <div className="max-w-xl sm:py-4">
-                            <h3 className="text-lg sm:text-2xl font-semibold pb-2">
-                                Fomoedge
-                            </h3>
+                            <SectionWrapper.Heading
+                                level="h2"
+                                className={`text-start`}
+                            >
+                                Why Choose Fomoedge
+                            </SectionWrapper.Heading>
                             <p className="text-gray-500 sm:text-md ">
-                                In today’s fast-paced world, the pursuit of
-                                knowledge and personal growth is essential for
-                                success. As education evolves and career paths
-                                become increasingly complex, the need for
-                                reliable guidance has never been greater. At
-                                Fomoedge, we believe everyone deserves access to
-                                genuine, one-on-one mentorship to navigate their
-                                personal and professional journeys.
+                                Navigating career transitions, executive
+                                leadership, and business success can feel
+                                overwhelming in today’s fast-paced world.
+                                Fomoedge bridges the gap by connecting you with
+                                trusted mentors who offer personalized,
+                                actionable guidance to accelerate your growth.
+                                Whether you're a student, working professional,
+                                entrepreneur, company, start-up, or university,
+                                expert mentorship helps unlock new opportunities
+                                and career breakthroughs.
                             </p>
+                            <SectionWrapper.Spacer />
+                            <SectionWrapper.Heading
+                                level="h2"
+                                className={`text-start`}
+                            >
+                                How Fomoedge Helps You
+                            </SectionWrapper.Heading>
                             <p className="text-gray-500 sm:text-md pt-4">
-                                Fomoedge was born to bridge the gap between
-                                those seeking direction and those with the
-                                experience to provide it. Founded by alumni of
-                                the Indian School of Business, Hyderabad, who
-                                have individually dedicated themselves to
-                                enriching lives and helping others, created a
-                                platform where individuals can connect with
-                                trusted mentors who bring real-world insights,
-                                actionable advice, and a proven track record to
-                                help you move forward with confidence.
+                                The internet is full of career advice, but
+                                authentic mentorship is hard to find. That’s
+                                where Fomoedge stands out—bringing you
+                                one-on-one mentorship from industry leaders who
+                                have walked the path before you.
                             </p>
 
                             <div className="pt-3 sm:pt-10">
@@ -75,161 +164,235 @@ const AboutUs = ({ page }) => {
                         </div>
                     </div>
                 </section>
-                <section className="max-w-7xl mx-auto px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">
-                    <h3 className="text-lg sm:text-xl font-semibold pt-5 pb-3">
-                        Why a Mentorship Platform?
-                    </h3>
-                    <p className="text-gray-500 py-2 sm:py-0 text-md sm:text-md">
-                        The digital world is overflowing with voices claiming
-                        expertise in every field. While many provide value, the
-                        overwhelming noise often makes it difficult to separate
-                        genuine advice from surface-level information. This
-                        challenge led to the creation of Fomoedge—a platform
-                        where:
-                    </p>
-                    <div className="py-2">
-                        <div className="flex items-center gap-2 text-sm text-gray-700 pb-1 w">
-                            <div className="h-2.5 w-2.5 bg-black rounded-full"></div>{" "}
-                            Connect with mentors who have walked the path before
+                <SectionWrapper.Boxed className="bg-[url('/images/p6.webp')]">
+                    <SectionWrapper.Heading level="h2">
+                        How Fomoedge Helps You
+                    </SectionWrapper.Heading>
+                    <SectionWrapper.Spacer />
+                    <div className="space-y-2">
+                        <p>
+                            The internet is full of career advice, but authentic
+                            mentorship is hard to find. That’s where Fomoedge
+                            stands out—bringing you one-on-one mentorship from
+                            industry leaders who have walked the path before
                             you.
-                        </div>
-                        <div className="flex items-center gap-1 text-sm text-gray-700">
-                            <div className="h-2.5 w-2.5 bg-black rounded-full"></div>{" "}
-                            Real experience meets personalized guidance to help
-                            you make informed decisions.
-                        </div>
-                    </div>
-                    <div className="py-4">
-                        <p className="text-gray-500 pb-3 text-md sm:text-md">
-                            Finding the right mentor means you don’t have to
-                            “reinvent the wheel.” Mentorship accelerates your
-                            progress by letting you learn from someone else’s
-                            journey. While education gives you knowledge,
-                            mentorship provides personalized insights and
-                            tailored advice that no course or article can
-                            deliver. At Fomoedge, we know that the right mentor
-                            can:
                         </p>
-                        <div className="flex gap-2 items-center text-sm text-yellow-600 pb-3 sm:pb-3">
-                            <CircleCheckBig className="h-4 w-4" />{" "}
-                            <div>
-                                Help identify your strengths, gaps, and areas
-                                for improvement.
-                            </div>
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong> Learn from Experts</strong> – Gain
+                                career insights from professionals who have
+                                successfully navigated career transitions,
+                                executive coaching, leadership roles, and
+                                entrepreneurship.
+                            </p>
                         </div>
-                        <div className="flex gap-2 items-center text-sm text-yellow-600 pb-3 sm:pb-3">
-                            <CircleCheckBig className="h-4 w-4" />{" "}
-                            <div>
-                                Unlock opportunities and possibilities you may
-                                not have considered.
-                            </div>
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>Master Career & Business Growth</strong>{" "}
+                                – Whether you need help with how to make a
+                                resume for a job, career switching, or
+                                professional executive resume writing, our
+                                mentors provide tailored advice that generic
+                                courses can’t match.
+                            </p>
                         </div>
-                        <div className="flex gap-2 items-center text-sm text-yellow-600">
-                            <CircleCheckBig className="h-4 w-4" />{" "}
-                            <div>
-                                Motivate you to challenge your limits and
-                                achieve your potential.
-                            </div>
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>Accelerate Your Progress</strong> –
+                                Avoid trial and error. Get resume writing tips,
+                                job search strategies, leadership development
+                                guidance, and business scaling insights from
+                                experts who know what works.
+                            </p>
                         </div>
                     </div>
-                </section>
-                <section className="max-w-7xl mx-auto px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">
-                    <h3 className="text-lg sm:text-xl font-semibold pt-5 pb-3">
-                        What We Offer
-                    </h3>
-                    <p className="text-gray-500 py-2 sm:py-0 text-md sm:text-md">
-                        Our mission is to empower individuals through impactful,
-                        one-on-one mentorship. By providing access to trusted
-                        experts, we aim to help you make better decisions,
-                        unlock new opportunities, and grow with clarity and
-                        confidence. In a world filled with conflicting advice,
-                        Fomoedge ensures that knowledge comes from reliable
-                        sources—giving you the focused, distraction-free
-                        guidance you need to succeed.
-                    </p>
+                </SectionWrapper.Boxed>
 
-                    <h3 className="text-lg sm:text-xl font-semibold pt-5 pb-3">
-                        Why Choose Fomoedge?
-                    </h3>
-                    <div className="">
-                        <div className="flex gap-2 items-center text-sm text-yellow-600 pb-3 sm:pb-3">
-                            <CircleCheckBig className="h-4 w-4" />{" "}
-                            <div>
-                                Personalized Sessions: Tailored advice based on
-                                your unique goals.
-                            </div>
+                <SectionWrapper.Boxed className="hero-bg relative">
+                    <div className="absolute inset-x-0 bottom-0">
+                        <svg
+                            viewBox="0 0 224 12"
+                            fill="currentColor"
+                            className="w-full -mb-1 text-white"
+                            preserveAspectRatio="none"
+                        >
+                            <path d="M0,0 C48.8902582,6.27314026 86.2235915,9.40971039 112,9.40971039 C137.776408,9.40971039 175.109742,6.27314026 224,0 L224,12.0441132 L0,12.0441132 L0,0 Z" />
+                        </svg>
+                    </div>
+                    <SectionWrapper.Heading level="h2">
+                        Why Fomoedge Stands Out
+                    </SectionWrapper.Heading>
+                    <SectionWrapper.Spacer />
+                    <div className="space-y-2 pb-12">
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>Personalized Mentorship</strong> – Get
+                                expert advice on career planning,
+                                industry-specific training, skill enhancement,
+                                and executive resume writing.
+                            </p>
                         </div>
-                        <div className="flex gap-2 items-center text-sm text-yellow-600 pb-3 sm:pb-3">
-                            <CircleCheckBig className="h-4 w-4" />{" "}
-                            <div>
-                                Trusted Experts: Vetted mentors with proven
-                                experience and insights.
-                            </div>
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>Trusted Industry Experts</strong> –
+                                Learn from top professionals with real-world
+                                experience in resume building, job market
+                                trends, and career transitions.
+                            </p>
                         </div>
-                        <div className="flex gap-2 items-center text-sm text-yellow-600">
-                            <CircleCheckBig className="h-4 w-4" />{" "}
-                            <div>
-                                Zero Spam, Zero Sales: A distraction-free,
-                                knowledge-driven platform.
-                            </div>
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>100% Guidance, Zero Spam</strong> – No
+                                sales pitches or course selling—just pure,
+                                practical mentorship to help you move forward
+                                with confidence.
+                            </p>
                         </div>
                     </div>
-                </section>
-                <section className="max-w-7xl mx-auto px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">
-                    <h3 className="text-lg sm:text-xl font-semibold pt-5 pb-3">
-                        How It Works
-                    </h3>
-                    <div className="py-2">
-                        <div className="flex items-center gap-1 text-sm text-gray-700 pb-1 w">
-                            <div className="h-2.5 w-2.5 bg-black rounded-full"></div>{" "}
-                            Find Your Mentor: Search mentors by skills,
-                            industry, or career phase.
+                </SectionWrapper.Boxed>
+
+                <SectionWrapper.Boxed className="bg-[url('/images/light-veneer.webp')]">
+                    <SectionWrapper.Heading level="h2">
+                        Who Can Benefit from Fomoedge
+                    </SectionWrapper.Heading>
+                    <SectionWrapper.Spacer />
+                    <div className="space-y-2">
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>Students & Job Seekers</strong> – Learn
+                                how to make a resume for a job, navigate career
+                                transitions, switch industries, and master
+                                interview preparation with expert insights.
+                            </p>
                         </div>
-                        <div className="flex items-center gap-1 text-sm text-gray-700 pb-1">
-                            <div className="h-2.5 w-2.5 bg-black rounded-full"></div>{" "}
-                            Book a Session: Choose a time that fits your
-                            schedule.
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>Working Professionals</strong> – Gain
+                                career advancement strategies, leadership
+                                training, and industry-specific insights to
+                                accelerate your professional journey.
+                            </p>
                         </div>
-                        <div className="flex items-center gap-1 text-sm text-gray-700">
-                            <div className="h-2.5 w-2.5 bg-black rounded-full"></div>{" "}
-                            Get Real Guidance: Receive actionable advice and
-                            insights to move forward confidently
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>Entrepreneurs & Business Owners</strong>{" "}
+                                – Get expert guidance on business scaling,
+                                start-up growth, fundraising, and investment
+                                insights to build a sustainable and profitable
+                                venture.
+                            </p>
+                        </div>
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>Companies & Start-ups</strong> – Access
+                                tailored mentorship for leadership development,
+                                strategic decision-making, business expansion,
+                                and team growth.
+                            </p>
+                        </div>
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>
+                                    Universities & Educational Institutions
+                                </strong>{" "}
+                                – Offer student’s expert career guidance, group
+                                mentorship sessions, and workshops on resume
+                                building, job search strategies, and
+                                industry-specific training.
+                            </p>
+                        </div>
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>Leadership & Management Teams</strong> –
+                                Enhance executive decision-making, develop
+                                professional executive resumes, and gain
+                                insights from top industry leaders through
+                                exclusive mentorship programs.
+                            </p>
                         </div>
                     </div>
-                </section>
-                <section className="max-w-7xl mx-auto pb-14 px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">
-                    <h3 className="text-lg sm:text-xl font-semibold pt-5 pb-3">
-                        Who We Serve
-                    </h3>
-                    <div className="py-2">
-                        <div className="flex items-center gap-1 text-sm text-gray-700 pb-1 w">
-                            <div className="h-2.5 w-2.5 bg-black rounded-full"></div>{" "}
-                            Students/ individuals seeking clarity on exams,
-                            career paths, switches, career growth, better
-                            opportunities, international mobility.
+                </SectionWrapper.Boxed>
+
+                <SectionWrapper.Boxed>
+                    <SectionWrapper.Heading level="h2">
+                        How Fomoedge Works
+                    </SectionWrapper.Heading>
+                    <SectionWrapper.Spacer />
+                    <div className="space-y-2">
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>Students & Job Seekers</strong> – Learn
+                                how to make a resume for a job, navigate career
+                                transitions, switch industries, and master
+                                interview preparation with expert insights.
+                            </p>
                         </div>
-                        <div className="flex items-center gap-1 text-sm text-gray-700 pb-1">
-                            <div className="h-2.5 w-2.5 bg-black rounded-full"></div>{" "}
-                            Professionals looking for growth, transitions, or
-                            breakthroughs.
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>Working Professionals</strong> – Gain
+                                career advancement strategies, leadership
+                                training, and industry-specific insights to
+                                accelerate your professional journey.
+                            </p>
                         </div>
-                        <div className="flex items-center gap-1 text-sm text-gray-700 pb-1">
-                            <div className="h-2.5 w-2.5 bg-black rounded-full"></div>{" "}
-                            Entrepreneurs in need of guidance to build and scale
-                            their ventures and everything related to
-                            entrepreneurship
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>Entrepreneurs & Business Owners</strong>{" "}
+                                – Get expert guidance on business scaling,
+                                start-up growth, fundraising, and investment
+                                insights to build a sustainable and profitable
+                                venture.
+                            </p>
                         </div>
-                        <div className="flex items-center gap-1 text-sm text-gray-700 pb-1">
-                            <div className="h-2.5 w-2.5 bg-black rounded-full"></div>{" "}
-                            For all explorers navigating big decisions, seeking
-                            new opportunities, as they venture down uncharted
-                            paths and explore fresh possibilities
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>Companies & Start-ups</strong> – Access
+                                tailored mentorship for leadership development,
+                                strategic decision-making, business expansion,
+                                and team growth.
+                            </p>
+                        </div>
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>
+                                    Universities & Educational Institutions
+                                </strong>{" "}
+                                – Offer student’s expert career guidance, group
+                                mentorship sessions, and workshops on resume
+                                building, job search strategies, and
+                                industry-specific training.
+                            </p>
+                        </div>
+                        <div className="flex items-start gap-x-2">
+                            <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
+                            <p>
+                                <strong>Leadership & Management Teams</strong> –
+                                Enhance executive decision-making, develop
+                                professional executive resumes, and gain
+                                insights from top industry leaders through
+                                exclusive mentorship programs.
+                            </p>
                         </div>
                     </div>
-                </section>
-                <section>
-                    <About />
-                </section>
+                </SectionWrapper.Boxed>
+                <HowFomoedgeWorks />
             </div>
         </div>
     );

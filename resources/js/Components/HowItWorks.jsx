@@ -20,7 +20,7 @@ export default function HowItWorks() {
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="max-w-2xl mx-auto text-center">
                         <SectionWrapper.Heading>
-                            How does it work?
+                            How Does Fomoedge Work?
                         </SectionWrapper.Heading>
                         <SectionWrapper.Subheading>
                             Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -50,12 +50,11 @@ export default function HowItWorks() {
                                     </span>
                                 </div>
                                 <h3 className="mt-6 text-xl font-semibold leading-tight md:mt-10">
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit.
+                                    Find & Book Your Mentor
                                 </h3>
                                 <p className="mt-4 text-base text-slate-600 md:text-lg">
-                                    Select template Lorem, ipsum dolor.
-                                    accourding to your requirement
+                                    Browse expert mentors, choose one that fits
+                                    your goals, and schedule a session.
                                 </p>
                             </div>
                             <div>
@@ -65,12 +64,12 @@ export default function HowItWorks() {
                                     </span>
                                 </div>
                                 <h3 className="mt-6 text-xl font-semibold leading-tight md:mt-10">
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit.
+                                    Confirm & Prepare
                                 </h3>
                                 <p className="mt-4 text-base text-slate-600 md:text-lg">
-                                    Select template Lorem, ipsum dolor.
-                                    accourding to your requirement
+                                    Receive a confirmation email with your
+                                    session details, Google Meet link, and login
+                                    credentials.
                                 </p>
                             </div>
                             <div>
@@ -80,12 +79,11 @@ export default function HowItWorks() {
                                     </span>
                                 </div>
                                 <h3 className="mt-6 text-xl font-semibold leading-tight md:mt-10">
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit.
+                                    Join & Learn
                                 </h3>
                                 <p className="mt-4 text-base text-slate-600 md:text-lg">
-                                    Select template Lorem, ipsum dolor.
-                                    accourding to your requirement
+                                    Connect at the scheduled time for
+                                    personalized mentorship and expert guidance.
                                 </p>
                             </div>
                         </div>
