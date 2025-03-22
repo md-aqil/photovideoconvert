@@ -9,7 +9,7 @@ export default function PageBanner({ title, imgSrc, breadcrumbs }) {
         <div className="relative hero-bg">
             {/* <div className="relative bg-[#ffc93d]"> */}
             <div className="absolute inset-x-0 bottom-0">
-                {page.slug !== "how-it-works" && (
+                {page?.slug !== "how-it-works" && (
                     <svg
                         viewBox="0 0 224 12"
                         fill="currentColor"
