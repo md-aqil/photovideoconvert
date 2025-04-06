@@ -105,7 +105,7 @@ const AboutUs = ({ page }) => {
                     // breadcrumbs={<GenerateBreadcrumbs />}
                 />
                 <section className="w-full mx-auto pt-12 sm:pt-20 px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
                         <div className="sm:py-52 relative">
                             <div className="hidden sm:block py-28 bg-fomoPrimary-0"></div>
                             <img
@@ -122,9 +122,9 @@ const AboutUs = ({ page }) => {
                                 Why Choose Fomoedge
                             </SectionWrapper.Heading>
                             <p className="text-gray-500 sm:text-md ">
-                                Navigating career transitions, executive
+                                {/* Navigating career transitions, executive
                                 leadership, and business success can feel
-                                overwhelming in today’s fast-paced world.
+                                overwhelming in today’s fast-paced world. */}
                                 Fomoedge bridges the gap by connecting you with
                                 trusted mentors who offer personalized,
                                 actionable guidance to accelerate your growth.
@@ -133,8 +133,8 @@ const AboutUs = ({ page }) => {
                                 expert mentorship helps unlock new opportunities
                                 and career breakthroughs.
                             </p>
-                            <SectionWrapper.Spacer />
-                            <SectionWrapper.Heading
+                            {/* <SectionWrapper.Spacer /> */}
+                            {/* <SectionWrapper.Heading
                                 level="h2"
                                 className={`text-start`}
                             >
@@ -146,7 +146,7 @@ const AboutUs = ({ page }) => {
                                 where Fomoedge stands out—bringing you
                                 one-on-one mentorship from industry leaders who
                                 have walked the path before you.
-                            </p>
+                            </p> */}
 
                             <div className="pt-3 sm:pt-10">
                                 <Button
@@ -257,7 +257,7 @@ const AboutUs = ({ page }) => {
                     </div>
                 </SectionWrapper.Boxed>
 
-                <SectionWrapper.Boxed className="bg-[url('/images/light-veneer.webp')]">
+                {/* <SectionWrapper.Boxed className="bg-[url('/images/light-veneer.webp')]">
                     <SectionWrapper.Heading level="h2">
                         Who Can Benefit from Fomoedge
                     </SectionWrapper.Heading>
@@ -323,7 +323,7 @@ const AboutUs = ({ page }) => {
                             </p>
                         </div>
                     </div>
-                </SectionWrapper.Boxed>
+                </SectionWrapper.Boxed> */}
 
                 <SectionWrapper.Boxed>
                     <SectionWrapper.Heading level="h2">
