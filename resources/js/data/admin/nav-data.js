@@ -126,29 +126,29 @@ export const navItems = [
         ],
     },
 
-    // {
-    //     title: "Users",
-    //     href: "#",
-    //     icon: "users",
-    //     label: "Users",
-    //     permit: "view users|create users|edit users",
-    //     items: [
-    //         {
-    //             title: "Add User",
-    //             href: route("admin.users.create"),
-    //             icon: "userRoundPlus",
-    //             label: "Add User",
-    //             permit: "create users",
-    //         },
-    //         {
-    //             title: "All User",
-    //             href: route("admin.users.index"),
-    //             icon: "list",
-    //             label: "All User",
-    //             permit: "view users",
-    //         },
-    //     ],
-    // },
+    {
+        title: "Users",
+        href: "#",
+        icon: "users",
+        label: "Users",
+        permit: "view users|create users|edit users",
+        items: [
+            {
+                title: "Add User",
+                href: route("admin.users.create"),
+                icon: "userRoundPlus",
+                label: "Add User",
+                permit: "create users",
+            },
+            {
+                title: "All User",
+                href: route("admin.users.index"),
+                icon: "list",
+                label: "All User",
+                permit: "view users",
+            },
+        ],
+    },
     // {
     //     title: "Roles",
     //     href: "#",
