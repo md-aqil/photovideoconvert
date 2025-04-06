@@ -547,9 +547,12 @@ Register.layout = (page) => (
         title={
             page?.props?.page?.meta_title
                 ? page?.props?.page?.meta_title
-                : page?.props?.page?.title
+                : "How to Become a Mentor on Fomoedge"
         }
-        metaDescription={page?.props?.page?.meta_description}
+        metaDescription={
+            page?.props?.page?.meta_description ||
+            "Empower the next generation by sharing your knowledge, guiding aspiring professionals, and helping businesses grow. Your mentorship creates a lasting impact on careers, industries, and communities."
+        }
     />
 );
 
