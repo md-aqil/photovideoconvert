@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -41,11 +42,11 @@ class MentorWelcomeNotification extends Notification
 			]);
 	}
 
-	public function toWhatsApp(object $notifiable): string
+	public function toWhatsApp(object $notifiable): array
 	{
 		return [
 			'template' => 'mentor_registered',
-			'to' => [`{$notifiable->mentorProfile->phone_country_id}{$notifiable->phone}`],
+			'to' => [$notifiable->mentorProfile->phoneCountry->phone_code . $notifiable->mentorProfile->phone],
 			'components' => [
 				"body_1" => [
 					"type" => "text",

@@ -14,10 +14,7 @@ class WhatsAppChannel
 	{
 		$message = $notification->toWhatsApp($notifiable);
 
-		$response = Http::withHeaders([
-			'Content-Type' => 'application/json',
-			'authkey' => env('MSG91_AUTH_KEY')
-		])->post(env('MSG91_WHATSAPP_URL'), [
+		$data = [
 			"integrated_number" => env('MSG91_WHATSAPP_NO'),
 			"content_type" => "template",
 			"payload" => [
@@ -38,7 +35,13 @@ class WhatsAppChannel
 					]
 				]
 			]
-		]);
+		];
+
+		$response = Http::withHeaders([
+			'Content-Type' => 'application/json',
+			'authkey' => env('MSG91_AUTH_KEY')
+		])->post(env('MSG91_WHATSAPP_URL'), $data);
+
 
 		if ($response->failed()) {
 			// Handle the error response if needed
@@ -46,6 +49,7 @@ class WhatsAppChannel
 				'response' => $response->body(),
 				'notifiable' => $notifiable,
 				'notification' => $notification,
+				'data' => $data
 			]);
 		}
 	}
