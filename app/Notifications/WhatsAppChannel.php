@@ -29,7 +29,7 @@ class WhatsAppChannel
 					"namespace" => null,
 					"to_and_components" => [
 						[
-							"to" => $message['to'],
+							'to' => [$notifiable->mentorProfile->phoneCountry->phone_code . $notifiable->mentorProfile->phone],
 							"components" => $message['components']
 						]
 					]
