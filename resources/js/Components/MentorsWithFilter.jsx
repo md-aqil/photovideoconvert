@@ -10,11 +10,13 @@ export default function MentorsWithFilter({ topics }) {
     const [selectedMentors, setSelectedMentors] = useState([]);
 
     React.useEffect(() => {
-        // Show all mentors by default
         const allMentors = topics.flatMap((topic) =>
-            topic.active_tags.flatMap((tag) => tag.mentors || [])
+            topic.active_tags.flatMap((tag) => tag.mentors || []),
         );
-        setSelectedMentors(allMentors);
+        const uniqueMentors = Array.from(
+            new Map(allMentors.map((m) => [m.id, m])).values(),
+        );
+        setSelectedMentors(uniqueMentors);
     }, [topics]);
 
     const handleTagChange = (tag) => {
@@ -26,19 +28,26 @@ export default function MentorsWithFilter({ topics }) {
         }
         setSelectedTags(updatedTags);
 
-        // Update mentors list based on selected tags
+        const getUniqueMentors = (mentors) => {
+            const uniqueOnly = new Map();
+            mentors.forEach((mentor) => {
+                uniqueOnly.set(mentor.id, mentor);
+            });
+            return Array.from(uniqueOnly.values());
+        };
+
         if (updatedTags.length === 0) {
             const allMentors = topics.flatMap((topic) =>
-                topic.active_tags.flatMap((t) => t.mentors || [])
+                topic.active_tags.flatMap((t) => t.mentors || []),
             );
-            setSelectedMentors(allMentors);
+            setSelectedMentors(getUniqueMentors(allMentors));
         } else {
             const mentors = topics.flatMap((topic) =>
                 topic.active_tags
                     .filter((t) => updatedTags.includes(t.slug))
-                    .flatMap((t) => t.mentors || [])
+                    .flatMap((t) => t.mentors || []),
             );
-            setSelectedMentors(mentors);
+            setSelectedMentors(getUniqueMentors(mentors));
         }
     };
 
@@ -66,7 +75,7 @@ export default function MentorsWithFilter({ topics }) {
                                     >
                                         <Checkbox
                                             checked={selectedTags.includes(
-                                                tag.slug
+                                                tag.slug,
                                             )}
                                             onCheckedChange={() =>
                                                 handleTagChange(tag)
