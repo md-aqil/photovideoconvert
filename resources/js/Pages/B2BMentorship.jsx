@@ -12,6 +12,7 @@ import {
 import PageLayout from "@/Layouts/PageLayout";
 import { formatEnum } from "@/Helpers/GlobalFunctions";
 import SectionWrapper from "@/Components/SectionWrapper";
+import EnquiryB2BMentorshipForm from "@/Components/EnquiryB2BMentorshipForm";
 const B2BMentorship = ({ page, topics }) => {
     return (
         <div>
@@ -20,14 +21,18 @@ const B2BMentorship = ({ page, topics }) => {
             <SectionWrapper.Boxed>
                 <Card className="max-w-2xl mx-auto">
                     <CardHeader>
-                        <CardTitle>B2B Mentorship Program</CardTitle>
+                        {/* <CardTitle>B2B Mentorship Program</CardTitle> */}
+                        <CardTitle>
+                            Reach Us for B2B Mentorship Program
+                        </CardTitle>
                         <CardDescription>
-                            These details will not be visible on the main
-                            homepage; only the admin can see them
+                            Fill the form below for B2B Mentorship Program for
+                            your organization/company or institution.
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <B2BMentorshipForm />
+                        {/* <B2BMentorshipForm /> */}
+                        <EnquiryB2BMentorshipForm />
                     </CardContent>
                 </Card>
             </SectionWrapper.Boxed>
