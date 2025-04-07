@@ -292,6 +292,14 @@ export const mentorNavItems = [
                 icon: "user",
                 label: "profile",
             },
+
+            {
+                title: "B2B Availability",
+                href: route("mentors.b2b-availability"),
+                icon: "thumbsUp",
+                label: "profile",
+            },
+
             {
                 title: "KYC Details",
                 href: route("mentors.profile.kyc-details"),

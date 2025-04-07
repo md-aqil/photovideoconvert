@@ -22,6 +22,7 @@ Route::prefix('mentors')->name('mentors.')->group(function () {
 
     Route::middleware(['web', 'auth', MentorMiddleware::class])->group(function () {
         Route::get('dashboard', [MentorProfileController::class, 'dashboard'])->name('dashboard');
+        Route::get('b2b-availability', [MentorProfileController::class, 'B2bAvailability'])->name('b2b-availability');
         Route::get('profile', [MentorProfileController::class, 'edit'])->name('profile');
         Route::post('update', [MentorProfileController::class, 'update'])->name('update');
         Route::get('profile/kyc-details', [MentorKycDetailController::class, 'createAndEdit'])->name('profile.kyc-details');

@@ -23,10 +23,9 @@ export default function HowItWorks() {
                             How Does Fomoedge Work?
                         </SectionWrapper.Heading>
                         <SectionWrapper.Subheading>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Enim corporis similique atque ipsa, odio
-                            placeat qui velit at sunt dolorum optio nobis id
-                            vero, ab sequi ipsam ducimus ratione ad!
+                            Discover how Fomoedge supports mentees and connects
+                            them with experienced mentors for personalized,
+                            one-on-one guidance.
                         </SectionWrapper.Subheading>
                     </div>
                     <div className="relative mt-12 lg:mt-20">

@@ -43,6 +43,11 @@ class MentorProfileController extends Controller
         ]);
     }
 
+    public function B2bAvailability(Request $request)
+    {
+        return Inertia::render('Mentor/B2bAvailability');
+    }
+
     public function edit(Request $request)
     {
         $user = $request->user()->load('mentorProfile.profilePicture', 'mentorProfile.courses');

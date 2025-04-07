@@ -12,6 +12,7 @@ import RecentPosts from "@/Components/RecentPosts";
 import Hero from "@/Components/Hero";
 import HowItWorks from "@/Components/HowItWorks";
 import UserReviewsCarousel from "@/Components/UserReviewsCarousel";
+import SectionWrapper from "@/Components/SectionWrapper";
 
 const topUniversities = [
     {
@@ -244,6 +245,7 @@ const Homepage = ({ page, topics }) => {
                 </div>
             </div>
             <HowItWorks />
+            <SectionWrapper.Spacer />
             <div className="py-8 sm:py-0 sm:pb-0 bg-fomoLight-0 sm:bg-white">
                 <div className="sm:py-0">
                     <div className="text-xl sm:text-3xl text-center font-semibold pt-4 max-w-7xl mx-auto px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">
@@ -282,6 +284,8 @@ const Homepage = ({ page, topics }) => {
                     </div>
                 </div> */}
             </div>
+            <SectionWrapper.Spacer />
+
             {latestPosts.length > 0 && <RecentPosts blogPost={latestPosts} />}
             {testimonials.length > 0 && (
                 <UserReviewsCarousel testimonials={testimonials} />

@@ -327,7 +327,7 @@ export default function Profile({ mentorProfile, user }) {
                                                     >
                                                         {detail}
                                                     </Badge>
-                                                )
+                                                ),
                                             )}
                                         </TextLarge>
                                     </div>
@@ -350,7 +350,7 @@ export default function Profile({ mentorProfile, user }) {
                                                         >
                                                             {tag.title}
                                                         </Badge>
-                                                    )
+                                                    ),
                                                 )}
                                             </TextLarge>
                                         </>

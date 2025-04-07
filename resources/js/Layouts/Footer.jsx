@@ -1,4 +1,4 @@
-import NewsLetterForm from "@/Components/NewsLatterForm";
+// import NewsLetterForm from "@/Components/NewsLatterForm";
 import React from "react";
 import SocialShare from "@/Components/SocialShare";
 import { Link } from "@inertiajs/react";
@@ -8,57 +8,65 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 export const Footer = () => {
     return (
         <>
-            <NewsLetterForm />
-            <footer className="relative z-10 py-8 sm:py-20">
+            {/* <NewsLetterForm /> */}
+            <footer className="relative z-10 py-8 sm:py-20 border-fomoPrimary-0 border-t-8 bg-slate-800">
                 <div className="max-w-screen-xl mx-auto px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">
                     <div className="flex flex-wrap gap-x-6">
                         <div className="w-full sm:w-2/3 lg:w-4/12">
-                            <div className="w-full">
-                                <div>
-                                    <div
-                                        // href="/"
-                                        className="mb-3 inline-block max-w-[160px]"
-                                    >
-                                        <ApplicationLogo className="block h-20 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                                    </div>
-                                </div>
-                                <p className="mb-2 text-base text-body-color dark:text-dark-6 inline-flex items-center">
-                                    <MapPin className="mr-2 h-5 w-5" /> lucknow,
-                                    UP, India
-                                </p>
+                            <div
+                                // href="/"
+                                className="mb-3 inline-block max-w-[160px]"
+                            >
+                                {/* <ApplicationLogo className="block h-20 w-auto fill-current text-gray-800 dark:text-gray-200" /> */}
+                                <img
+                                    src="/images/logo-transparent.png"
+                                    alt=""
+                                    className="invert brightness-200"
+                                />
                             </div>
+
+                            <p className="mb-2 text-base text-gray-200 flex items-center gap-x-3">
+                                <MapPin className="shrink-0 h-5 w-5" /> lucknow,
+                                UP, India
+                            </p>
+                            <p className="mb-2 text-base text-gray-200 flex items-center gap-x-3">
+                                <Mail className="w-5 h-5 shrink-0" />
+                                support@fomoedge.com
+                            </p>
                         </div>
 
-                        <LinkGroup header="Resources">
+                        <LinkGroup header="Resources" className="text-gray-200">
                             <NavLink link={"/mentors"} label="Mentors" />
-                            {/* <NavLink link="#" label="Become an Instructor" /> */}
-                            {/* <NavLink link="#" label="FAQs" /> */}
+
+                            <NavLink link="/blog" label="Blog" />
                             {/* <NavLink
                                 // link={route("blog.index")}
                                 label="Blog"
                             /> */}
-                            {/* <NavLink link="" label="My Account" /> */}
+                            <NavLink
+                                link="/b2b-mentorship"
+                                label="B2B Mentorship"
+                            />
                         </LinkGroup>
-                        <LinkGroup header="Company">
+                        <LinkGroup header="Company" className="space-y-4 grid">
                             <NavLink link="/about-us" label="About Us" />
+                            <NavLink
+                                link="/how-it-works"
+                                label="How it Works"
+                            />
                             <NavLink link="/contact-us" label="Contact Us" />
-                            <p className="flex items-center gap-2 text-sm py-1 font-medium text-dark dark:text-white">
-                                {" "}
-                                <Mail className="w-5 h-5" />
-                                support@fomoedge.com
-                            </p>
                         </LinkGroup>
 
-                        <div className="w-full sm:w-1/2 lg:w-3/12">
-                            <div className="w-full">
-                                <h4 className="mb-4 text-lg font-semibold text-dark dark:text-white">
+                        <div className="w-full sm:w-1/2 lg:w-3/12 space-y-8">
+                            <div>
+                                <h4 className="mb-4 text-lg font-semibold text-gray-200">
                                     Follow Us On
                                 </h4>
                                 <SocialShare />
                             </div>
                         </div>
                     </div>
-                    <div className="sm:flex justify-between items-center mt-10 mb-0 text-xs text-gray-500">
+                    <div className="sm:flex justify-between items-center mt-10 mb-0 text-xs text-gray-200">
                         <div className="mb-2 sm:mb-0">
                             <span>
                                 {" "}
@@ -69,17 +77,17 @@ export const Footer = () => {
                         </div>
 
                         <div>
-                            <span className="hover:text-black transition-all duration-300">
+                            <span className="hover:text-white text-gray-200 transition-all duration-300">
                                 <Link href="/privacy-policy">
                                     Privacy Policy
                                 </Link>
                             </span>
-                            <span className="mx-2 hover:text-black transition-all duration-300">
+                            <span className="mx-2 hover:text-white text-gray-200 transition-all duration-300">
                                 <Link href="/terms-and-conditions">
                                     Terms & Conditions
                                 </Link>
                             </span>
-                            <span className="mx-2 hover:text-black transition-all duration-300">
+                            <span className="mx-2 hover:text-white text-gray-200 transition-all duration-300">
                                 <Link href="/refund-policy">Refund Policy</Link>
                             </span>
                         </div>
@@ -95,7 +103,7 @@ const LinkGroup = ({ children, header }) => {
         <>
             <div className="w-full sm:w-1/2 lg:w-2/12">
                 <div className="w-full mb-3">
-                    <h4 className="text-lg font-semibold text-dark dark:text-white">
+                    <h4 className="text-lg font-semibold text-white">
                         {header}
                     </h4>
                     <ul className="space-y-0.5">{children}</ul>
@@ -110,7 +118,7 @@ const NavLink = ({ link, label }) => {
         <li>
             <a
                 href={link}
-                className="inline-block leading-loose hover:text-uno text-md"
+                className="inline-block leading-loose text-gray-200 text-md"
             >
                 {label}
             </a>
