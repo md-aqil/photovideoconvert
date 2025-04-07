@@ -2,13 +2,12 @@
 
 namespace App\Notifications;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class MentorWelcomeNotification extends Notification
+class MentorProfileVerifiedNotification extends Notification
 {
 	use Queueable;
 
@@ -27,25 +26,14 @@ class MentorWelcomeNotification extends Notification
 	 */
 	public function via(object $notifiable): array
 	{
-		return ['mail', WhatsAppChannel::class];
+		return [WhatsAppChannel::class];
 	}
 
-	/**
-	 * Get the mail representation of the notification.
-	 */
-	public function toMail(object $notifiable): MailMessage
-	{
-		return (new MailMessage)
-			->subject('Welcome to Fomoedge Platform!')
-			->view('mails.mentor-welcome', [
-				'user' => $notifiable
-			]);
-	}
 
 	public function toWhatsApp(object $notifiable): array
 	{
 		return [
-			'template' => 'mentor_registered',
+			'template' => 'mentor_profile_initial_verification_message',
 			'components' => [
 				"body_1" => [
 					"type" => "text",
@@ -54,10 +42,21 @@ class MentorWelcomeNotification extends Notification
 				"button_1" => [
 					"subtype" => "url",
 					"type" => "text",
-					"value" => "https://fomoedge.com/how-it-works"
+					"value" => "https://fomoedge.com/login"
 				]
 			]
 		];
+	}
+
+	/**
+	 * Get the mail representation of the notification.
+	 */
+	public function toMail(object $notifiable): MailMessage
+	{
+		return (new MailMessage)
+			->line('The introduction to the notification.')
+			->action('Notification Action', url('/'))
+			->line('Thank you for using our application!');
 	}
 
 	/**
