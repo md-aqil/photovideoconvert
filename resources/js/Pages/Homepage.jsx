@@ -213,7 +213,7 @@ const topCompanies = [
 const Homepage = ({ page, topics }) => {
     const pageProp = usePage().props;
     const { testimonials = [], latestPosts = [] } = usePage().props;
-    console.log("🚀 ~ Homepage ~ testimonials:", testimonials);
+    // console.log("🚀 ~ Homepage ~ testimonials:", testimonials);
     return (
         <div>
             <Header isHomePage={true} />
@@ -300,9 +300,13 @@ Homepage.layout = (page) => (
         title={
             page.props.page.meta_title
                 ? page.props.page.meta_title
-                : page.props.page.title
+                : // : page.props.page.title
+                  "FomoEdge: Level Up Your Career with Guidance from World-Class Mentors"
         }
-        metaDescription={page.props.page.meta_description}
+        metaDescription={
+            page.props.page.meta_description ||
+            "Connect with industry-expert mentors to accelerate your career, overcome challenges, and unlock new opportunities for growth and success. Join Fomoedge today and unlock your potential."
+        }
     />
 );
 
