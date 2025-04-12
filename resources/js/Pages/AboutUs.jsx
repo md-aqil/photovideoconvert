@@ -121,6 +121,7 @@ const AboutUs = ({ page }) => {
                             >
                                 Why Choose Fomoedge
                             </SectionWrapper.Heading>
+                            <SectionWrapper.Spacer />
                             <p className="text-gray-500 sm:text-md ">
                                 {/* Navigating career transitions, executive
                                 leadership, and business success can feel
