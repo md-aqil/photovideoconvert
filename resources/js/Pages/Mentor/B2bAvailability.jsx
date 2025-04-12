@@ -6,7 +6,7 @@ import React from "react";
 
 import B2BMentorshipForm from "@/Components/B2BMentorshipForm";
 
-export default function B2bAvailibility({}) {
+export default function B2bAvailibility({ mentorProfile }) {
     return (
         <MentorAuthLayout>
             <Head>
@@ -14,7 +14,9 @@ export default function B2bAvailibility({}) {
             </Head>
             <PageHeading className="mb-5">
                 <div className="">
-                    <PageHeading.Title>{`user?.full_name`}</PageHeading.Title>
+                    <PageHeading.Title>
+                        {mentorProfile?.full_name}
+                    </PageHeading.Title>
                     <p className="text-sm pt-1">
                         Make changes to your profile here. Click save when
                         you're done.
