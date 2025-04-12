@@ -8,6 +8,7 @@ import AuthenticatedLayout from "@/Layouts/admin/AuthenticatedLayout";
 import PageHeading from "@/Components/PageHeading";
 import React from "react";
 import { formatDate } from "date-fns";
+
 export const columns = [
     {
         accessorKey: "user.first_name",
@@ -18,7 +19,7 @@ export const columns = [
                 <p className="text-xs text-muted-foreground">
                     {formatDate(
                         row.original?.created_at,
-                        "dd MMM, yyyy h:mm a"
+                        "dd MMM, yyyy h:mm a",
                     )}
                 </p>
             </div>
@@ -32,20 +33,38 @@ export const columns = [
     {
         accessorKey: "preferred_modes",
         header: "Preferred Modes",
-        cell: ({ row }) => row.original.preferred_modes.join(", "),
+        cell: ({ row }) => {
+            const modes = row?.original?.preferred_modes;
+            return Array.isArray(modes) ? modes.join(", ") : "—";
+        },
     },
     {
         accessorKey: "interested_institutions",
         header: "Institutions",
-        cell: ({ row }) => row.original.interested_institutions.join(", "),
+        // cell: ({ row }) => row?.original?.interested_institutions,
+        cell: ({ row }) => {
+            const institutions = row?.original?.interested_institutions;
+            return Array.isArray(institutions) ? institutions.join(", ") : "—";
+        },
     },
     {
         accessorKey: "minimum_hourly_rate",
         header: "Minimum Hourly Rate (in ₹)",
-        cell: ({ row }) =>
-            row.original.minimum_hourly_rate
-                .map((r) => `${r.label} : ${r.rate}`)
-                .join(", "),
+        cell: ({ row }) => {
+            const rates = row?.original?.minimum_hourly_rate;
+
+            if (!Array.isArray(rates)) return "—";
+
+            return (
+                <div className="space-y-1">
+                    {rates.map((r, index) => (
+                        <div key={index}>
+                            {r.label} : ₹{r.rate}
+                        </div>
+                    ))}
+                </div>
+            );
+        },
     },
     {
         accessorKey: "open_to_long_duration_mentorship",

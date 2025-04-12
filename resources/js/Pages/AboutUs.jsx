@@ -231,19 +231,21 @@ const AboutUs = ({ page }) => {
                         <div className="flex items-start gap-x-2">
                             <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
                             <p>
-                                <strong>Personalized Mentorship</strong> – Get
-                                expert advice on career planning,
-                                industry-specific training, skill enhancement,
-                                and executive resume writing.
+                                <strong>Tailored Career Guidance</strong> –
+                                Whether you're exploring new opportunities or
+                                aiming to grow in your current role, our mentors
+                                help you map out the right path, sharpen your
+                                skills, and present yourself with confidence.
                             </p>
                         </div>
                         <div className="flex items-start gap-x-2">
                             <span className="h-2 w-2 shrink-0 bg-black mt-2 rounded-full"></span>{" "}
                             <p>
-                                <strong>Trusted Industry Experts</strong> –
-                                Learn from top professionals with real-world
-                                experience in resume building, job market
-                                trends, and career transitions.
+                                <strong>Real-World Insights</strong> – Connect
+                                with professionals who’ve been there and done
+                                that. They bring insider knowledge on hiring
+                                trends, career pivots, and how to position
+                                yourself for the next big move.
                             </p>
                         </div>
                         <div className="flex items-start gap-x-2">
@@ -328,7 +330,7 @@ const AboutUs = ({ page }) => {
 
                 <SectionWrapper.Boxed>
                     <SectionWrapper.Heading level="h2">
-                        How Fomoedge Works
+                        Who Fomoedge Empowers
                     </SectionWrapper.Heading>
                     <SectionWrapper.Spacer />
                     <div className="space-y-2">
