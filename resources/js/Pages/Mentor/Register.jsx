@@ -106,16 +106,16 @@ const Register = () => {
                         <div className="flex">
                             <div className="flex flex-col items-center mr-4">
                                 <div>
-                                    <div className="flex items-center justify-center w-10 h-10 border rounded-full">
+                                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-fomoPrimary-0">
                                         <ArrowDown />
                                     </div>
                                 </div>
-                                <div className="w-px h-full bg-gray-300" />
+                                <div className="w-px h-full bg-fomoPrimary-0" />
                             </div>
                             <div className="pt-1 pb-8">
-                                <p className="mb-2 text-lg font-bold">
+                                <h3 className="mb-2 text-lg font-bold">
                                     Initial Application
-                                </p>
+                                </h3>
                                 <p className="text-gray-700">
                                     Start by filling out a simple online form
                                     with your basic details, LinkedIn profile,
@@ -131,16 +131,16 @@ const Register = () => {
                         <div className="flex">
                             <div className="flex flex-col items-center mr-4">
                                 <div>
-                                    <div className="flex items-center justify-center w-10 h-10 border rounded-full">
+                                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-fomoPrimary-0">
                                         <ArrowDown />
                                     </div>
                                 </div>
-                                <div className="w-px h-full bg-gray-300" />
+                                <div className="w-px h-full bg-fomoPrimary-0" />
                             </div>
                             <div className="pt-1 pb-8">
-                                <p className="mb-2 text-lg font-bold">
+                                <h3 className="mb-2 text-lg font-bold">
                                     Review by the Fomoedge Team
-                                </p>
+                                </h3>
                                 <p className="text-gray-700">
                                     Our team carefully evaluates each
                                     application to ensure a high-quality mentor
@@ -155,16 +155,16 @@ const Register = () => {
                         <div className="flex">
                             <div className="flex flex-col items-center mr-4">
                                 <div>
-                                    <div className="flex items-center justify-center w-10 h-10 border rounded-full">
+                                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-fomoPrimary-0">
                                         <ArrowDown />
                                     </div>
                                 </div>
-                                <div className="w-px h-full bg-gray-300" />
+                                <div className="w-px h-full bg-fomoPrimary-0" />
                             </div>
                             <div className="pt-1 pb-8">
-                                <p className="mb-2 text-lg font-bold">
+                                <h3 className="mb-2 text-lg font-bold">
                                     Profile Setup & Completion
-                                </p>
+                                </h3>
                                 <p>
                                     <strong>
                                         After verification, log in to complete
@@ -187,7 +187,7 @@ const Register = () => {
                         </div>
                     </div>
                     <div className="relative">
-                        <Card className="w-full max-w-xl">
+                        <Card className="w-full max-w-xl bg-yellow-50 border border-fomoPrimary-0">
                             <CardHeader>
                                 <CardTitle>Become a Mentor</CardTitle>
                                 <CardDescription>

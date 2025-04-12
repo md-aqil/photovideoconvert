@@ -65,11 +65,11 @@ const StatsSection = () => {
     return (
         <>
             <div className="xl:flex justify-center items-center bg-white shadow-md rounded-lg p-6 xl:space-x-8 border border-gray-200">
-                <StatItem value="820" label="Mentees" />
+                <StatItem value="120" label="Mentees" />
                 <Divider />
-                <StatItem value="350" label="Mentors" />
+                <StatItem value="150" label="Mentors" />
                 <Divider />
-                <StatItem value="120" label="User Reviews" />
+                <StatItem value="20" label="User Reviews" />
             </div>{" "}
         </>
     );
