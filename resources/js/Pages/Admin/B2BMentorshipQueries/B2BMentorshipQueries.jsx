@@ -11,11 +11,11 @@ import { formatDate } from "date-fns";
 
 export const columns = [
     {
-        accessorKey: "user.first_name",
+        accessorKey: "name",
         header: "Name",
         cell: ({ row }) => (
             <div className="flex flex-col whitespace-pre">
-                <p>{row.original?.user?.first_name || "N/A"}</p>
+                <p>{`${row.original?.first_name} ${row.original?.last_name}` || "N/A"}</p>
                 <p className="text-xs text-muted-foreground">
                     {formatDate(
                         row.original?.created_at,
@@ -24,6 +24,18 @@ export const columns = [
                 </p>
             </div>
         ),
+    },
+    {
+        accessorKey: "company_name",
+        header: "Company Name",
+    },
+    {
+        accessorKey: "company_email",
+        header: "Company Email",
+    },
+    {
+        accessorKey: "company_phone_number",
+        header: "Company Phone Number",
     },
     {
         accessorKey: "isInterested",
