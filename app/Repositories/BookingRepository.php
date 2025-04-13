@@ -166,8 +166,8 @@ class BookingRepository extends BaseRepository
         $booking->user->notify(new BookingSuccessNotification($booking));
 
         if ($booking->google_meet_response) {
-            $booking->user->notify(new SendMentorMenteeMeetInviteNotification($booking));
-            $booking->mentorProfile->user->notify(new SendMentorMenteeMeetInviteNotification($booking));
+            $booking->user->notify(new SendMentorMenteeMeetInviteNotification($booking, 'mentee'));
+            $booking->mentorProfile->user->notify(new SendMentorMenteeMeetInviteNotification($booking, 'mentor'));
         }
 
         $this->razorpayRepository->mentorSettlement($booking);
