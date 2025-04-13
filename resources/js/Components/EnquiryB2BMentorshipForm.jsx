@@ -24,8 +24,7 @@ export default function EnquiryB2BMentorshipForm() {
         company_email: "",
         company_name: "",
         comapany_phone: "",
-        mentee_strength: "",
-        requirements: "",
+        notes: "",
     });
 
     const submit = (e) => {
@@ -106,17 +105,17 @@ export default function EnquiryB2BMentorshipForm() {
 
                 <div>
                     <InputLabel
-                        value="Requirements"
+                        value="notes"
                         additionalInfo="(Mention any details that can help us understand your 
                         company/organization or institutions.)"
                     />
 
                     <Textarea
-                        name="requirements"
-                        id="requirements"
-                        value={data.requirements}
+                        name="notes"
+                        id="notes"
+                        value={data.notes}
                         onChange={(e) =>
-                            setData("requirements", e.target.value)
+                            setData("notes", e.target.value)
                         }
                     />
                 </div>
