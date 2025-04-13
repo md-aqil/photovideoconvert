@@ -27,8 +27,21 @@ class BookingSuccessNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return ['mail', WhatsAppChannel::class];
     }
+
+    public function toWhatsApp(object $notifiable): array
+	{
+		return [
+			'template' => 'mentee_booking_confirmation',
+			'components' => [
+				"body_1" => [
+					"type" => "text",
+					"value" => $notifiable->full_name
+				],
+			]
+		];
+	}
 
     /**
      * Get the mail representation of the notification.
