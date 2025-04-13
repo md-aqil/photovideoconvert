@@ -28,8 +28,29 @@ class MentorProfileUpdateStatusNotification extends Notification
      */
     public function via(object $notifiable): array
     {
+        if($this->viewFile == 'mails.mentor-profile-approve-status')
+            return ['mail', WhatsAppChannel::class];
+
         return ['mail'];
     }
+
+    public function toWhatsApp(object $notifiable): array
+	{
+		return [
+			'template' => 'mentor_profile_activation_',
+			'components' => [
+				"body_1" => [
+					"type" => "text",
+					"value" => $notifiable->full_name
+				],
+				"button_1" => [
+					"subtype" => "url",
+					"type" => "text",
+					"value" => "https://fomoedge.com/login"
+				]
+			]
+		];
+	}
 
     /**
      * Get the mail representation of the notification.
