@@ -40,9 +40,15 @@ class B2BMentorshipQueryController extends Controller
 			$request->merge(['user_id' => $user->id]);
 			$user->load('mentorProfile.topics', 'mentorProfile.topicTags');
 			$mentorProfile = $user->mentorProfile;
+			
 			if ($mentorProfile) {
 				$request->merge(['mentor_profile_id' => $mentorProfile->id]);
 			}
+
+			$request->merge([
+				'first_name' => $user->first_name,
+				'last_name' => $user->last_name,
+			]);
 		}
 		$b2bMentorshipQuery = B2BMentorshipQuery::create($request->all());
 
@@ -55,6 +61,6 @@ class B2BMentorshipQueryController extends Controller
 		}
 
 		// return redirect(route('b2b-mentorship.page'))->with(['flash_type' => 'success', 'flash_message' => 'Your request has been saved successfully.']);
-		return redirect(route('mentors.b2b-availability'))->with(['flash_type' => 'success', 'flash_message' => 'Your request has been saved successfully.']);
+		return redirect()->back()->with(['flash_type' => 'success', 'flash_message' => 'Your request has been saved successfully.']);
 	}
 }
