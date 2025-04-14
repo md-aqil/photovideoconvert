@@ -2,23 +2,24 @@
 
 namespace App\Notifications;
 
+use App\Models\Booking;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class MentorProfileUpdateStatusNotification extends Notification
+class MentorBookingReminderNotification extends Notification
 {
     use Queueable;
 
-    protected $viewFile;
+    public $booking;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($viewFile)
+    public function __construct(Booking $booking)
     {
-        $this->viewFile = $viewFile;
+        $this->booking = $booking;
     }
 
     /**
@@ -28,26 +29,30 @@ class MentorProfileUpdateStatusNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        if($this->viewFile == 'mails.mentor-profile-approve-status')
-            return ['mail', WhatsAppChannel::class];
-
-        return ['mail'];
+        return [WhatsAppChannel::class];
     }
 
     public function toWhatsApp(object $notifiable): array
 	{
 		return [
-			'template' => 'mentor_profile_activation_',
+			'template' => 'mentor_booking_reminder',
 			'components' => [
 				"body_1" => [
 					"type" => "text",
 					"value" => $notifiable->full_name
 				],
-				"button_1" => [
-					"subtype" => "url",
+				"body_2" => [
 					"type" => "text",
-					"value" => "https://fomoedge.com/login"
-				]
+					"value" => $this->booking->courseTiming->start_date
+				],
+				"body_3" => [
+					"type" => "text",
+					"value" => $this->booking->courseTiming->start_time
+				],
+				"body_4" => [
+					"type" => "text",
+					"value" => $this->booking->google_meet_response->meetingUri
+				],
 			]
 		];
 	}
@@ -58,10 +63,9 @@ class MentorProfileUpdateStatusNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Mentor Profile Update Status')
-            ->view($this->viewFile, [
-                'user' => $notifiable
-            ]);
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
     }
 
     /**
