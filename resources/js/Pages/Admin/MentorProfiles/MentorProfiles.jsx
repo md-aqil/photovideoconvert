@@ -142,8 +142,8 @@ export const columns = [
                         status == "APPROVED"
                             ? "text-green-500 bg-green-100 border-green-500 hover:bg-green-200"
                             : status == "PENDING"
-                            ? "text-orange-500 bg-orange-100 border-orange-500 hover:bg-orange-200"
-                            : "text-red-500 bg-red-100 border-red-500 hover:bg-red-200"
+                              ? "text-orange-500 bg-orange-100 border-orange-500 hover:bg-orange-200"
+                              : "text-red-500 bg-red-100 border-red-500 hover:bg-red-200"
                     }`}
                 >
                     {status}
@@ -165,7 +165,7 @@ export const columns = [
                             <Link
                                 href={route(
                                     "admin.mentor-profiles.edit",
-                                    row.original.id
+                                    row.original.id,
                                 )}
                             >
                                 <Eye className="h-4 w-4" />
@@ -220,7 +220,7 @@ export default function MentorProfiles({ mentorProfiles }) {
                                     router.visit(
                                         route("admin.mentor-profiles.index", {
                                             search,
-                                        })
+                                        }),
                                     );
                                 }}
                             >

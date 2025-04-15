@@ -15,7 +15,10 @@ export const columns = [
         header: "Name",
         cell: ({ row }) => (
             <div className="flex flex-col whitespace-pre">
-                <p>{`${row.original?.first_name} ${row.original?.last_name}` || "N/A"}</p>
+                <p>
+                    {`${row.original?.first_name} ${row.original?.last_name}` ||
+                        "N/A"}
+                </p>
                 <p className="text-xs text-muted-foreground">
                     {formatDate(
                         row.original?.created_at,

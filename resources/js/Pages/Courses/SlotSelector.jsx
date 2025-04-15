@@ -12,7 +12,7 @@ const SloteSelector = ({ timings, setSlotID, onChange }) => {
 
     // get timings based on selected date
     const filteredTimings = timings.filter(
-        (timing) => timing.start_date === selectedDate
+        (timing) => timing.start_date === selectedDate,
     );
 
     React.useEffect(() => {
@@ -61,7 +61,7 @@ const SloteSelector = ({ timings, setSlotID, onChange }) => {
                                     }`}
                                 >
                                     {new Date(
-                                        "2025-01-01 " + timing.start_time
+                                        "2025-01-01 " + timing.start_time,
                                     ).toLocaleTimeString("en-US", {
                                         hour: "numeric",
                                         minute: "numeric",

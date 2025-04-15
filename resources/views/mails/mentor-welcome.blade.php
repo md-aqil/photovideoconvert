@@ -23,30 +23,21 @@
                         <!-- Welcome Message -->
                         <td style="padding: 20px;">
                             <h1 style="color: #4CAF50; text-align: center; margin: 0;">Hello, {{ $user->full_name }}!</h1>
-                            <p style="font-size: 16px; line-height: 1.5; font-weight: bold; font-style: italic; text-align: center; margin: 20px 0;">
-                                Thank you for joining Fomoedge! We’re excited to have you on board.
+                            <p style="font-size: 16px; line-height: 1.5; font-weight: bold; font-style: italic; margin: 20px 0;">
+                                Thank you for applying to join Fomoedge. We appreciate your interest in becoming a part of our expert community.
                             </p>
-                            <p style="font-size: 16px; line-height: 1.5; margin: 20px 0;">
-                                To begin with, let me tell you a bit about what makes Fomoedge special.
-                            </p>
-                            <h2 style="color: #4CAF50; font-size: 20px; margin: 20px 0;">Why Choose Fomoedge?</h2>
-                            <h3 style="font-size: 18px; margin: 20px 0;">For Learners:</h3>
-                            <p style="font-size: 16px; font-style: italic; line-height: 1.5; margin: 20px 0;">
-                                Fomoedge is a mentorship platform, connecting learners with experts. It is built on a simple belief: In today’s complex world, everyone deserves personalized guidance to navigate their personal and professional journey. We know that real growth comes from learning directly from those who’ve walked the path before you.
-                            </p>
+
+                            <p style="font-size: 16px; font-style: italic; line-height: 1.5; margin: 20px 0;">Our team will review and verify your details shortly. If we require any additional information or clarification, we will reach out to you via email.</p>
                             <p style="font-size: 16px; font-weight: bold; font-style: italic; margin: 20px 0;">
-                                Thank you for applying to join Fomoedge.
-                            </p>
-                            <p style="font-size: 16px; font-style: italic; margin: 20px 0;">
-                                Your account has been successfully created.
+                                We will keep you updated on the next steps soon.
                             </p>
                         </td>
                     </tr>
                     <tr>
                         <!-- Footer -->
-                        <td style="padding: 20px; text-align: center;">
+                        <td style="padding: 20px;">
                             <p style="font-size: 16px; margin: 0;">Warm regards,</p>
-                            <p style="font-size: 16px; margin: 0;">Admin</p>
+                            <p style="font-size: 16px; margin: 0;">Team Fomoedge</p>
                         </td>
                     </tr>
                 </table>
