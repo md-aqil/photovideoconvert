@@ -145,7 +145,6 @@ export default function B2BMentorshipQueries({ b2BMentorshipQueries }) {
                     <PageHeading>
                         <PageHeading.Title>
                             B2B Mentorship Queries
-                            {/* ({b2BMentorshipQueries.meta.total})  */}
                         </PageHeading.Title>
                     </PageHeading>
 
@@ -154,6 +153,8 @@ export default function B2BMentorshipQueries({ b2BMentorshipQueries }) {
                             data={b2BMentorshipQueries.data}
                             columns={extendedColumns}
                             searchColumns={["name", "email"]}
+                            exportable
+                            filename={`B2B Mentorship Queries_${new Date().toJSON()}`}
                             paginationLinks={b2BMentorshipQueries.links}
                             meta={b2BMentorshipQueries.meta}
                         />

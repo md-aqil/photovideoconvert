@@ -87,8 +87,47 @@ export default function RTable({
     });
 
     // export function
+    // const exportExcel = (rows) => {
+    //     const rowData = rows.map((row) => row.original);
+    //     const csv = generateCsv(csvConfig)(rowData);
+    //     download(csvConfig)(csv);
+    // };
+
+    const formatCellValue = (value) => {
+        if (Array.isArray(value)) {
+            return value
+                .map((item) =>
+                    typeof item === "object" && item !== null
+                        ? (item.label ?? item.value ?? JSON.stringify(item))
+                        : String(item),
+                )
+                .join(", ");
+        }
+
+        if (typeof value === "object" && value !== null) {
+            return value.label ?? value.value ?? JSON.stringify(value);
+        }
+
+        if (value instanceof Date) {
+            return value.toISOString();
+        }
+
+        return value ?? ""; // null/undefined
+    };
+
     const exportExcel = (rows) => {
-        const rowData = rows.map((row) => row.original);
+        const rowData = rows.map((row) => {
+            const obj = {};
+            row.getVisibleCells().forEach((cell) => {
+                const header = cell.column.columnDef.header;
+                const key =
+                    typeof header === "string" ? header : cell.column.id;
+                const value = cell.getValue();
+                obj[key] = formatCellValue(value);
+            });
+            return obj;
+        });
+
         const csv = generateCsv(csvConfig)(rowData);
         download(csvConfig)(csv);
     };
@@ -162,7 +201,7 @@ export default function RTable({
                                                 : flexRender(
                                                       header.column.columnDef
                                                           .header,
-                                                      header.getContext()
+                                                      header.getContext(),
                                                   )}
                                         </TableHead>
                                     );
@@ -183,7 +222,7 @@ export default function RTable({
                                         <TableCell key={cell.id}>
                                             {flexRender(
                                                 cell.column.columnDef.cell,
-                                                cell.getContext()
+                                                cell.getContext(),
                                             )}
                                         </TableCell>
                                     ))}
@@ -232,7 +271,7 @@ export default function RTable({
                                                 >
                                                     Per Page {v}
                                                 </SelectItem>
-                                            )
+                                            ),
                                         )}
                                     </SelectGroup>
                                 </SelectContent>
