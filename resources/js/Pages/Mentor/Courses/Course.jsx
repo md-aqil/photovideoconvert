@@ -184,7 +184,7 @@ export default function KycDetails({ courseTypeEnum, course, mentorProfile }) {
                                                         Timings
                                                     </div>
                                                 </AccordionTrigger>
-                                                <AccordionContent>
+                                                <AccordionContent className="max-h-[300px] overflow-y-scroll">
                                                     {course?.timings?.map(
                                                         (timing, index) => (
                                                             <div
