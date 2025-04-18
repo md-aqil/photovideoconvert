@@ -55,7 +55,7 @@ export default function Course({ course }) {
                                             <Link
                                                 href={route(
                                                     "admin.mentor-profiles.edit",
-                                                    course?.mentor_profile?.id
+                                                    course?.mentor_profile?.id,
                                                 )}
                                             >
                                                 <div className="flex items-center gap-2 pt-1">
@@ -120,7 +120,7 @@ export default function Course({ course }) {
                                                                     course
                                                                         ?.price
                                                                         ?.special_price_start_at,
-                                                                    "dd MMM, yyyy h:mm a"
+                                                                    "dd MMM, yyyy h:mm a",
                                                                 )}{" "}
                                                             To{" "}
                                                             {course?.price
@@ -129,7 +129,7 @@ export default function Course({ course }) {
                                                                     course
                                                                         ?.price
                                                                         ?.special_price_end_at,
-                                                                    "dd MMM, yyyy h:mm a"
+                                                                    "dd MMM, yyyy h:mm a",
                                                                 )}
                                                         </div>
                                                     )}
@@ -172,7 +172,7 @@ export default function Course({ course }) {
                                                             {bundle?.title}
                                                         </Badge>
                                                     </Link>
-                                                )
+                                                ),
                                             )}
                                         </TextLarge>
                                     </div>
@@ -192,7 +192,7 @@ export default function Course({ course }) {
                                                     >
                                                         {topic?.title}
                                                     </Badge>
-                                                )
+                                                ),
                                             )}
                                         </TextLarge>
                                     </div>
@@ -210,7 +210,7 @@ export default function Course({ course }) {
                                                     >
                                                         {topic?.title}
                                                     </Badge>
-                                                )
+                                                ),
                                             )}
                                         </TextLarge>
                                     </div>
@@ -245,7 +245,7 @@ export default function Course({ course }) {
                                             <div>
                                                 {formatDate(
                                                     timing?.start_date,
-                                                    "dd MMM, yyyy"
+                                                    "dd MMM, yyyy",
                                                 )}
                                             </div>
                                             <div className="flex gap-4 text-sm items-center">

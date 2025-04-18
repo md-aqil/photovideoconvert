@@ -48,17 +48,13 @@ export const columns = [
     {
         accessorKey: "full_name",
         header: "Name",
+    },
+    {
+        accessorKey: "alias_name",
+        header: "Alias Name",
         cell: ({ row }) => (
-            <div>
-                <div className="">
-                    {row.original.full_name}
-                    {row.original?.alias_name !== null && (
-                        <span className="text-sm text-gray-500">
-                            {" "}
-                            ({row.original.alias_name})
-                        </span>
-                    )}
-                </div>
+            <div className="flex items-center gap-x-1">
+                {row.original.alias_name || "NA"}
             </div>
         ),
     },
@@ -120,11 +116,6 @@ export const columns = [
         cell: ({ row }) => {
             const status = row?.original?.activated_at;
             return (
-                // <div
-                //     className={` w-20 text-center py-0.5 rounded-xl text-xs border font-semibold `}
-                // >
-                //     {status ? "Active" : "Inactive"}
-                // </div>
                 <Badge variant={status ? "success" : "destructive"}>
                     {status ? "Active" : "Inactive"}
                 </Badge>
@@ -242,11 +233,11 @@ export default function MentorProfiles({ mentorProfiles }) {
                         <RTable
                             data={mentorProfiles.data}
                             columns={columns}
-                            searchColumns={[]}
+                            searchColumns={["email", "full_name", "phone"]}
                             paginationLinks={mentorProfiles.links}
                             meta={mentorProfiles.meta}
-                            // exportable={true}
-                            // filename={`Mentors_${formatDate( new Date(), "dd-mm-yyyy")}`}
+                            exportable={true}
+                            filename={`Mentors_${new Date().toJSON()}`}
                         />
                     </div>
                 </div>

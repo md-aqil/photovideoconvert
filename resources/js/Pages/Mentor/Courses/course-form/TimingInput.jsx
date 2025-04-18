@@ -64,7 +64,15 @@ const RecurringSlotsDialog = ({ onAdd, open, onOpenChange }) => {
         console.log(currentDate.getDate());
         while (currentDate <= date.to) {
             console.log(currentDate.getDay(), parseInt(everyDay));
-            if (everyDay > -1) {
+            if (everyDay === -2) {
+                // Every day in range
+                slots.push({
+                    start_date: format(currentDate, "yyyy-MM-dd"),
+                    start_time: startTime,
+                    end_date: format(currentDate, "yyyy-MM-dd"),
+                    end_time: endTime,
+                });
+            } else if (everyDay > -1) {
                 if (currentDate.getDay() === parseInt(everyDay)) {
                     slots.push({
                         start_date: format(currentDate, "yyyy-MM-dd"),
@@ -112,7 +120,7 @@ const RecurringSlotsDialog = ({ onAdd, open, onOpenChange }) => {
                                     variant={"outline"}
                                     className={cn(
                                         "w-[300px] justify-start text-left font-normal",
-                                        !date && "text-muted-foreground"
+                                        !date && "text-muted-foreground",
                                     )}
                                 >
                                     <CalendarIcon />
@@ -217,6 +225,20 @@ const RecurringSlotsDialog = ({ onAdd, open, onOpenChange }) => {
                         </Select>
                     </div>
                 </div>
+                <div className="flex items-center space-x-2">
+                    <input
+                        type="checkbox"
+                        id="everyDayInRange"
+                        checked={everyDay === -2}
+                        onChange={(e) => {
+                            everyDaySet(e.target.checked ? -2 : -1);
+                            everyMonthSet(0);
+                        }}
+                    />
+                    <Label htmlFor="everyDayInRange">
+                        Every day in Selected date range
+                    </Label>
+                </div>
                 <div className="grid grid-cols-2 gap-4">
                     <div>
                         <InputLabel
@@ -287,7 +309,7 @@ export default function TimingInput({ errors, data, setData, course }) {
                 end_date: item.end_date,
                 end_time: item.end_time,
                 id: item.id,
-            })) || []
+            })) || [],
         );
     }, [course?.timings?.length]);
 

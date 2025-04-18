@@ -25,7 +25,7 @@ class B2BMentorshipQueryController extends Controller
 			'mentorProfile' => $mentorProfile,
 			'b2BMentorshipFormData' => [
 				'isInterested' => [['label' => 'Yes', 'value' => true], ['label' => 'No', 'value' => false]],
-				'preferred_modes' => ['Virual', 'In-Person'],
+				'preferred_modes' => ['Virtual', 'In-Person'],
 				'interested_institutions' => ['Start-ups', 'Corporate', 'Universities/Colleges'],
 				'minimum_hourly_rate' => [['label' => 'Virtual', 'rate' => ""], ['label' => 'In-Person', 'rate' => ""]],
 				'open_to_long_duration_mentorship' => [['label' => 'Yes', 'value' => true], ['label' => 'No', 'value' => false]]
@@ -40,7 +40,7 @@ class B2BMentorshipQueryController extends Controller
 			$request->merge(['user_id' => $user->id]);
 			$user->load('mentorProfile.topics', 'mentorProfile.topicTags');
 			$mentorProfile = $user->mentorProfile;
-			
+
 			if ($mentorProfile) {
 				$request->merge(['mentor_profile_id' => $mentorProfile->id]);
 			}
