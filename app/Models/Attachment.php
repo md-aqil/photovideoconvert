@@ -10,24 +10,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Attachment extends Model
 {
-    use HasFactory, SoftDeletes;
+	use HasFactory, SoftDeletes;
 
-    protected $guarded = ['id'];
+	protected $guarded = ['id'];
 
-    protected $appends = ['full_path'];
+	protected $appends = ['full_path'];
 
-    public function getFullPathAttribute()
-    {
-        return url('storage/attachments/' . $this->path);
-    }
+	public function getFullPathAttribute()
+	{
+		return url('storage/images/' . $this->path);
+	}
 
-    function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
+	function user(): BelongsTo
+	{
+		return $this->belongsTo(User::class);
+	}
 
-    function attachmentable(): MorphTo
-    {
-        return $this->morphTo();
-    }
+	function attachmentable(): MorphTo
+	{
+		return $this->morphTo();
+	}
 }
