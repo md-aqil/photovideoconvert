@@ -147,8 +147,8 @@ export default function MentorProfile({
                                                 id: mentorProfile?.id,
                                                 activated_at:
                                                     !mentorProfile?.activated_at,
-                                            }
-                                        )
+                                            },
+                                        ),
                                     )
                                 }
                                 variant={
@@ -257,7 +257,7 @@ export default function MentorProfile({
                                                         >
                                                             {detail}
                                                         </Badge>
-                                                    )
+                                                    ),
                                                 )}
                                             </TextLarge>
                                         </div>
@@ -280,7 +280,7 @@ export default function MentorProfile({
                                                             {detail.degree} :{" "}
                                                             {detail.school}
                                                         </Badge>
-                                                    )
+                                                    ),
                                                 )}
                                             </TextLarge>
                                         </div>
@@ -304,7 +304,7 @@ export default function MentorProfile({
                                                             >
                                                                 {tag?.title}
                                                             </Badge>
-                                                        )
+                                                        ),
                                                     )}
                                                 </TextLarge>
                                             </>
@@ -367,12 +367,12 @@ export default function MentorProfile({
                                                                 <div className="flex gap-0.5">
                                                                     {[
                                                                         ...Array(
-                                                                            ratingList?.value
+                                                                            ratingList?.value,
                                                                         ),
                                                                     ].map(
                                                                         (
                                                                             _,
-                                                                            index
+                                                                            index,
                                                                         ) => (
                                                                             <div
                                                                                 className="p-1 bg-yellow-500 rounded"
@@ -391,7 +391,7 @@ export default function MentorProfile({
                                                                                     />
                                                                                 </svg>
                                                                             </div>
-                                                                        )
+                                                                        ),
                                                                     )}
                                                                 </div>
                                                             </div>
@@ -411,11 +411,11 @@ export default function MentorProfile({
                                                             <TextMuted className="pt-1">
                                                                 Date:{" "}
                                                                 {new Date(
-                                                                    ratingList.created_at
+                                                                    ratingList.created_at,
                                                                 ).toLocaleDateString()}
                                                             </TextMuted>
                                                         </div>
-                                                    )
+                                                    ),
                                                 )}
                                             </div>
                                         </>
@@ -666,7 +666,7 @@ export default function MentorProfile({
                                                                 ?.updated_at && (
                                                                 <span className="text-sm font-medium text-green-600">
                                                                     {new Date(
-                                                                        mentorProfile.kyc_detail?.updated_at
+                                                                        mentorProfile.kyc_detail?.updated_at,
                                                                     ).toLocaleString(
                                                                         "en-US",
                                                                         {
@@ -676,7 +676,7 @@ export default function MentorProfile({
                                                                             hour: "numeric",
                                                                             minute: "numeric",
                                                                             hour12: true,
-                                                                        }
+                                                                        },
                                                                     )}
                                                                 </span>
                                                             )}
@@ -700,7 +700,7 @@ export default function MentorProfile({
                                                             {user?.attachments.map(
                                                                 (
                                                                     attachment,
-                                                                    index
+                                                                    index,
                                                                 ) => (
                                                                     <div
                                                                         key={
@@ -717,7 +717,7 @@ export default function MentorProfile({
                                                                             </div>
                                                                             {attachment?.name.slice(
                                                                                 0,
-                                                                                30
+                                                                                30,
                                                                             ) ||
                                                                                 `Document ${
                                                                                     index +
@@ -736,7 +736,7 @@ export default function MentorProfile({
                                                                             <DownloadIcon className="w-4 h-4" />
                                                                         </a>
                                                                     </div>
-                                                                )
+                                                                ),
                                                             )}
                                                         </div>
                                                     </ShadcnCard>

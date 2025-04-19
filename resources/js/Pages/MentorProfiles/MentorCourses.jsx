@@ -17,7 +17,7 @@ export default function MentorCourses({ courses, courseTypeEnum }) {
     };
 
     return (
-        <div className={`flex justify-center items-center py-10 pb-16`}>
+        <div className={`flex justify-center items-center py-4 pb-16`}>
             {/* <CourseCard course={courses} /> */}
             <Tabs defaultValue="all" className="w-full">
                 <TabsList className="flex justify-start gap-5 py-7 px-4">

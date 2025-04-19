@@ -1,5 +1,5 @@
 import React from "react";
-import BlankLayout from "@/Layouts/blank-layout";
+
 import Header from "@/Layouts/Header";
 import {
     BookOpenCheck,
@@ -20,13 +20,17 @@ import SloteSelector from "./SlotSelector";
 import { Badge } from "@/shadcn/ui/badge";
 import { formatEnum } from "@/Helpers/GlobalFunctions";
 import { TextMuted } from "@/shadcn/ui/text-muted";
+import PageLayout from "@/Layouts/PageLayout";
+import PageBanner from "@/Components/PageBanner";
 
 const gotoCourseBooking = ({ courseSlug, slotId }) => {
     sessionStorage.setItem("slotId", slotId);
     router.visit(route("booking.create", { courseSlug }));
 };
 
-const Course = ({ course, mentor, timings }) => {
+const Course = ({ course, timings }) => {
+    const mentorProfile = course.mentor_profile;
+
     const [slotID, setSlotID] = React.useState("");
     const [isTimeSelected, setIsTimeSelected] = React.useState(false);
 
@@ -61,7 +65,9 @@ const Course = ({ course, mentor, timings }) => {
     return (
         <div>
             <Header />
-            <div className="relative">
+            <PageBanner title={course?.title} />
+
+            {/* <div className="relative">
                 <img
                     className="w-full h-[240px] sm:h-[350px] object-cover"
                     src={"/images/courseDetailsBanner.jpeg"}
@@ -77,16 +83,16 @@ const Course = ({ course, mentor, timings }) => {
                             <Link href="/">
                                 <HomeIcon className="h-5 w-5" />
                             </Link>
-                            {/* <ChevronRight className="h-5 w-5" />
+                            <ChevronRight className="h-5 w-5" />
                             <Link href={route("mentors.show", mentor?.slug)}>
                                 <div className="text-sm">{mentor?.name}</div>
-                            </Link> */}
+                            </Link>
                             <ChevronRight className="h-5 w-5" />
                             <div className="text-sm"> {course?.title}</div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             <div className="max-w-7xl mx-auto py-14 text-black grid grid-cols-1 sm:grid-cols-8 gap-5 px-4 sm:px-0">
                 {/* Course details */}
@@ -102,9 +108,15 @@ const Course = ({ course, mentor, timings }) => {
                             className="rounded object-contain max-h-[450px] w-full"
                         />
                         <div className="p-4">
-                            <h3 className="text-xl sm:text-3xl font-semibold pb-3">
+                            <h2 className="text-xl sm:text-3xl font- pb-1">
                                 {course?.title}
-                            </h3>
+                            </h2>
+                            <p>
+                                {mentorProfile?.alias_name &&
+                                mentorProfile?.show_alias === 1
+                                    ? mentorProfile?.alias_name
+                                    : mentorProfile?.full_name}
+                            </p>
                             <div className="sm:flex gap-8 items-center justify-between">
                                 <div>
                                     <div className="py-2 flex gap-1 text-sm items-center">
@@ -234,7 +246,7 @@ const Course = ({ course, mentor, timings }) => {
 };
 
 Course.layout = (page) => (
-    <BlankLayout
+    <PageLayout
         children={page}
         title={
             page?.props?.page?.meta_title

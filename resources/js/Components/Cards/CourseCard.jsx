@@ -19,20 +19,26 @@ export default function CourseCard({ course }) {
             className="border rounded-md group relative hover:shadow-md"
         >
             <div className="overflow-hidden">
-                <img
-                    src={
-                        course?.featured_image?.full_path
-                            ? course?.featured_image?.full_path
-                            : "/images/dummyCourseBanner.jpg"
-                    }
-                    className="rounded-t-md group-hover:opacity-85 h-[180px] w-full object-cover "
-                    alt=""
-                />
+                <Link href={route("course.find-by-slug", course.slug)}>
+                    <img
+                        src={
+                            course?.featured_image?.full_path
+                                ? course?.featured_image?.full_path
+                                : "/images/dummyCourseBanner.jpg"
+                        }
+                        className="rounded-t-md group-hover:opacity-85 h-[180px] w-full object-cover "
+                        alt=""
+                    />
+                </Link>
             </div>
             {/* Commenting rating as we don't have rating key now */}
             {/* <CardReview rating={course?.avg_packages_rating} /> */}
             <div className="p-5">
-                <div className="font-bold text-lg h-14">{course.title}</div>
+                <Link href={route("course.find-by-slug", course.slug)}>
+                    <h2 className="font-semibold text-lg h-14">
+                        {course.title}
+                    </h2>
+                </Link>
                 <div className="py-3">
                     {/* <div className="flex gap-1 py-1.5 items-center text-xs text-gray-600 border-b">
                         <User className="h-3 w-4" />

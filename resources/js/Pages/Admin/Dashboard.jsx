@@ -64,7 +64,7 @@ export const latestVerifiedMentorColumns = [
                             <Link
                                 href={route(
                                     "admin.mentor-profiles.edit",
-                                    row.original.id
+                                    row.original.id,
                                 )}
                             >
                                 View
@@ -127,7 +127,7 @@ export const latestCourseColumns = [
                             <Link
                                 href={route(
                                     "admin.courses.view",
-                                    row.original.id
+                                    row.original.id,
                                 )}
                             >
                                 View
@@ -145,8 +145,6 @@ export default function Dashboard({
     latestVerifiedMentors,
     latestCourses,
 }) {
-    const [dashboardData, dashboardDataSet] = React.useState({});
-
     return (
         <AuthenticatedLayout
             user={auth.user}

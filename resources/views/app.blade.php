@@ -36,7 +36,7 @@
     @inertiaHead
 </head>
 
-<body class="font-sans antialiased scroll-smooth">
+<body class="font-sans antialiased scroll-smooth" style="margin-bottom: 0 ">
     @inertia
 </body>
 

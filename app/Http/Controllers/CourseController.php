@@ -24,8 +24,7 @@ class CourseController extends Controller
 
     public function findBySlug(Request $request, string $slug)
     {
-        $course = $this->courseRepository->where('slug', $slug)->with(['price', 'topics', 'tags', 'timings', 'bundleCourses', 'featuredImage'])->firstOrFail();
-
+        $course = $this->courseRepository->where('slug', $slug)->with(['price', 'mentorProfile', 'topics', 'tags', 'timings', 'bundleCourses', 'featuredImage'])->firstOrFail();
 
         $courseResource = new CourseResource($course);
         $courseResource->wrap(null);

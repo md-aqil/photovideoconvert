@@ -5,9 +5,10 @@ import RTable from "@/Components/RTable";
 import AuthenticatedLayout from "@/Layouts/admin/AuthenticatedLayout";
 import PageHeading from "@/Components/PageHeading";
 import { formatDate } from "date-fns";
-import { Badge } from "@/shadcn/ui/badge";
-import { GraduationCap, User } from "lucide-react";
+
+import { ArrowUpDown, GraduationCap, User } from "lucide-react";
 import { formatEnum } from "@/Helpers/GlobalFunctions";
+import { Button } from "@/shadcn/ui/button";
 
 export const columns = [
     {
@@ -31,41 +32,84 @@ export const columns = [
                 aria-label="Select row"
             />
         ),
-        enableSorting: false,
+        enableSorting: true,
         enableHiding: false,
     },
 
     {
         accessorKey: "full_name",
-        header: "Name",
-        cell: ({ row }) => (
-            <div className="whitespace-nowrap">
-                <p className="text-sm mb-1 ">
-                    <Link
-                        className="text-blue-500 underline underline-offset-4"
-                        href={route("admin.mentees.view", row.original?.id)}
-                    >
-                        <strong>{row.original?.full_name}</strong>{" "}
-                    </Link>
-                </p>
-            </div>
-        ),
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    className="gap-x-2"
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === "asc")
+                    }
+                >
+                    Name
+                    <ArrowUpDown size={16} />
+                </Button>
+            );
+        },
+        cell: ({ getValue, row }) => {
+            console.log("🚀 ~ getValue:", getValue);
+            return (
+                <div className="whitespace-nowrap">
+                    <p className="text-sm mb-1 ">
+                        <Link
+                            className="text-blue-500 underline underline-offset-4"
+                            href={route("admin.mentees.view", row.original?.id)}
+                        >
+                            <strong>{row.original?.full_name}</strong>{" "}
+                        </Link>
+                    </p>
+                </div>
+            );
+        },
     },
     {
         accessorKey: "email",
         header: "Email",
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    className="gap-x-2"
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === "asc")
+                    }
+                >
+                    Email
+                    <ArrowUpDown size={16} />
+                </Button>
+            );
+        },
+        cell: ({ getValue }) => (
+            <div className="whitespace-nowrap">
+                <p className="text-sm mb-1 ">{getValue()}</p>
+            </div>
+        ),
     },
 
     {
         accessorKey: "created_at_string",
-        header: "Created At",
-        cell: ({ row }) => (
-            <div>
-                {formatDate(
-                    row.getValue("created_at_string"),
-                    "dd MMM, yyyy h:mm a",
-                )}
-            </div>
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    className="gap-x-2"
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === "asc")
+                    }
+                >
+                    Created At
+                    <ArrowUpDown size={16} />
+                </Button>
+            );
+        },
+        cell: ({ getValue }) => (
+            <div>{formatDate(new Date(getValue()), "dd MMM, yyyy h:mm a")}</div>
         ),
     },
 ];

@@ -70,7 +70,15 @@ export default function Header({
                                         className={`gap-x-1.5 text-white bg-black hover:bg-black/80`}
                                     >
                                         <Link
-                                            href={route("dashboard")}
+                                            href={route(
+                                                auth?.userRoles.includes("user")
+                                                    ? `user.dashboard`
+                                                    : auth?.userRoles.includes(
+                                                            "mentor",
+                                                        )
+                                                      ? `mentors.dashboard`
+                                                      : `admin.dashboard`,
+                                            )}
                                             className={`${
                                                 scrolling
                                                     ? "text-black"
@@ -80,6 +88,10 @@ export default function Header({
                                             <CircleUserRound
                                                 className={`text-fomoSecondary-0 h-5 w-5`}
                                             />
+                                            {console.log(
+                                                "auth?.userRoles",
+                                                auth?.userRoles,
+                                            )}
                                             {auth?.user?.full_name}
                                         </Link>
                                     </Button>

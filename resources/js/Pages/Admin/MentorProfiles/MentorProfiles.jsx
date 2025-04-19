@@ -1,7 +1,7 @@
 import { Button } from "@/shadcn/ui/button";
 import { ScrollArea } from "@/shadcn/ui/scroll-area";
 import { Head, Link, router } from "@inertiajs/react";
-import { Eye, Pencil } from "lucide-react";
+import { ArrowUpDown, Eye, Pencil } from "lucide-react";
 import {
     HoverCard,
     HoverCardContent,
@@ -18,6 +18,7 @@ import { Badge } from "@/shadcn/ui/badge";
 import { Input } from "@/shadcn/ui/input";
 import { useEffect, useState } from "react";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { formatDate } from "date-fns";
 // import { formatDate } from "date-fns";
 
 export const columns = [
@@ -47,34 +48,103 @@ export const columns = [
     },
     {
         accessorKey: "full_name",
-        header: "Name",
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    className="gap-x-2"
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === "asc")
+                    }
+                >
+                    Name
+                    <ArrowUpDown size={16} />
+                </Button>
+            );
+        },
+        cell: ({ getValue }) => (
+            <div className="flex items-center gap-x-1">
+                {getValue() || "NA"}
+            </div>
+        ),
     },
     {
         accessorKey: "alias_name",
-        header: "Alias Name",
-        cell: ({ row }) => (
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    className="gap-x-2"
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === "asc")
+                    }
+                >
+                    Alias Name
+                    <ArrowUpDown size={16} />
+                </Button>
+            );
+        },
+        cell: ({ getValue }) => (
             <div className="flex items-center gap-x-1">
-                {row.original.alias_name || "NA"}
+                {getValue() || "NA"}
             </div>
         ),
     },
     {
-        accessorKey: "email",
-        header: "Email",
-        cell: ({ row }) => (
-            <div className="flex items-center gap-x-1">
-                {row.original.user.email}
-                {row.original.user?.email_verified_at ? (
-                    <VerifiedIcon className="text-green-600 h-4 w-4" />
-                ) : (
-                    <ShieldAlertIcon className="text-red-600 h-4 w-4" />
-                )}
-            </div>
-        ),
+        accessorKey: "user",
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    className="gap-x-2"
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === "asc")
+                    }
+                >
+                    Email
+                    <ArrowUpDown size={16} />
+                </Button>
+            );
+        },
+        cell: ({ getValue }) => {
+            const user = getValue(); // getValue() already returns row.original.user
+
+            return (
+                <div className="flex items-center gap-x-1">
+                    {user?.email}
+                    {user?.email_verified_at ? (
+                        <VerifiedIcon className="text-green-600 h-4 w-4" />
+                    ) : (
+                        <ShieldAlertIcon className="text-red-600 h-4 w-4" />
+                    )}
+                </div>
+            );
+        },
     },
     {
         accessorKey: "phone",
-        header: "Phone Number",
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    className="gap-x-2"
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === "asc")
+                    }
+                >
+                    Phone
+                    <ArrowUpDown size={16} />
+                </Button>
+            );
+        },
+        // cell: ({ getValue }) => (
+        //     <div className="flex items-center gap-x-1">
+        //         {getValue().phonne || "NA"}
+        //     </div>
+        // ),
+        cell: ({ getValue }) => {
+            return getValue() || "NA";
+        },
     },
     {
         header: "Courses",
@@ -112,9 +182,22 @@ export const columns = [
     },
     {
         accessorKey: "activated_at",
-        header: "Account Status",
-        cell: ({ row }) => {
-            const status = row?.original?.activated_at;
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    className="gap-x-2"
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === "asc")
+                    }
+                >
+                    Account Status
+                    <ArrowUpDown size={16} />
+                </Button>
+            );
+        },
+        cell: ({ getValue }) => {
+            const status = getValue();
             return (
                 <Badge variant={status ? "success" : "destructive"}>
                     {status ? "Active" : "Inactive"}
@@ -125,8 +208,8 @@ export const columns = [
     {
         accessorKey: "status",
         header: "Status",
-        cell: ({ row }) => {
-            const status = row?.original?.status;
+        cell: ({ getValue }) => {
+            const status = getValue();
             return (
                 <div
                     className={` w-20 text-center py-0.5 rounded-xl text-xs border font-semibold ${
@@ -138,6 +221,30 @@ export const columns = [
                     }`}
                 >
                     {status}
+                </div>
+            );
+        },
+    },
+    {
+        accessorKey: "created_at",
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    className="gap-x-2"
+                    onClick={() =>
+                        column.toggleSorting(column.getIsSorted() === "asc")
+                    }
+                >
+                    Created At
+                    <ArrowUpDown size={16} />
+                </Button>
+            );
+        },
+        cell: ({ getValue }) => {
+            return (
+                <div className="flex items-center gap-x-1">
+                    {formatDate(new Date(getValue()), "dd MMM, yyyy h:mm a")}
                 </div>
             );
         },

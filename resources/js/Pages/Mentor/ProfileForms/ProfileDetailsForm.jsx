@@ -250,12 +250,12 @@ export default function ProfileDetailsForm({ data, setData, errors }) {
                         }}
                     >
                         <div className="flex items-center space-x-2">
-                            <RadioGroupItem value={0} id="true" />
-                            <Label htmlFor="show_phone">Yes</Label>
+                            <RadioGroupItem value={0} id="hideYes" />
+                            <Label htmlFor="hideYes">Yes</Label>
                         </div>
                         <div className="flex items-center space-x-2">
-                            <RadioGroupItem value={1} id="false" />
-                            <Label htmlFor="show_phone">No</Label>
+                            <RadioGroupItem value={1} id="hideNo" />
+                            <Label htmlFor="hideNo">No</Label>
                         </div>
                     </RadioGroup>
 
@@ -272,12 +272,12 @@ export default function ProfileDetailsForm({ data, setData, errors }) {
                         }}
                     >
                         <div className="flex items-center space-x-2">
-                            <RadioGroupItem value={0} id="true" />
+                            <RadioGroupItem value={0} id="show_email" />
                             <Label htmlFor="show_email">Yes</Label>
                         </div>
                         <div className="flex items-center space-x-2">
-                            <RadioGroupItem value={1} id="false" />
-                            <Label htmlFor="in-active">No</Label>
+                            <RadioGroupItem value={1} id="hideEmail" />
+                            <Label htmlFor="hideEmail">No</Label>
                         </div>
                     </RadioGroup>
 
@@ -329,7 +329,7 @@ export default function ProfileDetailsForm({ data, setData, errors }) {
                                     onClick={() => {
                                         const updatedLanguages =
                                             data?.languages?.filter(
-                                                (_, i) => i !== index
+                                                (_, i) => i !== index,
                                             );
                                         setData("languages", updatedLanguages);
                                     }}
@@ -412,7 +412,7 @@ export default function ProfileDetailsForm({ data, setData, errors }) {
                                     onChange={(e) => {
                                         setData(
                                             `educations.${index}.degree`,
-                                            e.target.value
+                                            e.target.value,
                                         );
                                         const newEducation = [
                                             ...data?.educations,
@@ -448,7 +448,7 @@ export default function ProfileDetailsForm({ data, setData, errors }) {
                                 onClick={() => {
                                     const updatedEducations =
                                         data?.educations?.filter(
-                                            (_, i) => i !== index
+                                            (_, i) => i !== index,
                                         );
                                     setData("educations", updatedEducations);
                                 }}
