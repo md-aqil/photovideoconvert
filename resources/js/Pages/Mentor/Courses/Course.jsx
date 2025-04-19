@@ -22,7 +22,17 @@ import {
     ShieldAlertIcon,
     VerifiedIcon,
 } from "lucide-react";
-import { Badge } from "@/shadcn/ui/badge";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/shadcn/ui/alert-dialog";
 
 export default function KycDetails({ courseTypeEnum, course, mentorProfile }) {
     return (
@@ -43,6 +53,40 @@ export default function KycDetails({ courseTypeEnum, course, mentorProfile }) {
                     </p>
                 </div>
                 <PageHeading.Actions>
+                    {course && course.id && (
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <Button variant="destructive">Delete</Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>
+                                        Are you absolutely sure?
+                                    </AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                        This action cannot be undone. This will
+                                        delete the course.
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>
+                                        Cancel
+                                    </AlertDialogCancel>
+                                    <AlertDialogAction asChild>
+                                        <Link
+                                            href={route(
+                                                "mentors.courses.delete",
+                                                course.id
+                                            )}
+                                            method="post"
+                                        >
+                                            Delete
+                                        </Link>
+                                    </AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
+                    )}
                     <Button asChild variant="outline">
                         <Link href={route("mentors.courses.index")}>
                             Cancel
@@ -128,7 +172,7 @@ export default function KycDetails({ courseTypeEnum, course, mentorProfile }) {
                                                 <Calendar size={13} />
                                                 {formatDate(
                                                     course?.created_at,
-                                                    "dd MMM, yyyy hh:mm aa",
+                                                    "dd MMM, yyyy hh:mm aa"
                                                 )}
                                             </span>
                                         )}
@@ -163,7 +207,7 @@ export default function KycDetails({ courseTypeEnum, course, mentorProfile }) {
                                                         </span>
                                                     </div>
                                                 </div>
-                                            ),
+                                            )
                                         )}
                                     </div>
                                 </div>
@@ -258,7 +302,7 @@ export default function KycDetails({ courseTypeEnum, course, mentorProfile }) {
                                                                     }
                                                                 </div>
                                                             </div>
-                                                        ),
+                                                        )
                                                     )}
                                                 </AccordionContent>
                                             </AccordionItem>
@@ -290,7 +334,7 @@ export default function KycDetails({ courseTypeEnum, course, mentorProfile }) {
                                                                 >
                                                                     {tag?.title}
                                                                 </div>
-                                                            ),
+                                                            )
                                                         )}
                                                     </div>
                                                 </AccordionContent>
