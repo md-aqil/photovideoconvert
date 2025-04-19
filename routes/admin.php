@@ -197,7 +197,9 @@ Route::prefix('admin')->name('admin.')->middleware(['web', 'auth', AdminMiddlewa
 	});
 
 	Route::prefix('b2b-mentorship-queries')->name('b2b-mentorship-queries.')->controller(B2BMentorshipQueryController::class)->group(function () {
-		Route::get('', 'index')->name('index')->middleware(['can:view b2b-mentorship queries']);
+		Route::get('external-queries', 'externalQueries')->name('externalQueries')->middleware(['can:view b2b-mentorship queries']);
+		Route::get('internal-queries', 'internalQueries')->name('internalQueries')->middleware(['can:view b2b-mentorship queries']);
+		Route::get('/', 'index')->name('index')->middleware(['can:view b2b-mentorship queries']);
 	});
 
 	Route::get('dashboard', DashboardController::class)->name('dashboard');

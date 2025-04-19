@@ -29,9 +29,32 @@ export const navItems = [
 
     {
         title: "B2B Mentorship Queries",
-        label: "Mentors",
-        href: route("admin.b2b-mentorship-queries.index"),
+        label: "B2B Mentorship Queries",
+        href: "#",
         icon: "page",
+        items: [
+            {
+                title: "All",
+                href: route("admin.b2b-mentorship-queries.index"),
+                icon: "page",
+                label: "All",
+                permit: "view b2b-mentorship queries",
+            },
+            {
+                title: "External Queries",
+                href: route("admin.b2b-mentorship-queries.externalQueries"),
+                icon: "page",
+                label: "External Queries",
+                permit: "view b2b-mentorship queries",
+            },
+            {
+                title: "Internal Queries",
+                href: route("admin.b2b-mentorship-queries.internalQueries"),
+                icon: "page",
+                label: "Internal Queries",
+                permit: "view b2b-mentorship queries",
+            },
+        ],
     },
 
     {

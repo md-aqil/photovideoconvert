@@ -16,13 +16,16 @@ export const columns = [
         cell: ({ row }) => (
             <div className="flex flex-col whitespace-pre">
                 <p>
-                    {`${row.original?.first_name} ${row.original?.last_name}` ||
-                        "N/A"}
+                    {`${
+                        row.original.first_name ? row.original.first_name : ""
+                    } ${
+                        row.original.last_name ? row.original.last_name : ""
+                    }` || "N/A"}
                 </p>
                 <p className="text-xs text-muted-foreground">
                     {formatDate(
                         row.original?.created_at,
-                        "dd MMM, yyyy h:mm a",
+                        "dd MMM, yyyy h:mm a"
                     )}
                 </p>
             </div>
@@ -106,7 +109,7 @@ export const columns = [
     },
 ];
 
-export default function B2BMentorshipQueries({ b2BMentorshipQueries }) {
+export default function B2BMentorshipQueries({ b2BMentorshipQueries, type }) {
     const [openModal, setOpenModal] = React.useState(false);
     const [queryData, setQueryData] = React.useState({});
 
@@ -144,7 +147,7 @@ export default function B2BMentorshipQueries({ b2BMentorshipQueries }) {
                 <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
                     <PageHeading>
                         <PageHeading.Title>
-                            B2B Mentorship Queries
+                            B2B Mentorship Queries ({type})
                         </PageHeading.Title>
                     </PageHeading>
 
