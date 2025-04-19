@@ -11,7 +11,7 @@ const Post = ({ post }) => {
             <SectionWrapper.Spacer />
             <img
                 // src={post.image.full_path}
-                src={post?.image?.full_url || "/images/no-image.png"}
+                src={post?.image?.full_path || "/images/no-image.png"}
                 alt={post.title}
                 className="rounded-xl w-full"
             />

@@ -12,7 +12,7 @@ const SloteSelector = ({ timings, setSlotID, onChange }) => {
 
     // get timings based on selected date
     const filteredTimings = timings.filter(
-        (timing) => timing.start_date === selectedDate,
+        (timing) => timing.start_date === selectedDate
     );
 
     React.useEffect(() => {
@@ -21,7 +21,7 @@ const SloteSelector = ({ timings, setSlotID, onChange }) => {
 
     return (
         <>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
                 {availableDates.map((date) => (
                     <Button
                         key={date}
@@ -46,7 +46,7 @@ const SloteSelector = ({ timings, setSlotID, onChange }) => {
                 <div className="py-8">
                     <h3 className="text-lg font-semibold">Select time</h3>
                     {filteredTimings.length > 0 ? (
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 flex-wrap">
                             {filteredTimings.map((timing) => (
                                 <Button
                                     key={timing.id}
@@ -61,7 +61,7 @@ const SloteSelector = ({ timings, setSlotID, onChange }) => {
                                     }`}
                                 >
                                     {new Date(
-                                        "2025-01-01 " + timing.start_time,
+                                        "2025-01-01 " + timing.start_time
                                     ).toLocaleTimeString("en-US", {
                                         hour: "numeric",
                                         minute: "numeric",
@@ -86,7 +86,14 @@ const SloteSelector = ({ timings, setSlotID, onChange }) => {
                         {formatDate(selectedDate, "dd MMM, yyyy")}
                     </p>
                     <p>
-                        <strong>Selected Time Slot:</strong> {selectedTime}
+                        <strong>Selected Time Slot:</strong>{" "}
+                        {new Date(
+                            "2025-01-01 " + selectedTime
+                        ).toLocaleTimeString("en-US", {
+                            hour: "numeric",
+                            minute: "numeric",
+                            hour12: true,
+                        })}
                     </p>
                 </div>
             )}

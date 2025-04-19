@@ -4,6 +4,7 @@ import React from "react";
 import { Calendar } from "lucide-react";
 
 export default function PostCard({ post }) {
+    console.log("post", post);
     return (
         <Link
             href={route("blog.post", { slug: post?.slug })}
@@ -14,7 +15,7 @@ export default function PostCard({ post }) {
                 className="overflow-hidden shadow-lg rounded-xl"
             >
                 <img
-                    src={post?.image?.full_url || "/images/no-image.png"}
+                    src={post?.image?.full_path || "/images/no-image.png"}
                     alt={post.title}
                     className="h-48 w-full object-cover object-center"
                 />

@@ -22,7 +22,7 @@ class HomepageController extends Controller
 			$q->status()->whereNotNull('activated_at');
 		}, 'activeTags.mentors.profilePicture'])->active()->orderBy('title', 'ASC')->get();
 
-		$latestPosts = Post::with('categories')->latest()->published()->limit(5)->get();
+		$latestPosts = Post::with('categories', 'image')->latest()->published()->limit(5)->get();
 		$latestRatings = Rating::whereHasMorph('rateable', [Course::class])->with('user', 'rateable')->latest()->limit(5)->get();
 
 		return Inertia::render('Homepage', [

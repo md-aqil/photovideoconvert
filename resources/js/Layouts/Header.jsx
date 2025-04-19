@@ -78,11 +78,7 @@ export default function Header({
                                             } flex font-semibold items-center gap-x-1`}
                                         >
                                             <CircleUserRound
-                                                className={`${
-                                                    scrolling
-                                                        ? "text-black"
-                                                        : "text-fomoSecondary-0"
-                                                } h-5 w-5`}
+                                                className={`text-fomoSecondary-0 h-5 w-5`}
                                             />
                                             {auth?.user?.full_name}
                                         </Link>
