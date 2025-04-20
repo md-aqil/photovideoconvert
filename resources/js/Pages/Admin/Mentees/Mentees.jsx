@@ -71,20 +71,6 @@ export const columns = [
     {
         accessorKey: "email",
         header: "Email",
-        header: ({ column }) => {
-            return (
-                <Button
-                    variant="ghost"
-                    className="gap-x-2"
-                    onClick={() =>
-                        column.toggleSorting(column.getIsSorted() === "asc")
-                    }
-                >
-                    Email
-                    <ArrowUpDown size={16} />
-                </Button>
-            );
-        },
         cell: ({ getValue }) => (
             <div className="whitespace-nowrap">
                 <p className="text-sm mb-1 ">{getValue()}</p>
