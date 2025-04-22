@@ -1,6 +1,5 @@
 import React from "react";
-import Header from "@/Layouts/Header";
-import B2BMentorshipForm from "@/Components/B2BMentorshipForm";
+
 import PageBanner from "@/Components/PageBanner";
 import {
     Card,
@@ -10,13 +9,12 @@ import {
     CardTitle,
 } from "@/shadcn/ui/card";
 import PageLayout from "@/Layouts/PageLayout";
-import { formatEnum } from "@/Helpers/GlobalFunctions";
+
 import SectionWrapper from "@/Components/SectionWrapper";
 import EnquiryB2BMentorshipForm from "@/Components/EnquiryB2BMentorshipForm";
 const B2BMentorship = ({ page, topics }) => {
     return (
         <div>
-            <Header />
             <PageBanner title={"B2B Mentorship"} />
             <SectionWrapper.Boxed>
                 <Card className="max-w-2xl mx-auto">
