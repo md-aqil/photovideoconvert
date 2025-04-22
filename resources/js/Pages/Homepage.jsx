@@ -217,7 +217,9 @@ const Homepage = ({ page, topics }) => {
     return (
         <div>
             <Header isHomePage={true} />
+
             <Hero />
+
             <AboutIntro pageProp={pageProp} />
             {/* <div className="max-w-7xl mx-auto py-10 sm:pt-16 px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4">
                 <div>
@@ -233,17 +235,23 @@ const Homepage = ({ page, topics }) => {
                     </p>
                 </div>
             </div> */}
-            <div
-                id="mentors"
-                className="max-w-7xl mx-auto py-12 sm:py-0 sm:pt-20 sm:pb-20 px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4"
-            >
-                <div className="text-xl sm:text-[34px] text-left font-extrabold sm:font-bold ">
+            <SectionWrapper.Boxed className={`bg-slate-50`}>
+                <div
+                    id="mentors"
+
+                    // className="max-w-7xl mx-auto sm:py-0 sm:pb-20 px-4 md:px-4 lg:px-4 xl:px-0 sm:px-4"
+                >
+                    {/* <div className="text-xl sm:text-[34px] text-left font-extrabold sm:font-bold ">
                     All the mentors you need in one place
+                </div> */}
+                    <SectionWrapper.Heading level="div">
+                        All the mentors you need in one place
+                    </SectionWrapper.Heading>
+                    <div className="pt-8 sm:pt-10">
+                        <TopicsTagsTabs topics={topics} isHomePage={true} />
+                    </div>
                 </div>
-                <div className="pt-8 sm:pt-10">
-                    <TopicsTagsTabs topics={topics} isHomePage={true} />
-                </div>
-            </div>
+            </SectionWrapper.Boxed>
             <HowItWorks />
             <SectionWrapper.Spacer />
             <div className="py-8 sm:py-0 sm:pb-0 bg-fomoLight-0 sm:bg-white">

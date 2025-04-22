@@ -9,24 +9,24 @@ import ProfileImageCard from "./Cards/ProfileImageCard";
 
 export default function TopicsTagsTabs({ topics }) {
     const [tagsList, setTagsList] = React.useState(
-        topics && topics[0]?.active_tags ? topics[0]?.active_tags : []
+        topics && topics[0]?.active_tags ? topics[0]?.active_tags : [],
     );
 
     const [selectedTag, setSelectedTag] = React.useState(
-        tagsList && tagsList ? tagsList[0] : []
+        tagsList && tagsList ? tagsList[0] : [],
     );
 
     const [mentorList, mentorListSet] = React.useState(
-        selectedTag && selectedTag?.[0]?.slug ? selectedTag?.[0]?.slug : []
+        selectedTag && selectedTag?.[0]?.slug ? selectedTag?.[0]?.slug : [],
     );
 
     //This state is for showing all courses by default when user came to this page.
     const [selectedSlug, setSelectedSlug] = React.useState(
-        topics && topics?.[0]?.slug ? topics?.[0]?.slug : []
+        topics && topics?.[0]?.slug ? topics?.[0]?.slug : [],
     );
 
     const [specialIn, setSpecialIn] = React.useState(
-        topics && topics?.[0]?.name ? topics?.[0]?.name : []
+        topics && topics?.[0]?.name ? topics?.[0]?.name : [],
     );
 
     return (
@@ -42,7 +42,7 @@ export default function TopicsTagsTabs({ topics }) {
                                     setSelectedSlug(topic?.slug);
                                     setSelectedTag(topic?.active_tags[0]);
                                     mentorListSet(
-                                        topic?.active_tags[0]?.mentors
+                                        topic?.active_tags[0]?.mentors,
                                     );
                                     setSpecialIn(topic?.title);
                                 }}
@@ -73,8 +73,8 @@ export default function TopicsTagsTabs({ topics }) {
                                     }}
                                     className={`px-6 py-6 rounded-3xl ${
                                         selectedTag?.slug === tag.slug
-                                            ? "bg-fomoPrimary-0 text-black hover:bg-[#ffdc6a] font-extrabold"
-                                            : "bg-[#E4E8EB] text-muted-foreground hover:bg-[#dddddd] font-bold"
+                                            ? "bg-fomoPrimary-0 text-black hover:bg-[#ffdc6a] font-semibold"
+                                            : "bg-[#fff] shadow-sm border border-gray-100 hover:bg-[#ffdc6a]"
                                     } `}
                                 >
                                     {tag.title}

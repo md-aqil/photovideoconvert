@@ -64,7 +64,7 @@ import SectionWrapper from "./SectionWrapper";
 const StatsSection = () => {
     return (
         <>
-            <div className="xl:flex justify-center items-center bg-white shadow-md rounded-lg p-6 xl:space-x-8 border border-gray-200">
+            <div className="md:flex xl:flex justify-center items-center bg-white shadow-md rounded-lg p-6 xl:space-x-8 border border-gray-200">
                 <StatItem value="120" label="Mentees" />
                 <Divider />
                 <StatItem value="150" label="Mentors" />

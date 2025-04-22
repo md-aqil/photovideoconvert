@@ -4,7 +4,6 @@ import React from "react";
 import { Calendar } from "lucide-react";
 
 export default function PostCard({ post }) {
-    console.log("post", post);
     return (
         <Link
             href={route("blog.post", { slug: post?.slug })}
