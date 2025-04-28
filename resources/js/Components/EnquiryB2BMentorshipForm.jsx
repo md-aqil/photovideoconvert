@@ -9,16 +9,6 @@ import InputLabel from "./InputLabel";
 export default function EnquiryB2BMentorshipForm() {
     const { b2BMentorshipFormData } = usePage().props;
     const { post, processing, errors, data, setData, reset } = useForm({
-        // isInterested: true,
-        // topic_ids: [],
-        // topic_tag_ids: [],
-        // preferred_modes: [b2BMentorshipFormData.preferred_modes[0]],
-        // interested_institutions: [
-        //     b2BMentorshipFormData.interested_institutions[1],
-        // ],
-        // minimum_hourly_rate: b2BMentorshipFormData.minimum_hourly_rate,
-        // open_to_long_duration_mentorship: true,
-        // about: "",
         first_name: "",
         last_name: "",
         company_email: "",
@@ -31,19 +21,7 @@ export default function EnquiryB2BMentorshipForm() {
         e.preventDefault();
         post(route("b2b-mentorship.store"), {
             onSuccess: () => {
-                setData({
-                    isInterested: true,
-                    topic_ids: [],
-                    topic_tag_ids: [],
-                    preferred_modes: [b2BMentorshipFormData.preferred_modes[0]],
-                    interested_institutions: [
-                        b2BMentorshipFormData.interested_institutions[1],
-                    ],
-                    minimum_hourly_rate:
-                        b2BMentorshipFormData.minimum_hourly_rate,
-                    open_to_long_duration_mentorship: true,
-                    about: "",
-                });
+                reset();
             },
         });
     };

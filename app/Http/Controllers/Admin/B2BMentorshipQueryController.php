@@ -14,14 +14,14 @@ class B2BMentorshipQueryController extends Controller
 	{
 		$b2BMentorshipQueries = B2BMentorshipQuery::has('user')->with('user', 'mentorProfile')->latest()->paginate($request->get('limit', config('app.pagination_limit')))->withQueryString();
 
-		return Inertia::render('Admin/B2BMentorshipQueries/B2BMentorshipQueries', ['b2BMentorshipQueries' => B2BMentorshipQueryResource::collection($b2BMentorshipQueries), 'type' => 'external']);
+		return Inertia::render('Admin/B2BMentorshipQueries/B2BMentorshipQueries', ['b2BMentorshipQueries' => B2BMentorshipQueryResource::collection($b2BMentorshipQueries), 'type' => 'internal']);
 	}
 
 	public function internalQueries(Request $request)
 	{
 		$b2BMentorshipQueries = B2BMentorshipQuery::doesntHave('user')->with('user', 'mentorProfile')->latest()->paginate($request->get('limit', config('app.pagination_limit')))->withQueryString();
 
-		return Inertia::render('Admin/B2BMentorshipQueries/B2BMentorshipQueries', ['b2BMentorshipQueries' => B2BMentorshipQueryResource::collection($b2BMentorshipQueries), 'type' => 'internal']);
+		return Inertia::render('Admin/B2BMentorshipQueries/B2BMentorshipQueries', ['b2BMentorshipQueries' => B2BMentorshipQueryResource::collection($b2BMentorshipQueries), 'type' => 'external']);
 	}
 
 	public function index(Request $request)
