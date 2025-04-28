@@ -18,7 +18,7 @@ class Attachment extends Model
 
 	public function getFullPathAttribute()
 	{
-		return url('storage/images/' . $this->path);
+		return url('storage/' . $this->url);
 	}
 
 	function user(): BelongsTo
