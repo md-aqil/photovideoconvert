@@ -21,6 +21,7 @@ import SectionWrapper from "@/Components/SectionWrapper";
 import BlankLayout from "@/Layouts/blank-layout";
 import PageBanner from "@/Components/PageBanner";
 import { Button } from "@/shadcn/ui/button";
+import PageLayout from "@/Layouts/PageLayout";
 
 const benefits = [
     {
@@ -542,7 +543,7 @@ const Register = () => {
 };
 
 Register.layout = (page) => (
-    <BlankLayout
+    <PageLayout
         children={page}
         title={
             page?.props?.page?.meta_title
