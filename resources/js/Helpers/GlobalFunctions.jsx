@@ -1,5 +1,5 @@
 import { usePage } from "@inertiajs/react";
-
+import { parseISO, parse, format } from "date-fns";
 export const textToSlug = (text) => {
     return text
         .toLowerCase()
@@ -49,4 +49,43 @@ export const makeGridCols = (arr) => {
     }
 
     return cols;
+};
+
+export const formatDateTime = (
+    dateString,
+    // outputFormat = "MMMM dd, yyyy, hh:mm a",
+    outputFormat = "dd MMM, yyyy, hh:mm a",
+) => {
+    if (!dateString) return "N/A";
+
+    try {
+        const isoString = dateString.replace(" ", "T");
+        const parsedDate = parseISO(isoString);
+        return format(parsedDate, outputFormat);
+    } catch (error) {
+        return "N/A";
+    }
+};
+
+export const formatDateOnly = (dateString, outputFormat = "dd MMMM, yyyy") => {
+    if (!dateString) return "N/A";
+
+    try {
+        const isoString = dateString.replace(" ", "T");
+        const parsedDate = parseISO(isoString);
+        return format(parsedDate, outputFormat);
+    } catch {
+        return "N/A";
+    }
+};
+
+export const formatTimeTo12Hour = (timeString, outputFormat = "hh:mm a") => {
+    if (!timeString) return "N/A";
+
+    try {
+        const parsedTime = parse(timeString, "HH:mm:ss", new Date());
+        return format(parsedTime, outputFormat);
+    } catch (error) {
+        return "N/A";
+    }
 };

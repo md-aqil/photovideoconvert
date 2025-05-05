@@ -46,6 +46,7 @@ import { Button } from "@/shadcn/ui/button";
 import { formatDate } from "date-fns";
 import { Link, router } from "@inertiajs/react";
 import { Label } from "@/shadcn/ui/label";
+import ColumnSelectFilter from "./ColumnSelectFilter";
 
 export default function RTable({
     data,
@@ -55,6 +56,7 @@ export default function RTable({
     filename = "export",
     paginationLinks = null,
     meta = null,
+    selectFilters = null,
 }) {
     const [sorting, setSorting] = React.useState([]);
     const [columnFilters, setColumnFilters] = React.useState([]);
@@ -93,19 +95,79 @@ export default function RTable({
     //     download(csvConfig)(csv);
     // };
 
+    // const formatCellValue = (value) => {
+    //     if (Array.isArray(value)) {
+    //         return value
+    //             .map((item) =>
+    //                 typeof item === "object" && item !== null
+    //                     ? (item.label ?? item.value ?? JSON.stringify(item))
+    //                     : String(item),
+    //             )
+    //             .join(", ");
+    //     }
+
+    //     if (typeof value === "object" && value !== null) {
+    //         return value.label ?? value.value ?? JSON.stringify(value);
+    //     }
+
+    //     if (value instanceof Date) {
+    //         return value.toISOString();
+    //     }
+
+    //     return value ?? ""; // null/undefined
+    // };
+
+    const flattenObject = (obj, prefix = "") => {
+        const result = {};
+
+        for (const key in obj) {
+            if (!Object.hasOwn(obj, key)) continue;
+
+            const value = obj[key];
+            const prefixedKey = prefix ? `${prefix}_${key}` : key;
+
+            if (Array.isArray(value)) {
+                value.forEach((item, index) => {
+                    if (typeof item === "object" && item !== null) {
+                        Object.assign(
+                            result,
+                            flattenObject(item, `${prefixedKey}_${index}`),
+                        );
+                    } else {
+                        result[`${prefixedKey}_${index}`] = item;
+                    }
+                });
+            } else if (typeof value === "object" && value !== null) {
+                Object.assign(result, flattenObject(value, prefixedKey));
+            } else {
+                result[prefixedKey] = value ?? "";
+            }
+        }
+
+        return result;
+    };
+
     const formatCellValue = (value) => {
         if (Array.isArray(value)) {
             return value
                 .map((item) =>
                     typeof item === "object" && item !== null
-                        ? (item.label ?? item.value ?? JSON.stringify(item))
+                        ? (item.label ??
+                          item.value ??
+                          item.name ??
+                          JSON.stringify(item))
                         : String(item),
                 )
                 .join(", ");
         }
 
         if (typeof value === "object" && value !== null) {
-            return value.label ?? value.value ?? JSON.stringify(value);
+            return (
+                value.label ??
+                value.value ??
+                value.name ??
+                JSON.stringify(value)
+            );
         }
 
         if (value instanceof Date) {
@@ -115,22 +177,55 @@ export default function RTable({
         return value ?? ""; // null/undefined
     };
 
+    // const exportExcel = (rows) => {
+    //     const rowData = rows.map((row) => {
+    //         const obj = {};
+    //         row.getVisibleCells().forEach((cell) => {
+    //             const header = cell.column.columnDef.header;
+    //             const key =
+    //                 typeof header === "string" ? header : cell.column.id;
+    //             const value = cell.getValue();
+    //             obj[key] = formatCellValue(value);
+    //         });
+    //         return obj;
+    //     });
+
+    //     const csv = generateCsv(csvConfig)(rowData);
+    //     download(csvConfig)(csv);
+    // };
+
     const exportExcel = (rows) => {
         const rowData = rows.map((row) => {
-            const obj = {};
-            row.getVisibleCells().forEach((cell) => {
-                const header = cell.column.columnDef.header;
-                const key =
-                    typeof header === "string" ? header : cell.column.id;
-                const value = cell.getValue();
-                obj[key] = formatCellValue(value);
-            });
-            return obj;
+            const raw = row.original ?? row; // Raw object from row
+            return flattenObject(raw); // Flatten it deeply
         });
 
         const csv = generateCsv(csvConfig)(rowData);
         download(csvConfig)(csv);
     };
+
+    <div className="flex items-center gap-2">
+        <Label>From</Label>
+        <Input
+            type="date"
+            onChange={(e) =>
+                table.getColumn("created_at")?.setFilterValue((old = {}) => ({
+                    ...old,
+                    from: e.target.value,
+                }))
+            }
+        />
+        <Label>To</Label>
+        <Input
+            type="date"
+            onChange={(e) =>
+                table.getColumn("created_at")?.setFilterValue((old = {}) => ({
+                    ...old,
+                    to: e.target.value,
+                }))
+            }
+        />
+    </div>;
 
     return (
         <div className="">
@@ -148,6 +243,20 @@ export default function RTable({
                         className="max-w-sm"
                     />
                 ))}
+                {selectFilters &&
+                    selectFilters.map(({ columnId, options, placeholder }) => {
+                        const column = table.getColumn(columnId);
+                        if (!column) return null;
+
+                        return (
+                            <ColumnSelectFilter
+                                key={`select-filter-${columnId}`}
+                                column={column}
+                                options={options}
+                                placeholder={placeholder}
+                            />
+                        );
+                    })}
                 {exportable === true && (
                     <Button
                         className="flex gap-x-2"

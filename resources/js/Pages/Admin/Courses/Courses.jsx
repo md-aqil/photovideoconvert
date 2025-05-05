@@ -19,7 +19,7 @@ import Can from "@/Components/Can";
 import { Badge } from "@/shadcn/ui/badge";
 import { usePage } from "@inertiajs/react";
 import UserAuthLayout from "@/Layouts/UserAuthLayout/UserAuthLayout";
-import { formatEnum } from "@/Helpers/GlobalFunctions";
+import { formatDateTime, formatEnum } from "@/Helpers/GlobalFunctions";
 import React from "react";
 export const columns = [
     {
@@ -111,13 +111,19 @@ export const columns = [
                 <div className="flex gap-x-1 justify-between border-b border-dashed py-1 hover:bg-red-50 px-2">
                     <span>Start Date:</span>{" "}
                     <strong>
-                        {row.original?.price?.special_price_start_at || "N/A"}
+                        {/* {row.original?.price?.special_price_start_at || "N/A"} */}
+                        {formatDateTime(
+                            row.original?.price?.special_price_start_at,
+                        )}
                     </strong>
                 </div>
                 <div className="flex gap-x-1 justify-between py-1 hover:bg-red-50 px-2">
                     <span>End Date:</span>{" "}
                     <strong>
-                        {row.original.price?.special_price_end_at || "N/A"}
+                        {/* {row.original.price?.special_price_end_at || "N/A"} */}
+                        {formatDateTime(
+                            row.original?.price?.special_price_end_at,
+                        )}
                     </strong>
                 </div>
             </>

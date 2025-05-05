@@ -2,21 +2,14 @@ import AuthenticatedLayout from "@/Layouts/admin/AuthenticatedLayout";
 import { ScrollArea } from "@/shadcn/ui/scroll-area";
 import React from "react";
 import PageHeading from "@/Components/PageHeading";
-import ShadcnCard from "@/Components/ShadcnCard";
 import { Button } from "@/shadcn/ui/button";
 import { Link } from "@inertiajs/react";
 import { TextLarge, TextMuted } from "@/shadcn/ui/text-muted";
 import { formatDate } from "date-fns";
-import {
-    BadgeIndianRupee,
-    IndianRupee,
-    ReceiptIndianRupee,
-    Timer,
-    User2,
-} from "lucide-react";
-import User from "../Users/User";
+import { IndianRupee, Timer, User2 } from "lucide-react";
 import { Badge } from "@/shadcn/ui/badge";
-import { Card, CardHeader, CardTitle } from "@/shadcn/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/shadcn/ui/card";
+import { formatDateTime, formatTimeTo12Hour } from "@/Helpers/GlobalFunctions";
 
 export default function Course({ course }) {
     return (
@@ -234,32 +227,45 @@ export default function Course({ course }) {
                         <div className="sm:col-span-4">
                             {course?.timings?.length > 0 ? (
                                 <Card>
-                                    <div className="text-xl font-semibold p-6">
-                                        Course Slots
+                                    <CardHeader className="bg-slate-100 space-y-0 pb-2">
+                                        <CardTitle className="text-xl">
+                                            Course Slots
+                                        </CardTitle>
+                                    </CardHeader>
+                                    <div className="max-h-96 overflow-y-scroll grid gap-1 px-2 py-3">
+                                        {course?.timings?.map(
+                                            (timing, index) => (
+                                                <Card
+                                                    key={index}
+                                                    className="hover:shadow-sm transition"
+                                                >
+                                                    <CardContent className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 py-4 px-4">
+                                                        <div className="text-sm font-medium text-muted-foreground">
+                                                            {formatDateTime(
+                                                                timing?.start_date,
+                                                                "dd MMM, yyyy",
+                                                            )}
+                                                        </div>
+                                                        <div className="flex items-center gap-2 text-sm">
+                                                            <Badge variant="secondary">
+                                                                {formatTimeTo12Hour(
+                                                                    timing?.start_time,
+                                                                )}
+                                                            </Badge>
+                                                            <span className="text-muted-foreground">
+                                                                to
+                                                            </span>
+                                                            <Badge variant="secondary">
+                                                                {formatTimeTo12Hour(
+                                                                    timing?.end_time,
+                                                                )}
+                                                            </Badge>
+                                                        </div>
+                                                    </CardContent>
+                                                </Card>
+                                            ),
+                                        )}
                                     </div>
-                                    {course?.timings?.map((timing, index) => (
-                                        <div
-                                            key={index}
-                                            className="flex justify-between items-center px-3 py-3"
-                                        >
-                                            <div>
-                                                {formatDate(
-                                                    timing?.start_date,
-                                                    "dd MMM, yyyy",
-                                                )}
-                                            </div>
-                                            <div className="flex gap-4 text-sm items-center">
-                                                <div className="bg-gray-300 rounded-lg p-1">
-                                                    {timing?.start_time}{" "}
-                                                </div>{" "}
-                                                To
-                                                <div className="bg-gray-300 rounded-lg p-1">
-                                                    {" "}
-                                                    {timing?.end_time}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
                                 </Card>
                             ) : (
                                 <div className="text-sm text-red-500 text-center p-4 bg-muted mt-2 rounded-lg">

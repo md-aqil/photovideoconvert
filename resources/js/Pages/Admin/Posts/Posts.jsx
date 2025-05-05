@@ -1,11 +1,7 @@
 import { Button } from "@/shadcn/ui/button";
 import { ScrollArea } from "@/shadcn/ui/scroll-area";
 import { Head, Link, usePage } from "@inertiajs/react";
-import {
-    Eye,
-    Pencil,
-    PlusCircle,
-} from "lucide-react";
+import { Eye, Pencil, PlusCircle } from "lucide-react";
 import { Checkbox } from "@/shadcn/ui/checkbox";
 import {
     Tooltip,
@@ -59,7 +55,8 @@ export const columns = [
     {
         accessorKey: "categories.name",
         header: "Categories",
-        cell: ({ row }) => row.original.categories.map((c) => c.name).join(", "),
+        cell: ({ row }) =>
+            row.original.categories.map((c) => c.name).join(", "),
     },
     {
         accessorKey: "created_at_string",
@@ -84,7 +81,7 @@ export const columns = [
                                         <a
                                             href={route(
                                                 "blog.post",
-                                                row.original.slug
+                                                row.original.slug,
                                             )}
                                             target="_blank"
                                         >
@@ -141,7 +138,7 @@ export const columns = [
                             <Link
                                 href={route(
                                     "admin.posts.edit",
-                                    row.original.id
+                                    row.original.id,
                                 )}
                             >
                                 <Pencil className="h-4 w-4" />
@@ -154,12 +151,9 @@ export const columns = [
     },
 ];
 
-export default function Posts({
-    collection,
-    totalCount,
-    totalTrashedCount,
-}) {
-    const blogBaseUrl = usePage().props.blogBaseUrl;
+export default function Posts({ collection, totalCount, totalTrashedCount }) {
+    const blogBaseUrl = usePage().props;
+    console.log("🚀 ~ Posts ~ blogBaseUrl:", blogBaseUrl);
 
     const columns = [
         {
@@ -231,7 +225,7 @@ export default function Posts({
                                 {post.status == 1 && (
                                     <Button asChild size="icon">
                                         <a
-                                            href={blogBaseUrl + "/" + post.slug}
+                                            href={"/blog/" + post.slug}
                                             target="_blank"
                                         >
                                             <Eye className="h-4 w-4" />
@@ -247,7 +241,7 @@ export default function Posts({
                                         <Link
                                             href={route(
                                                 "admin.posts.edit",
-                                                post.id
+                                                post.id,
                                             )}
                                         >
                                             <Pencil className="h-4 w-4" />
@@ -259,9 +253,7 @@ export default function Posts({
                         )}
                         {post.deleted_at && (
                             <>
-                                <DeletePermanentalyPostDialog
-                                    post={post}
-                                />
+                                <DeletePermanentalyPostDialog post={post} />
                                 <RestorePostDialog post={post} />
                             </>
                         )}

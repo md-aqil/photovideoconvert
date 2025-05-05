@@ -18,6 +18,7 @@ import { Button } from "@/shadcn/ui/button";
 // import ClickToCopy from "@/Components/ClickToCopy";
 
 import { CreditCard, ExternalLink, FileIcon, Hash } from "lucide-react";
+import { formatDateOnly, formatTimeTo12Hour } from "@/Helpers/GlobalFunctions";
 
 export default function Booking({ booking }) {
     if (booking?.package_info) {
@@ -52,7 +53,7 @@ export default function Booking({ booking }) {
                                         Date:{" "}
                                         {formatDate(
                                             booking?.created_at,
-                                            "dd MMM, yyyy h:mm a"
+                                            "dd MMM, yyyy h:mm a",
                                         )}
                                     </CardDescription>
                                 </div>
@@ -124,11 +125,21 @@ export default function Booking({ booking }) {
                                                 Starts
                                             </dt>
                                             <dd>
-                                                {booking?.course_timing
+                                                {/* {booking?.course_timing
                                                     ?.start_date || "N/A"}
 
                                                 {booking?.course_timing
-                                                    ?.start_time || "N/A"}
+                                                    ?.start_time || "N/A"} */}
+
+                                                {formatDateOnly(
+                                                    booking?.course_timing
+                                                        ?.start_date,
+                                                )}
+                                                {"  "}
+                                                {formatTimeTo12Hour(
+                                                    booking?.course_timing
+                                                        ?.start_time,
+                                                )}
                                             </dd>
                                         </div>
                                         <div className="flex items-center justify-between">
@@ -137,10 +148,19 @@ export default function Booking({ booking }) {
                                             </dt>
                                             <dd>
                                                 {" "}
-                                                {booking?.course_timing
+                                                {/* {booking?.course_timing
                                                     ?.end_date || "N/A"}
                                                 {booking?.course_timing
-                                                    ?.end_time || "N/A"}
+                                                    ?.end_time || "N/A"} */}
+                                                {formatDateOnly(
+                                                    booking?.course_timing
+                                                        ?.end_date,
+                                                )}
+                                                {"  "}
+                                                {formatTimeTo12Hour(
+                                                    booking?.course_timing
+                                                        ?.end_time,
+                                                )}
                                             </dd>
                                         </div>
                                     </dl>
@@ -206,7 +226,8 @@ export default function Booking({ booking }) {
                                                 <dd>{booking.price}</dd>
                                             </div>
                                         )}
-                                        {booking.special_price && (
+
+                                        {booking.special_price !== 0 && (
                                             <div className="flex items-center justify-between">
                                                 <dt className="text-muted-foreground">
                                                     Special Price
@@ -214,7 +235,6 @@ export default function Booking({ booking }) {
                                                 <dd>{booking.special_price}</dd>
                                             </div>
                                         )}
-
                                         <div className="flex items-center justify-between">
                                             <dt className="text-muted-foreground">
                                                 Tax Amount

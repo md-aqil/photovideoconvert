@@ -345,6 +345,13 @@ export default function MentorProfiles({ mentorProfiles }) {
                             meta={mentorProfiles.meta}
                             exportable={true}
                             filename={`Mentors_${new Date().toJSON()}`}
+                            selectFilters={[
+                                {
+                                    columnId: "status",
+                                    options: ["active", "inactive", "pending"],
+                                    placeholder: "Filter Status",
+                                },
+                            ]}
                         />
                     </div>
                 </div>

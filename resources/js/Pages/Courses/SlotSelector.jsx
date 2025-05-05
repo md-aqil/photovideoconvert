@@ -1,3 +1,4 @@
+import { formatTimeTo12Hour } from "@/Helpers/GlobalFunctions";
 import { Button } from "@/shadcn/ui/button";
 import { formatDate, format } from "date-fns";
 import React, { useState } from "react";
@@ -12,7 +13,7 @@ const SloteSelector = ({ timings, setSlotID, onChange }) => {
 
     // get timings based on selected date
     const filteredTimings = timings.filter(
-        (timing) => timing.start_date === selectedDate
+        (timing) => timing.start_date === selectedDate,
     );
 
     React.useEffect(() => {
@@ -21,7 +22,7 @@ const SloteSelector = ({ timings, setSlotID, onChange }) => {
 
     return (
         <>
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-2 flex-wrap max-h-96 overflow-y-scroll">
                 {availableDates.map((date) => (
                     <Button
                         key={date}
@@ -60,13 +61,14 @@ const SloteSelector = ({ timings, setSlotID, onChange }) => {
                                             : "bg-slate-50 border-gray-300 hover:border-gray-400 hover:bg-yellow-100"
                                     }`}
                                 >
-                                    {new Date(
-                                        "2025-01-01 " + timing.start_time
+                                    {/* {new Date(
+                                        "2025-01-01 " + timing.start_time,
                                     ).toLocaleTimeString("en-US", {
                                         hour: "numeric",
                                         minute: "numeric",
                                         hour12: true,
-                                    })}
+                                    })} */}
+                                    {formatTimeTo12Hour(timing.start_time)}
                                 </Button>
                             ))}
                         </div>
@@ -87,13 +89,14 @@ const SloteSelector = ({ timings, setSlotID, onChange }) => {
                     </p>
                     <p>
                         <strong>Selected Time Slot:</strong>{" "}
-                        {new Date(
-                            "2025-01-01 " + selectedTime
+                        {/* {new Date(
+                            "2025-01-01 " + selectedTime,
                         ).toLocaleTimeString("en-US", {
                             hour: "numeric",
                             minute: "numeric",
                             hour12: true,
-                        })}
+                        })} */}
+                        {formatTimeTo12Hour(selectedTime)}
                     </p>
                 </div>
             )}

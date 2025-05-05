@@ -21,6 +21,7 @@ trait DeleteableActions
     public function delete($id)
     {
         $model = $this->model->findOrFail($id);
+        // $model = $this->repository->model->findOrFail($id);
         $id = $model->id;
         $model->delete();
         return redirect()->back()->with(['flash_type' => 'success', 'flash_message' => $this->singularName . ' deleted successfully', 'flash_description' => 'With id ' . $id]);
