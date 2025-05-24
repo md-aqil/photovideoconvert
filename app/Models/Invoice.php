@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Invoice extends Model
 {
-    protected $fillable = ['transaction_id', 'amount', 'special_price', 'tax_amount', 'platform_fee_amount', 'grand_total_amount'];
+    protected $fillable = ['transaction_id', 'amount', 'special_amount', 'tax_amount', 'platform_fee_amount', 'grand_total_amount'];
 
     protected $appends = ['full_path'];
 
