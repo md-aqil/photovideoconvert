@@ -13,7 +13,7 @@ class WhatsAppChannel
 	public function send(object $notifiable, $notification): void
 	{
 		$message = $notification->toWhatsApp($notifiable);
-
+		
 		$data = [
 			"integrated_number" => env('MSG91_WHATSAPP_NO'),
 			"content_type" => "template",
@@ -29,7 +29,7 @@ class WhatsAppChannel
 					"namespace" => null,
 					"to_and_components" => [
 						[
-							'to' => [$notifiable->mentorProfile->phoneCountry->phone_code . $notifiable->mentorProfile->phone],
+							'to' => $message['to'],
 							"components" => $message['components']
 						]
 					]

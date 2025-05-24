@@ -19,6 +19,7 @@ class MentorBookingReminderNotification extends Notification
      */
     public function __construct(Booking $booking)
     {
+        $booking->load('mentorProfile.phoneCountry');
         $this->booking = $booking;
     }
 
@@ -36,6 +37,7 @@ class MentorBookingReminderNotification extends Notification
 	{
 		return [
 			'template' => 'mentor_booking_reminder',
+            'to' => $this->booking->mentorProfile->phoneCountry->phone_code . $this->booking->mentorProfile->phone,
 			'components' => [
 				"body_1" => [
 					"type" => "text",

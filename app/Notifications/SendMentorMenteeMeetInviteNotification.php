@@ -20,6 +20,7 @@ class SendMentorMenteeMeetInviteNotification extends Notification
      */
     public function __construct($booking, $userType)
     {
+        $booking->load('mentorProfile.phoneCountry');
         $this->booking = $booking;
         $this->userType = $userType;
     }
@@ -39,6 +40,7 @@ class SendMentorMenteeMeetInviteNotification extends Notification
         if($this->userType == 'mentor')
             return [
                 'template' =>'mentor_booking_confirmation_',
+                'to' => $this->booking->mentorProfile->phoneCountry->phone_code . $this->booking->mentorProfile->phone,
                 'components' => [
                     "body_1" => [
                         "type" => "text",
@@ -61,6 +63,7 @@ class SendMentorMenteeMeetInviteNotification extends Notification
 
 		return [
 			'template' => 'mentee_booking_confirmation',
+            'to' => '91' . $this->booking->phone_number,
 			'components' => [
 				"body_1" => [
 					"type" => "text",

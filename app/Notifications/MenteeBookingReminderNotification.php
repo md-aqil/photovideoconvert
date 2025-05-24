@@ -36,6 +36,7 @@ class MenteeBookingReminderNotification extends Notification
 	{
 		return [
 			'template' => 'mentee_booking_reminder',
+            'to' => '91' . $this->booking->phone_number,
 			'components' => [
 				"body_1" => [
 					"type" => "text",

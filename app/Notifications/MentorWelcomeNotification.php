@@ -46,6 +46,7 @@ class MentorWelcomeNotification extends Notification
 	{
 		return [
 			'template' => 'mentor_registered',
+			'to' => $notifiable->mentorProfile->phoneCountry->phone_code . $notifiable->mentorProfile->phone,
 			'components' => [
 				"body_1" => [
 					"type" => "text",
