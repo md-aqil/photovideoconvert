@@ -38,6 +38,7 @@ class MentorProfileUpdateStatusNotification extends Notification
 	{
 		return [
 			'template' => 'mentor_profile_activation_',
+            'to' => $notifiable->mentorProfile->phoneCountry->phone_code . $notifiable->mentorProfile->phone,
 			'components' => [
 				"body_1" => [
 					"type" => "text",
