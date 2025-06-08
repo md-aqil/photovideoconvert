@@ -21,7 +21,7 @@ import Can from "../Can";
 import { Button } from "@/shadcn/ui/button";
 import { Loader2Icon, Trash2Icon } from "lucide-react";
 
-const DeletePostDialog = ({ post }) => {
+const DeletePostDialog = ({ post, userRole }) => {
     const [open, setOpen] = React.useState(false);
     const { delete: destroy, processing } = useForm();
 
@@ -29,7 +29,12 @@ const DeletePostDialog = ({ post }) => {
         e.preventDefault();
 
         destroy(
-            route("admin.posts.delete", post.id),
+            route(
+                userRole === "mentor"
+                    ? "mentors.posts.delete"
+                    : "admin.posts.delete",
+                post.id
+            ),
             {
                 preserveScroll: true,
             },
@@ -41,26 +46,25 @@ const DeletePostDialog = ({ post }) => {
 
     return (
         <AlertDialog open={open} onOpenChange={setOpen}>
-            <Can permit="delete posts">
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger>
-                            <AlertDialogTrigger asChild>
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="text-red-500 "
-                                >
-                                    <Trash2Icon size="16" />
-                                </Button>
-                            </AlertDialogTrigger>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <p>Move to Trash</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
-            </Can>
+            <TooltipProvider>
+                <Tooltip>
+                    <TooltipTrigger>
+                        <AlertDialogTrigger asChild>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="text-red-500 "
+                            >
+                                <Trash2Icon size="16" />
+                            </Button>
+                        </AlertDialogTrigger>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                        <p>Move to Trash</p>
+                    </TooltipContent>
+                </Tooltip>
+            </TooltipProvider>
+
             <AlertDialogContent>
                 <AlertDialogHeader>
                     <AlertDialogTitle>

@@ -21,7 +21,7 @@ import { Textarea } from "@/shadcn/ui/textarea";
 import { Checkbox } from "@/shadcn/ui/checkbox";
 import { ScrollArea } from "@/shadcn/ui/scroll-area";
 
-export default function PostForm({ post, postCategories, copyPost }) {
+export default function PostForm({ post, postCategories, copyPost, userRole }) {
     const blogBaseUrl = usePage().props.blogBaseUrl;
     const {
         data,
@@ -56,11 +56,21 @@ export default function PostForm({ post, postCategories, copyPost }) {
 
     const submit = (e) => {
         e.preventDefault();
+        if (!["mentor", "admin"].includes(userRole)) {
+            return;
+        }
+
+        const storeRouteName =
+            userRole === "mentor" ? "mentors.posts.store" : "admin.posts.store";
+        const updateRouteName =
+            userRole === "mentor"
+                ? "mentors.posts.update"
+                : "admin.posts.update";
 
         if (post) {
-            postAction(route("admin.posts.update", { id: post.id }));
+            postAction(route(updateRouteName, { id: post.id }));
         } else {
-            postAction(route("admin.posts.store"));
+            postAction(route(storeRouteName));
         }
     };
 

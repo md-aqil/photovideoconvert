@@ -125,7 +125,7 @@ export const columns = [
     },
 ];
 
-export default function Bookings({ bookings }) {
+function Bookings({ bookings }) {
     return (
         <MentorAuthLayout>
             <Head>
@@ -153,3 +153,7 @@ export default function Bookings({ bookings }) {
         </MentorAuthLayout>
     );
 }
+
+Bookings.layout = (page) => <MentorAuthLayout children={page} />;
+
+export default Bookings;

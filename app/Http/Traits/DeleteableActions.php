@@ -20,7 +20,7 @@ trait DeleteableActions
 
     public function delete($id)
     {
-        $model = $this->model->findOrFail($id);
+        $model = $this->repository->model->findOrFail($id);
         // $model = $this->repository->model->findOrFail($id);
         $id = $model->id;
         $model->delete();
@@ -29,7 +29,7 @@ trait DeleteableActions
 
     public function deletePermanently($id)
     {
-        $model = $this->model->withTrashed()->findOrFail($id);
+        $model = $this->repository->model->withTrashed()->findOrFail($id);
         $id = $model->id;
         $model->forceDelete();
         return redirect()->back()->with(['flash_type' => 'success', 'flash_message' => $this->singularName . ' deleted permanently.', 'flash_description' => 'With id ' . $id]);
@@ -37,7 +37,7 @@ trait DeleteableActions
 
     public function restore($id)
     {
-        $model = $this->model->withTrashed()->findOrFail($id);
+        $model = $this->repository->model->withTrashed()->findOrFail($id);
         $id = $model->id;
         $model->restore();
         return redirect()->back()->with(['flash_type' => 'success', 'flash_message' => $this->singularName . ' restored successfully.', 'flash_description' => 'With id ' . $id]);

@@ -8,6 +8,7 @@ use App\Http\Controllers\Mentor\MentorProfileController;
 use App\Http\Controllers\Mentor\MentorUserController;
 use App\Http\Controllers\Mentor\ProfileController;
 use App\Http\Controllers\Mentor\TopicAndTagController;
+use App\Http\Controllers\Mentor\PostController;
 use App\Http\Middleware\MentorMiddleware;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -46,6 +47,19 @@ Route::prefix('mentors')->name('mentors.')->group(function () {
 		});
 
 		Route::prefix('topics-and-tags')->name('topics-and-tags.')->controller(TopicAndTagController::class)->group(function () {
+			Route::get('', 'index')->name('index');
+		});
+
+		Route::prefix('posts')->name('posts.')->controller(PostController::class)->group(function () {
+			Route::delete('delete-permanently/{id}', 'deletePermanently')->name('deletePermanently');
+			Route::delete('delete/{id}', 'delete')->name('delete');
+			Route::post('restore/{id}', 'restore')->name('restore');
+			Route::post('update/{id}', 'update')->name('update');
+			Route::post('update/{id}', 'update')->name('update');
+			Route::post('store', 'store')->name('store');
+			Route::get('trashed', 'trashed')->name('trashed');
+			Route::get('create', 'create')->name('create');
+			Route::get('{id}', 'edit')->name('edit');
 			Route::get('', 'index')->name('index');
 		});
 
