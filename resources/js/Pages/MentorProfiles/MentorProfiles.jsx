@@ -7,7 +7,20 @@ import React from "react";
 
 export default function MentorProfiles({ topics }) {
     return (
-        <BlankLayout>
+        <BlankLayout
+            schema={{
+                "@context": "https://schema.org",
+                "@type": "WebPage",
+                "@id": "https://fomoedge.com",
+                inLanguage: "en",
+                name: "Mentors",
+                description: "Mentors",
+                url: "https://fomoedge.com/mentors",
+                image: "https://fomoedge.com/images/logo-transparent.png",
+                type: "website",
+                locale: "en_US",
+            }}
+        >
             <Header />
             <PageBanner
                 title={"Mentors"}

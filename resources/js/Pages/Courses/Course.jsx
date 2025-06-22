@@ -254,6 +254,7 @@ Course.layout = (page) => (
                 : page?.props?.page?.title
         }
         metaDescription={page?.props?.page?.meta_description}
+        schema={page?.props?.page?.schema}
     />
 );
 

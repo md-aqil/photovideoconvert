@@ -39,7 +39,7 @@ class MentorProfile extends Model
 
 	public function getFullNameAttribute()
 	{
-		return $this->user->full_name;
+		return $this->user?->full_name;
 	}
 
 	public function kycDetail(): HasOne

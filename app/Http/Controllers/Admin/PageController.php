@@ -40,7 +40,8 @@ class PageController extends Controller
             'body' => 'nullable',
             'status' => 'required|in:0,1',
             'meta_title' => 'nullable|string',
-            'meta_description' => 'nullable|string'
+            'meta_description' => 'nullable|string',
+            'schema' => 'nullable|string'
         ]);
 
         $request->merge(['user_id' => auth()->user()->id]);
@@ -59,7 +60,8 @@ class PageController extends Controller
             'puck_body' => 'nullable',
             'status' => 'required|in:0,1',
             'meta_title' => 'nullable|string',
-            'meta_description' => 'nullable|string'
+            'meta_description' => 'nullable|string',
+            'schema' => 'nullable|string'
         ]);
         $page = Page::findOrFail($id);
         $page->fill($request->all());

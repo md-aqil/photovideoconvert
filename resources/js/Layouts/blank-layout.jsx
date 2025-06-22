@@ -13,9 +13,11 @@ export default function BlankLayout({
         <ShadcnProvider>
             <Head title={title}>
                 <meta name="description" content={metaDescription} />
-                <script type="application/ld+json">
-                    {JSON.stringify(schema)}
-                </script>
+                {schema && (
+                    <script type="application/ld+json">
+                        {JSON.stringify(schema)}
+                    </script>
+                )}
             </Head>
             <main className="w-full tracking-tight bg-background">
                 {children}

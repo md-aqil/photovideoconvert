@@ -19,15 +19,11 @@ import {
 import SlugInput from "../SlugInput";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shadcn/ui/tabs";
 import PuckPageEditor from "../Puck/PuckPageEditor";
-
-
-
-
+import { Textarea } from "@/shadcn/ui/textarea";
 
 export default function PuckPageForm({ page, personTitles }) {
-    
     const formEl = useRef(null);
-    
+
     const { data, setData, post, processing, errors, reset } = useForm({
         title: page ? page?.title : "",
         slug: page ? page?.slug : "",
@@ -36,6 +32,7 @@ export default function PuckPageForm({ page, personTitles }) {
         status: page ? page?.status : 0,
         meta_title: page ? page?.meta_title : "",
         meta_description: page ? page?.meta_description : "",
+        schema: page ? page?.schema : "",
     });
 
     const submit = (e) => {
@@ -59,9 +56,8 @@ export default function PuckPageForm({ page, personTitles }) {
     return (
         <div className="">
             <div>
-                {/* First name & last name */}
                 <div className="grid grid-cols-12 gap-4">
-                    <div className="col-span-9 space-y-4">
+                    <div className="col-span-10 space-y-4">
                         <div>
                             {/* Title */}
                             <div>
@@ -84,8 +80,14 @@ export default function PuckPageForm({ page, personTitles }) {
                                 />
                             </div>
                         </div>
+                        <div>
+                            <PuckPageEditor
+                                onChange={(d) => setData("puck_body", d)}
+                                value={data.puck_body}
+                            />
+                        </div>
                     </div>
-                    <div className="col-span-3 space-y-4">
+                    <div className="col-span-2 space-y-4">
                         <Tabs defaultValue="publish">
                             <TabsList className="grid grid-cols-2">
                                 <TabsTrigger value="publish">
@@ -172,7 +174,7 @@ export default function PuckPageForm({ page, personTitles }) {
                                             onChange={(e) => {
                                                 setData(
                                                     "meta_title",
-                                                    e.target.value
+                                                    e.target.value,
                                                 );
                                             }}
                                         />
@@ -196,7 +198,7 @@ export default function PuckPageForm({ page, personTitles }) {
                                             onChange={(e) => {
                                                 setData(
                                                     "meta_description",
-                                                    e.target.value
+                                                    e.target.value,
                                                 );
                                             }}
                                         />
@@ -206,13 +208,32 @@ export default function PuckPageForm({ page, personTitles }) {
                                             className="mt-2"
                                         />
                                     </div>
+                                    <div>
+                                        <Label htmlFor="schema">Schema</Label>
+                                        <Textarea
+                                            id="schema"
+                                            name="schema"
+                                            value={data.schema}
+                                            className="mt-1 block w-full"
+                                            placeholder="Paste schema JSON here"
+                                            onChange={(e) => {
+                                                setData(
+                                                    "schema",
+                                                    e.target.value,
+                                                );
+                                            }}
+                                            rows={10}
+                                        />
+
+                                        <InputError
+                                            message={errors.schema}
+                                            className="mt-2"
+                                        />
+                                    </div>
                                 </div>
                             </TabsContent>
                         </Tabs>
                     </div>
-                </div>
-                <div className="mt-4">
-                    <PuckPageEditor onChange={(d) => setData("puck_body", d)} value={data.puck_body} />
                 </div>
             </div>
         </div>

@@ -315,6 +315,7 @@ Homepage.layout = (page) => (
             page.props.page.meta_description ||
             "Connect with industry-expert mentors to accelerate your career, overcome challenges, and unlock new opportunities for growth and success. Join Fomoedge today and unlock your potential."
         }
+        schema={page.props.page.schema}
     />
 );
 

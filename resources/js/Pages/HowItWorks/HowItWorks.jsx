@@ -142,27 +142,6 @@ const faqs = [
         ],
     },
 ];
-const schema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": "https://fomoedge.com",
-    inLanguage: "en",
-    name: "Start Your Mentorship Journey Today-Fomoedge",
-    description:
-        "Connect with experienced mentors, gain real-world insights, and accelerate your personal and professional growth — all in one powerful platform",
-    url: "https://fomoedge.com/how-it-works",
-    mainEntityOfPage: "",
-    publisher: {
-        "@type": "Organization",
-        name: "fomoedge",
-        logo: {
-            "@type": "ImageObject",
-            url: "https://fomoedge.com/images/logo-transparent.png",
-            width: "600",
-            height: "60",
-        },
-    },
-};
 const HowItWorks = ({ page, topics }) => {
     return (
         <div>
@@ -182,7 +161,7 @@ const HowItWorks = ({ page, topics }) => {
 
                 <div className="z-10 space-y-2 max-w-5xl mx-auto">
                     <SectionWrapper.Heading level="h1" className={`space-y-2`}>
-                        Don’t Wait – Start Your Mentorship Journey Today
+                        Don't Wait – Start Your Mentorship Journey Today
                     </SectionWrapper.Heading>
                     <SectionWrapper.Subheading
                         level="p"
@@ -198,14 +177,24 @@ const HowItWorks = ({ page, topics }) => {
                     {steps.map((step, index) => (
                         <div
                             key={step.id}
-                            className={`relative flex flex-col md:flex-row items-center gap-8 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
+                            className={`relative flex flex-col md:flex-row items-center gap-8 ${
+                                index % 2 === 0
+                                    ? "md:flex-row"
+                                    : "md:flex-row-reverse"
+                            }`}
                         >
                             <div
-                                className={`absolute ${index % 2 === 0 ? "left-0" : "right-0"} top-0 h-full border-l-2 border-blue-500 hidden md:block`}
+                                className={`absolute ${
+                                    index % 2 === 0 ? "left-0" : "right-0"
+                                } top-0 h-full border-l-2 border-blue-500 hidden md:block`}
                             />
                             <div className="flex-1 text-center md:text-left px-4">
                                 <span
-                                    className={`text-sm font-bold uppercase tracking-widest transform -rotate-90 origin-left absolute ${index % 2 === 0 ? "left-[-1rem]" : "right-[-13rem]"} top-1/2`}
+                                    className={`text-sm font-bold uppercase tracking-widest transform -rotate-90 origin-left absolute ${
+                                        index % 2 === 0
+                                            ? "left-[-1rem]"
+                                            : "right-[-13rem]"
+                                    } top-1/2`}
                                 >
                                     {step.label}
                                 </span>
@@ -302,7 +291,7 @@ HowItWorks.layout = (page) => (
             page.props.page.meta_description ||
             "Want to fast-track your career or personal growth? Join Fomoedge as a mentee and connect with experienced mentors for personalized, one-on-one guidance. Find the right mentor, book a session, and gain expert insights. Start your journey today!"
         }
-        schema={schema}
+        schema={page.props.page.schema}
     />
 );
 
