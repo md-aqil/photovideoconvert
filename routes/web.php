@@ -45,6 +45,7 @@ Route::prefix('course')->name('course.')->group(function () {
 });
 
 Route::prefix('mentors')->name('mentors.')->controller(MentorProfileController::class)->group(function () {
+	Route::get('/{tag}', 'allMentors')->name('all-mentors-by-tag');
 	Route::get('', 'allMentors')->name('all-mentors');
 });
 

@@ -27,4 +27,17 @@ class MentorProfileController extends Controller
 
         return Inertia::render('MentorProfiles/MentorProfile', ['mentorProfile' => $mentorProfile, 'courseTypeEnum' => $courseTypeEnum]);
     }
+
+	public function allMentorsByTag(string $tag)
+	{
+		$mentors = MentorProfile::with(['profilePicture', 'courses.price', 'courses.topics', 'courses.tags', 'courses.timings', 'courses.featuredImage'])->whereHas('topicTags', function ($q) use ($tag) {
+			$q->where('slug', $tag);
+		})->status()->orderBy('name', 'ASC')->get();
+
+		$topics = Topic::with(['activeTags.mentors' => function ($q) {
+            $q->status();
+        }, 'activeTags.mentors.profilePicture'])->active()->orderBy('title', 'ASC')->get();
+
+		return Inertia::render('MentorProfiles/MentorProfiles', ['mentors' => $mentors]);
+	}
 }
