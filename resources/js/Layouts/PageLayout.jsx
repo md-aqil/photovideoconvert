@@ -6,11 +6,16 @@ import { Toaster } from "@/shadcn/ui/sonner";
 import { toast } from "sonner";
 import ShadcnProvider from "./shadcn-provider";
 import BlankLayout from "./blank-layout";
-const AdminGlobalHeader = React.lazy(() =>
-    import("@/Components/Admin/AdminGlobalHeader")
+const AdminGlobalHeader = React.lazy(
+    () => import("@/Components/Admin/AdminGlobalHeader"),
 );
 
-export default function PageLayout({ children, title, metaDescription }) {
+export default function PageLayout({
+    children,
+    title,
+    metaDescription,
+    schema,
+}) {
     const { flash } = usePage().props;
 
     React.useEffect(() => {
@@ -31,7 +36,11 @@ export default function PageLayout({ children, title, metaDescription }) {
         }
     }, [flash]);
     return (
-        <BlankLayout title={title} metaDescription={metaDescription}>
+        <BlankLayout
+            title={title}
+            metaDescription={metaDescription}
+            schema={schema}
+        >
             <Header />
             <div className="content">{children}</div>
         </BlankLayout>

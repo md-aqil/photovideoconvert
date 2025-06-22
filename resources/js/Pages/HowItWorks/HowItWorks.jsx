@@ -142,6 +142,27 @@ const faqs = [
         ],
     },
 ];
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://fomoedge.com",
+    inLanguage: "en",
+    name: "Start Your Mentorship Journey Today-Fomoedge",
+    description:
+        "Connect with experienced mentors, gain real-world insights, and accelerate your personal and professional growth — all in one powerful platform",
+    url: "https://fomoedge.com/how-it-works",
+    mainEntityOfPage: "",
+    publisher: {
+        "@type": "Organization",
+        name: "fomoedge",
+        logo: {
+            "@type": "ImageObject",
+            url: "https://fomoedge.com/images/logo-transparent.png",
+            width: "600",
+            height: "60",
+        },
+    },
+};
 const HowItWorks = ({ page, topics }) => {
     return (
         <div>
@@ -281,6 +302,7 @@ HowItWorks.layout = (page) => (
             page.props.page.meta_description ||
             "Want to fast-track your career or personal growth? Join Fomoedge as a mentee and connect with experienced mentors for personalized, one-on-one guidance. Find the right mentor, book a session, and gain expert insights. Start your journey today!"
         }
+        schema={schema}
     />
 );
 

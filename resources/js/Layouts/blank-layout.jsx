@@ -3,11 +3,19 @@ import { Footer } from "./Footer";
 import ShadcnProvider from "./shadcn-provider";
 import { Toaster } from "sonner";
 
-export default function BlankLayout({ children, title, metaDescription }) {
+export default function BlankLayout({
+    children,
+    title,
+    metaDescription,
+    schema,
+}) {
     return (
         <ShadcnProvider>
             <Head title={title}>
                 <meta name="description" content={metaDescription} />
+                <script type="application/ld+json">
+                    {JSON.stringify(schema)}
+                </script>
             </Head>
             <main className="w-full tracking-tight bg-background">
                 {children}
