@@ -45,13 +45,13 @@
     @vite(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])
     @inertiaHead
     
-    {{-- {!! $globalSettings['scripts']['app_head_scripts'] !!} --}}
+    {!! $globalSettings['scripts']['app_head_scripts'] !!}
 </head>
 
 <body class="font-sans antialiased scroll-smooth" style="margin-bottom: 0 ">
     @inertia
 
-    {{-- {!! $globalSettings['scripts']['app_body_footer_scripts'] !!} --}}
+    {!! $globalSettings['scripts']['app_body_footer_scripts'] !!}
 </body>
 
 </html>
