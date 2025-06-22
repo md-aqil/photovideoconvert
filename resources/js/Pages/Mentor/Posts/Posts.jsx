@@ -10,7 +10,6 @@ import {
     TooltipTrigger,
 } from "@/shadcn/ui/tooltip";
 import RTable from "@/Components/RTable";
-import AuthenticatedLayout from "@/Layouts/admin/AuthenticatedLayout";
 import PageHeading from "@/Components/PageHeading";
 import DeletePostDialog from "@/Components/Posts/DeletePostDialog";
 import DeletePermanentalyPostDialog from "@/Components/Posts/DeletePermanentalyPostDialog";
@@ -18,6 +17,7 @@ import RestorePostDialog from "@/Components/Posts/RestorePostDialog";
 import Can from "@/Components/Can";
 import { CopyIcon } from "@radix-ui/react-icons";
 import { Badge } from "@/shadcn/ui/badge";
+import MentorAuthLayout from "@/Layouts/MentorAuthLayout/MentorAuthLayout";
 
 export const columns = [
     {
@@ -96,55 +96,45 @@ export const columns = [
                         </TooltipProvider>
                     )}
 
-                    <Can permit="create posts">
-                        <TooltipProvider>
-                            <Tooltip>
-                                <TooltipTrigger>
-                                    <Button
-                                        asChild
-                                        variant="outline"
-                                        size="icon"
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger>
+                                <Button asChild variant="outline" size="icon">
+                                    <Link
+                                        href={route("mentors.posts.create")}
+                                        data={{
+                                            copyPost: JSON.stringify({
+                                                title: row.original.title,
+                                                slug: row.original.slug,
+                                                short_description:
+                                                    row.original
+                                                        .short_description,
+                                                body: row.original.body,
+                                                meta_title:
+                                                    row.original.meta_title,
+                                                meta_description:
+                                                    row.original
+                                                        .meta_description,
+                                            }),
+                                        }}
                                     >
-                                        <Link
-                                            href={route("admin.posts.create")}
-                                            data={{
-                                                copyPost: JSON.stringify({
-                                                    title: row.original.title,
-                                                    slug: row.original.slug,
-                                                    short_description:
-                                                        row.original
-                                                            .short_description,
-                                                    body: row.original.body,
-                                                    meta_title:
-                                                        row.original.meta_title,
-                                                    meta_description:
-                                                        row.original
-                                                            .meta_description,
-                                                }),
-                                            }}
-                                        >
-                                            <CopyIcon size="16" />
-                                        </Link>
-                                    </Button>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                    <p>Copy</p>
-                                </TooltipContent>
-                            </Tooltip>
-                        </TooltipProvider>
-                    </Can>
-                    <Can permit="edit posts">
-                        <Button asChild variant="outline" size="icon">
-                            <Link
-                                href={route(
-                                    "admin.posts.edit",
-                                    row.original.id
-                                )}
-                            >
-                                <Pencil className="h-4 w-4" />
-                            </Link>
-                        </Button>
-                    </Can>
+                                        <CopyIcon size="16" />
+                                    </Link>
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Copy</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
+
+                    <Button asChild variant="outline" size="icon">
+                        <Link
+                            href={route("mentors.posts.edit", row.original.id)}
+                        >
+                            <Pencil className="h-4 w-4" />
+                        </Link>
+                    </Button>
                 </div>
             );
         },
@@ -153,7 +143,6 @@ export const columns = [
 
 export default function Posts({ collection, totalCount, totalTrashedCount }) {
     const blogBaseUrl = usePage().props;
-    console.log("🚀 ~ Posts ~ blogBaseUrl:", blogBaseUrl);
 
     const columns = [
         {
@@ -232,31 +221,30 @@ export default function Posts({ collection, totalCount, totalTrashedCount }) {
                                         </a>
                                     </Button>
                                 )}
-                                <Can permit="edit posts">
-                                    <Button
-                                        asChild
-                                        variant="outline"
-                                        size="icon"
+
+                                <Button asChild variant="outline" size="icon">
+                                    <Link
+                                        href={route(
+                                            "mentors.posts.edit",
+                                            post.id
+                                        )}
                                     >
-                                        <Link
-                                            href={route(
-                                                "admin.posts.edit",
-                                                post.id
-                                            )}
-                                        >
-                                            <Pencil className="h-4 w-4" />
-                                        </Link>
-                                    </Button>
-                                </Can>
+                                        <Pencil className="h-4 w-4" />
+                                    </Link>
+                                </Button>
+
                                 <DeletePostDialog
                                     post={post}
-                                    userRole="admin"
+                                    userRole="mentor"
                                 />
                             </>
                         )}
                         {post.deleted_at && (
                             <>
-                                <DeletePermanentalyPostDialog post={post} />
+                                <DeletePermanentalyPostDialog
+                                    post={post}
+                                    userRole="mentor"
+                                />
                                 <RestorePostDialog post={post} />
                             </>
                         )}
@@ -267,22 +255,22 @@ export default function Posts({ collection, totalCount, totalTrashedCount }) {
     ];
 
     return (
-        <AuthenticatedLayout>
+        <MentorAuthLayout>
             <Head>
                 <title>Posts</title>
             </Head>
             <ScrollArea className="h-full">
-                <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
+                <div className="space-y-4">
                     <div className="bg-gray-100 flex gap-2 p-2">
                         <Button
                             asChild
                             variant={
-                                route().current() == "admin.posts.index"
+                                route().current() == "mentors.posts.index"
                                     ? "default"
                                     : "outline"
                             }
                         >
-                            <Link href={route("admin.posts.index")}>
+                            <Link href={route("mentors.posts.index")}>
                                 All ({totalCount})
                             </Link>
                         </Button>
@@ -290,13 +278,19 @@ export default function Posts({ collection, totalCount, totalTrashedCount }) {
                         <Button
                             asChild
                             variant={
-                                route().current() == "admin.posts.trashed"
+                                route().current() == "mentors.posts.trashed"
                                     ? "default"
                                     : "outline"
                             }
                         >
-                            <Link href={route("admin.posts.trashed")}>
+                            <Link href={route("mentors.posts.trashed")}>
                                 Trashed ({totalTrashedCount})
+                            </Link>
+                        </Button>
+                        <Button asChild variant="outline" className="ml-auto">
+                            <Link href={route("mentors.posts.create")}>
+                                <PlusCircle className="h-4 w-4 mr-2" /> Create
+                                New
                             </Link>
                         </Button>
                     </div>
@@ -311,7 +305,7 @@ export default function Posts({ collection, totalCount, totalTrashedCount }) {
                             </Can> */}
                             <Can permit="create posts">
                                 <Button asChild>
-                                    <Link href={route("admin.posts.create")}>
+                                    <Link href={route("mentors.posts.create")}>
                                         <PlusCircle className="h-4 w-4 mr-2" />{" "}
                                         Create New
                                     </Link>
@@ -331,6 +325,6 @@ export default function Posts({ collection, totalCount, totalTrashedCount }) {
                     </div>
                 </div>
             </ScrollArea>
-        </AuthenticatedLayout>
+        </MentorAuthLayout>
     );
 }

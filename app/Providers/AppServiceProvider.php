@@ -36,7 +36,8 @@ class AppServiceProvider extends ServiceProvider
 
         try {
             View::share('globalSettings', [
-                'general' => Setting::getValues('general')
+                'general' => Setting::getValues('general'),
+                'scripts' => Setting::getValues('scripts')
             ]);
         } catch (\Throwable $th) {
             //throw $th;

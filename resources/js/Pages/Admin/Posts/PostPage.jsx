@@ -109,6 +109,7 @@ export default function PostPage({ post, postCategories }) {
                             post={post}
                             copyPost={copyPost}
                             postCategories={postCategories}
+                            userRole="admin"
                         />
                     </ShadcnCard>
                     <TwoColumnLayout.Actions></TwoColumnLayout.Actions>

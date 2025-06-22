@@ -304,6 +304,13 @@ export const mentorNavItems = [
         ],
     },
     {
+        title: "Blog",
+        label: "Blog",
+        href: route("mentors.posts.index"),
+        icon: "fileStack",
+        label: "Blogs",
+    },
+    {
         title: "Account",
         href: "#",
         icon: "userCog",
