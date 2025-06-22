@@ -19,7 +19,7 @@ class SettingSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
         DB::table('setting_groups')->truncate();
         DB::table('settings')->truncate();
-        
+
         $settingGroups = [
             [
                 'id' => 1,
@@ -48,6 +48,36 @@ class SettingSeeder extends Seeder
                 'name' => 'Site Footer',
                 'description' => 'Site footer settings',
                 'order' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+			[
+                'id' => 4,
+                'parent_id' => null,
+                'key' => 'scripts',
+                'name' => 'Scripts',
+                'description' => 'Scripts settings',
+                'order' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+			[
+                'id' => 5,
+                'parent_id' => 4,
+                'key' => 'head_tag_scripts',
+                'name' => 'App Head Scripts Settings',
+                'description' => 'App head scripts area',
+                'order' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+			[
+                'id' => 6,
+                'parent_id' => 4,
+                'key' => 'body_footer_scripts',
+                'name' => 'Body Footer Scripts Settings',
+                'description' => 'App body footer scripts area',
+                'order' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -92,6 +122,28 @@ class SettingSeeder extends Seeder
                 'name' => 'Footer Text',
                 'description' => 'Footer text below the logo',
                 'key' => 'app_footer_logo_text',
+                'value' => '',
+                'type' => 'textarea',
+                'order' => 3,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'setting_group_id' => 5,
+                'name' => 'App Head Scripts',
+                'description' => 'App head scripts to be added in the head tag',
+                'key' => 'app_head_scripts',
+                'value' => '',
+                'type' => 'textarea',
+                'order' => 3,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'setting_group_id' => 6,
+                'name' => 'App Body Footer Scripts',
+                'description' => 'App body footer scripts to be added in the body tag',
+                'key' => 'app_body_footer_scripts',
                 'value' => '',
                 'type' => 'textarea',
                 'order' => 3,
