@@ -20,6 +20,7 @@ import SlugInput from "../SlugInput";
 import { Textarea } from "@/shadcn/ui/textarea";
 import { Checkbox } from "@/shadcn/ui/checkbox";
 import { ScrollArea } from "@/shadcn/ui/scroll-area";
+import InputLabel from "../InputLabel";
 
 export default function PostForm({ post, postCategories, copyPost, userRole }) {
     const blogBaseUrl = usePage().props.blogBaseUrl;
@@ -38,19 +39,19 @@ export default function PostForm({ post, postCategories, copyPost, userRole }) {
         short_description: copyPost
             ? copyPost?.short_description
             : post
-            ? post?.short_description
-            : "",
+              ? post?.short_description
+              : "",
         status: post ? post?.status : 0,
         meta_title: copyPost
             ? copyPost?.meta_title
             : post
-            ? post?.meta_title
-            : "",
+              ? post?.meta_title
+              : "",
         meta_description: copyPost
             ? copyPost?.meta_description
             : post
-            ? post?.meta_description
-            : "",
+              ? post?.meta_description
+              : "",
         image: null,
     });
 
@@ -129,7 +130,7 @@ export default function PostForm({ post, postCategories, copyPost, userRole }) {
                                         <Label className="flex items-center gap-2">
                                             <Checkbox
                                                 checked={data.category_ids.includes(
-                                                    category.id
+                                                    category.id,
                                                 )}
                                                 onCheckedChange={(checked) => {
                                                     if (checked) {
@@ -138,7 +139,7 @@ export default function PostForm({ post, postCategories, copyPost, userRole }) {
                                                             [
                                                                 ...data.category_ids,
                                                                 category.id,
-                                                            ]
+                                                            ],
                                                         );
                                                     } else {
                                                         setData(
@@ -146,8 +147,8 @@ export default function PostForm({ post, postCategories, copyPost, userRole }) {
                                                             data.category_ids.filter(
                                                                 (id) =>
                                                                     id !==
-                                                                    category.id
-                                                            )
+                                                                    category.id,
+                                                            ),
                                                         );
                                                     }
                                                 }}
@@ -243,7 +244,10 @@ export default function PostForm({ post, postCategories, copyPost, userRole }) {
                     <InputError message={errors.status} className="mt-2" />
                 </div>
                 <div>
-                    <Label htmlFor="meta_title">Meta Title</Label>
+                    <InputLabel
+                        value="How you wish to say"
+                        additionalInfo=" ( Helps people and Google understand what your blog is about) 50 characters only"
+                    />
                     <Input
                         id="meta_title"
                         type="text"
@@ -259,7 +263,10 @@ export default function PostForm({ post, postCategories, copyPost, userRole }) {
                     <InputError message={errors.meta_title} className="mt-2" />
                 </div>
                 <div>
-                    <Label htmlFor="meta_description">Meta description</Label>
+                    <InputLabel
+                        value="Explain a little"
+                        additionalInfo="( Helps people and Google understand what your blog is about), 150 characters only"
+                    />
                     <Input
                         id="meta_description"
                         type="text"
