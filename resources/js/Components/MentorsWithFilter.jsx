@@ -28,10 +28,10 @@ export default function MentorsWithFilter({ topics }) {
 
     React.useEffect(() => {
         const allMentors = topics.flatMap((topic) =>
-            topic.active_tags.flatMap((tag) => tag.mentors || []),
+            topic.active_tags.flatMap((tag) => tag.mentors || [])
         );
         const uniqueMentors = Array.from(
-            new Map(allMentors.map((m) => [m.id, m])).values(),
+            new Map(allMentors.map((m) => [m.id, m])).values()
         );
         setSelectedMentors(uniqueMentors);
     }, [topics]);
@@ -55,14 +55,14 @@ export default function MentorsWithFilter({ topics }) {
 
         if (updatedTags.length === 0) {
             const allMentors = topics.flatMap((topic) =>
-                topic.active_tags.flatMap((t) => t.mentors || []),
+                topic.active_tags.flatMap((t) => t.mentors || [])
             );
             setSelectedMentors(getUniqueMentors(allMentors));
         } else {
             const mentors = topics.flatMap((topic) =>
                 topic.active_tags
                     .filter((t) => updatedTags.includes(t.slug))
-                    .flatMap((t) => t.mentors || []),
+                    .flatMap((t) => t.mentors || [])
             );
             setSelectedMentors(getUniqueMentors(mentors));
         }
@@ -86,12 +86,16 @@ export default function MentorsWithFilter({ topics }) {
                                     htmlFor={tag.slug}
                                     key={tag.id}
                                     // className=""
-                                    className={`flex items-center text-[16px] mb-2 cursor-pointer mx-0  ${selectedTags.includes(tag.slug) ? "text-black" : "text-slate-500"}`}
+                                    className={`flex items-center text-[16px] mb-2 cursor-pointer mx-0  ${
+                                        selectedTags.includes(tag.slug)
+                                            ? "text-black"
+                                            : "text-slate-500"
+                                    }`}
                                 >
                                     <Checkbox
                                         id={tag.slug}
                                         checked={selectedTags.includes(
-                                            tag.slug,
+                                            tag.slug
                                         )}
                                         onCheckedChange={() =>
                                             handleTagChange(tag)

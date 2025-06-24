@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\CourseTypeEnum;
 use App\Models\Topic;
+use App\Models\TopicTag;
 use App\Repositories\MentorProfileRepository;
 use Inertia\Inertia;
 
@@ -28,16 +29,24 @@ class MentorProfileController extends Controller
         return Inertia::render('MentorProfiles/MentorProfile', ['mentorProfile' => $mentorProfile, 'courseTypeEnum' => $courseTypeEnum]);
     }
 
-	public function allMentorsByTag(string $tag)
+	public function allMentorsByTag(string $tagSlug = null)
 	{
-		$mentors = MentorProfile::with(['profilePicture', 'courses.price', 'courses.topics', 'courses.tags', 'courses.timings', 'courses.featuredImage'])->whereHas('topicTags', function ($q) use ($tag) {
-			$q->where('slug', $tag);
-		})->status()->orderBy('name', 'ASC')->get();
+		$tag = TopicTag::where('slug', $tagSlug)->first();
 
-		$topics = Topic::with(['activeTags.mentors' => function ($q) {
+		$mentors = $this->mentorProfileRepository->model()->with(['profilePicture', 'courses.price', 'courses.topics', 'courses.tags', 'courses.timings', 'courses.featuredImage']);
+
+		if($tag) {
+			$mentors = $mentors->whereHas('topicTags', function ($q) use ($tag) {
+				$q->where('slug', $tag->slug);
+			});
+		}
+
+		$mentors = $mentors->status()->get();
+
+        $topics = Topic::with(['activeTags.mentors' => function ($q) {
             $q->status();
         }, 'activeTags.mentors.profilePicture'])->active()->orderBy('title', 'ASC')->get();
 
-		return Inertia::render('MentorProfiles/MentorProfiles', ['mentors' => $mentors]);
+		return Inertia::render('MentorProfiles/MentorProfilesByTag', ['mentors' => $mentors, 'topics' => $topics, 'tag' => $tag]);
 	}
 }
