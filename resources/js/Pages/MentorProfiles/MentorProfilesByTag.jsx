@@ -66,14 +66,20 @@ export default function MentorProfilesByTag({ topics, mentors, tag }) {
                                         id={t.slug}
                                         checked={t.slug == tag?.slug}
                                         onCheckedChange={() =>
-                                            router.visit(
-                                                route(
-                                                    "mentors.all-mentors-by-tag",
-                                                    {
-                                                        tagSlug: t.slug,
-                                                    }
-                                                )
-                                            )
+                                            tag?.slug == t.slug
+                                                ? router.visit(
+                                                      route(
+                                                          "mentors.all-mentors-by-tag"
+                                                      )
+                                                  )
+                                                : router.visit(
+                                                      route(
+                                                          "mentors.all-mentors-by-tag",
+                                                          {
+                                                              tagSlug: t.slug,
+                                                          }
+                                                      )
+                                                  )
                                         }
                                     />
                                     <span className="ml-2">{t.title}</span>
