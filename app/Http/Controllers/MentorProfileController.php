@@ -29,24 +29,29 @@ class MentorProfileController extends Controller
         return Inertia::render('MentorProfiles/MentorProfile', ['mentorProfile' => $mentorProfile, 'courseTypeEnum' => $courseTypeEnum]);
     }
 
-	public function allMentorsByTag(string $tagSlug = null)
-	{
-		$tag = TopicTag::where('slug', $tagSlug)->first();
+    public function allMentorsByTag(string $tagSlug = null)
+    {
+        $tag = TopicTag::where('slug', $tagSlug)
+            ->select(['id', 'title', 'slug', 'meta_tags', 'description', 'keywords', 'schema'])
+            ->first();
 
-		$mentors = $this->mentorProfileRepository->model()->with(['profilePicture', 'courses.price', 'courses.topics', 'courses.tags', 'courses.timings', 'courses.featuredImage']);
+        $mentors = $this->mentorProfileRepository->model()->with(['profilePicture', 'courses.price', 'courses.topics', 'courses.tags', 'courses.timings', 'courses.featuredImage']);
 
-		if($tag) {
-			$mentors = $mentors->whereHas('topicTags', function ($q) use ($tag) {
-				$q->where('slug', $tag->slug);
-			});
-		}
+        if ($tag) {
+            $mentors = $mentors->whereHas('topicTags', function ($q) use ($tag) {
+                $q->where('slug', $tag->slug);
+            });
+        }
 
-		$mentors = $mentors->status()->get();
+        $mentors = $mentors->status()->get();
 
-        $topics = Topic::with(['activeTags.mentors' => function ($q) {
+        $topics = Topic::with(['activeTags' => function ($q) {
+            $q->select(['id', 'topic_id', 'title', 'slug', 'meta_tags', 'description', 'keywords', 'schema']);
+        }, 'activeTags.mentors' => function ($q) {
             $q->status();
-        }, 'activeTags.mentors.profilePicture'])->active()->orderBy('title', 'ASC')->get();
+        }, 'activeTags.mentors.profilePicture'])
+            ->active()->orderBy('title', 'ASC')->get();
 
-		return Inertia::render('MentorProfiles/MentorProfilesByTag', ['mentors' => $mentors, 'topics' => $topics, 'tag' => $tag]);
-	}
+        return Inertia::render('MentorProfiles/MentorProfilesByTag', ['mentors' => $mentors, 'topics' => $topics, 'tag' => $tag]);
+    }
 }

@@ -8,9 +8,8 @@
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
     <meta name="language" content="English">
     <meta name="robots" content="index, follow">
-    <meta property="og:site_name" content=fomoedge>
+    <meta property="og:site_name" content="fomoedge">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content={{ config('app.name', 'Laravel') }}>
     {{-- <meta property="og:description" content="{{ $page['meta_description'] }}">
     <meta property="og:image" content="{{ $page['image'] }}"> --}}
     <meta property="og:type" content="website">

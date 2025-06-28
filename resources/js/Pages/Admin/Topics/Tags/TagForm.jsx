@@ -13,6 +13,10 @@ export default function TagForm({ tagData, topic, openFormDialogSet }) {
         title: tagData?.title || "",
         slug: tagData?.slug || "",
         activated_at: (tagData && tagData.activated_at) || !tagData ? "1" : "0",
+        meta_tags: tagData?.meta_tags || "",
+        description: tagData?.description || "",
+        keywords: tagData?.keywords || "",
+        schema: tagData?.schema || "",
     });
 
     const submit = (e) => {
@@ -34,7 +38,7 @@ export default function TagForm({ tagData, topic, openFormDialogSet }) {
                     errors.slug ||
                         errors.title ||
                         errors.activated_at ||
-                        "An error occurred while submitting the form."
+                        "An error occurred while submitting the form.",
                 );
             },
         });
@@ -112,6 +116,63 @@ export default function TagForm({ tagData, topic, openFormDialogSet }) {
                         message={errors.activated_at}
                         className="mt-2"
                     />
+                )}
+            </div>
+
+            <div className="mt-4">
+                <Label htmlFor="meta_tags">Meta Tags</Label>
+                <Input
+                    id="meta_tags"
+                    type="text"
+                    name="meta_tags"
+                    value={data.meta_tags}
+                    placeholder="Meta tags (comma separated or JSON)"
+                    onChange={(e) => setData("meta_tags", e.target.value)}
+                />
+                {errors.meta_tags && (
+                    <InputError message={errors.meta_tags} className="mt-2" />
+                )}
+            </div>
+            <div className="mt-4">
+                <Label htmlFor="description">Description</Label>
+                <Input
+                    id="description"
+                    type="text"
+                    name="description"
+                    value={data.description}
+                    placeholder="Description"
+                    onChange={(e) => setData("description", e.target.value)}
+                />
+                {errors.description && (
+                    <InputError message={errors.description} className="mt-2" />
+                )}
+            </div>
+            <div className="mt-4">
+                <Label htmlFor="keywords">Keywords</Label>
+                <Input
+                    id="keywords"
+                    type="text"
+                    name="keywords"
+                    value={data.keywords}
+                    placeholder="Keywords (comma separated)"
+                    onChange={(e) => setData("keywords", e.target.value)}
+                />
+                {errors.keywords && (
+                    <InputError message={errors.keywords} className="mt-2" />
+                )}
+            </div>
+            <div className="mt-4">
+                <Label htmlFor="schema">Schema</Label>
+                <Input
+                    id="schema"
+                    type="text"
+                    name="schema"
+                    value={data.schema}
+                    placeholder="Schema (JSON-LD or text)"
+                    onChange={(e) => setData("schema", e.target.value)}
+                />
+                {errors.schema && (
+                    <InputError message={errors.schema} className="mt-2" />
                 )}
             </div>
 
