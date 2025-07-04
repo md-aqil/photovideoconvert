@@ -21,6 +21,10 @@ class TagController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'meta_tags' => 'nullable|string',
+            'description' => 'nullable|string',
+            'keywords' => 'nullable|string',
+            'schema' => 'nullable|string',
         ]);
 
         $tag = Tag::create($request->all());
@@ -32,6 +36,10 @@ class TagController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'meta_tags' => 'nullable|string',
+            'description' => 'nullable|string',
+            'keywords' => 'nullable|string',
+            'schema' => 'nullable|string',
         ]);
 
         $tag = Tag::findOrFail($id);

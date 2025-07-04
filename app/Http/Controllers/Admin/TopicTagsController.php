@@ -25,6 +25,10 @@ class TopicTagsController extends Controller
             'title' => 'required|string',
             'slug' => 'required|string|unique:topic_tags',
             'activated_at' => 'sometimes|required|boolean',
+            'meta_tags' => 'nullable|string',
+            'description' => 'nullable|string',
+            'keywords' => 'nullable|string',
+            'schema' => 'nullable|string',
         ]);
 
         $topic = $this->topicRepository->findOrFail($topicId);
@@ -48,6 +52,10 @@ class TopicTagsController extends Controller
             'title' => 'sometimes|required|string',
             'slug' => 'sometimes|required|string|unique:topic_tags,id,' . $id,
             'activated_at' => 'sometimes|required|boolean',
+            'meta_tags' => 'nullable|string',
+            'description' => 'nullable|string',
+            'keywords' => 'nullable|string',
+            'schema' => 'nullable|string',
         ]);
 
         $tag = $this->topicTagRepository->findOrFail($id);

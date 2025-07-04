@@ -12,6 +12,7 @@ export default function BlankLayout({
     return (
         <ShadcnProvider>
             <Head title={title}>
+                <meta property="og:title" content={title} />
                 <meta name="description" content={metaDescription} />
                 {schema && (
                     <script type="application/ld+json">

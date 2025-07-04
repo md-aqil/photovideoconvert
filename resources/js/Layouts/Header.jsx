@@ -88,10 +88,10 @@ export default function Header({
                                             <CircleUserRound
                                                 className={`text-fomoSecondary-0 h-5 w-5`}
                                             />
-                                            {console.log(
+                                            {/* {console.log(
                                                 "auth?.userRoles",
                                                 auth?.userRoles,
-                                            )}
+                                            )} */}
                                             {auth?.user?.full_name}
                                         </Link>
                                     </Button>

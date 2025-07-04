@@ -69,16 +69,16 @@ export default function MentorProfilesByTag({ topics, mentors, tag }) {
                                             tag?.slug == t.slug
                                                 ? router.visit(
                                                       route(
-                                                          "mentors.all-mentors-by-tag"
-                                                      )
+                                                          "mentors.all-mentors-by-tag",
+                                                      ),
                                                   )
                                                 : router.visit(
                                                       route(
                                                           "mentors.all-mentors-by-tag",
                                                           {
                                                               tagSlug: t.slug,
-                                                          }
-                                                      )
+                                                          },
+                                                      ),
                                                   )
                                         }
                                     />
@@ -94,24 +94,16 @@ export default function MentorProfilesByTag({ topics, mentors, tag }) {
 
     return (
         <BlankLayout
-            schema={{
-                "@context": "https://schema.org",
-                "@type": "WebPage",
-                "@id": "https://fomoedge.com",
-                inLanguage: "en",
-                name: "Mentors",
-                description: "Mentors",
-                url: "https://fomoedge.com/mentors",
-                image: "https://fomoedge.com/images/logo-transparent.png",
-                type: "website",
-                locale: "en_US",
-            }}
+            title={tag.title}
+            metaDescription={tag.description}
+            schema={tag?.schema}
         >
             <Header />
             <PageBanner
                 title={`Mentors ${tag ? `with ${tag.title}` : ""}`}
                 // breadcrumbs={<GenerateBreadcrumbs />}
             />
+
             <SectionWrapper.FullWidth className="grid grid-cols-12 w-full container">
                 {/* Sidebar Filters for Desktop */}
                 <div className="hidden md:block col-span-3 border-r">
