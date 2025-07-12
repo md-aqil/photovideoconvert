@@ -29,6 +29,11 @@ class TopicTagsController extends Controller
             'description' => 'nullable|string',
             'keywords' => 'nullable|string',
             'schema' => 'nullable|string',
+            'tag_details' => 'nullable|string',
+            'tag_cta' => 'nullable|array',
+            'tag_cta.label' => 'nullable|string',
+            'tag_cta.link' => 'nullable|string',
+            'tag_cta_description' => 'nullable|string',
         ]);
 
         $topic = $this->topicRepository->findOrFail($topicId);
@@ -56,6 +61,11 @@ class TopicTagsController extends Controller
             'description' => 'nullable|string',
             'keywords' => 'nullable|string',
             'schema' => 'nullable|string',
+            'tag_details' => 'nullable|string',
+            'tag_cta' => 'nullable|array',
+            'tag_cta.label' => 'nullable|string',
+            'tag_cta.link' => 'nullable|string',
+            'tag_cta_description' => 'nullable|string',
         ]);
 
         $tag = $this->topicTagRepository->findOrFail($id);

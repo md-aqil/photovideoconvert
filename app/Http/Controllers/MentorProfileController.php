@@ -32,7 +32,7 @@ class MentorProfileController extends Controller
     public function allMentorsByTag(string $tagSlug = null)
     {
         $tag = TopicTag::where('slug', $tagSlug)
-            ->select(['id', 'title', 'slug', 'meta_tags', 'description', 'keywords', 'schema'])
+            ->select(['id', 'title', 'slug', 'meta_tags', 'description', 'keywords', 'schema', 'tag_details', 'tag_cta', 'tag_cta_description'])
             ->first();
 
         $mentors = $this->mentorProfileRepository->model()->with(['profilePicture', 'courses.price', 'courses.topics', 'courses.tags', 'courses.timings', 'courses.featuredImage']);
@@ -46,7 +46,7 @@ class MentorProfileController extends Controller
         $mentors = $mentors->status()->get();
 
         $topics = Topic::with(['activeTags' => function ($q) {
-            $q->select(['id', 'topic_id', 'title', 'slug', 'meta_tags', 'description', 'keywords', 'schema']);
+            $q->select(['id', 'topic_id', 'title', 'slug', 'meta_tags', 'description', 'keywords', 'schema', 'tag_details', 'tag_cta', 'tag_cta_description']);
         }, 'activeTags.mentors' => function ($q) {
             $q->status();
         }, 'activeTags.mentors.profilePicture'])

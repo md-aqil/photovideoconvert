@@ -221,12 +221,22 @@ class TopicsAndTagsSeeder extends Seeder
             ]);
 
             foreach ($data['children'] as $child) {
-                TopicTag::firstOrCreate(['slug' => $child['slug']], [
+                $tagData = [
                     'topic_id' => $topic->id,
                     'title' => $child['title'],
                     'slug' => $child['slug'],
-                    'activated_at' => now()
-                ]);
+                    'activated_at' => now(),
+                ];
+                if (isset($child['tag_details'])) {
+                    $tagData['tag_details'] = $child['tag_details'];
+                }
+                if (isset($child['tag_cta'])) {
+                    $tagData['tag_cta'] = $child['tag_cta'];
+                }
+                if (isset($child['tag_cta_description'])) {
+                    $tagData['tag_cta_description'] = $child['tag_cta_description'];
+                }
+                TopicTag::firstOrCreate(['slug' => $child['slug']], $tagData);
             }
         }
     }

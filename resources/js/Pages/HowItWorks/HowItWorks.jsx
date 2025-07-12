@@ -248,7 +248,7 @@ const HowItWorks = ({ page, topics, className }) => {
 export const FAQComponent = ({ className }) => {
     return (
         <div className={cn("max-w-3xl mx-auto my-10", className)}>
-            <Accordion type="single" collapsible>
+            <Accordion type="single" collapsible defaultValue="item-0-0">
                 {faqs.map((faq, index) => (
                     <div key={index}>
                         <SectionWrapper.Spacer />

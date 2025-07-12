@@ -27,6 +27,7 @@ import PageBanner from "@/Components/PageBanner";
 import SectionWrapper from "@/Components/SectionWrapper";
 import { router } from "@inertiajs/react";
 import { FAQComponent } from "../HowItWorks/HowItWorks";
+import { Link } from "@inertiajs/react";
 
 export default function MentorProfilesByTag({ topics, mentors, tag }) {
     const handleTagChange = () => {
@@ -134,18 +135,21 @@ export default function MentorProfilesByTag({ topics, mentors, tag }) {
 
                 {/* Profile Cards Section */}
                 <div className="col-span-12 md:col-span-9 p-4 !pt-0 space-y-4">
-                    <div className="bg-fomoPrimary-0/10 rounded-md p-4">
-                        <h2 className="text-lg font-semibold mb-2">
-                            About {tag ? tag.title : "Mentors"}
-                        </h2>
-                        <p className="text-sm text-slate-700">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                            elit. Iure inventore error magnam consequuntur
-                            officia delectus ea? Ducimus veniam veritatis odit
-                            dignissimos ut ipsam aut. Exercitationem, sapiente
-                            quibusdam! Aliquam, ea sit.
-                        </p>
-                    </div>
+                    {tag?.tag_details && (
+                        <div className="bg-fomoPrimary-0/10 rounded-md p-4">
+                            <h2 className="text-lg font-semibold mb-2">
+                                About {tag ? tag.title : "Mentors"}
+                            </h2>
+                            {tag?.tag_details && (
+                                <div
+                                    className="text-sm text-slate-700 mb-2"
+                                    dangerouslySetInnerHTML={{
+                                        __html: tag.tag_details,
+                                    }}
+                                />
+                            )}
+                        </div>
+                    )}
 
                     <div>
                         {mentors.length > 0 ? (
@@ -161,27 +165,28 @@ export default function MentorProfilesByTag({ topics, mentors, tag }) {
                             <NoDataAlert title="No mentors found!" />
                         )}
                     </div>
+                    {tag?.tag_cta_description && (
+                        <div className="bg-fomoPrimary-0/10 rounded-md p-4">
+                            <div
+                                className="text-sm text-slate-700 mb-2"
+                                dangerouslySetInnerHTML={{
+                                    __html: tag.tag_cta_description,
+                                }}
+                            />
 
-                    <div className="bg-fomoPrimary-0/10 rounded-md p-4">
-                        <h2 className="text-lg font-semibold mb-2">
-                            Learn more
-                        </h2>
-                        <p className="text-sm text-slate-700">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                            elit. Iure inventore error magnam consequuntur
-                            officia delectus ea? Ducimus veniam veritatis odit
-                            dignissimos ut ipsam aut. Exercitationem, sapiente
-                            quibusdam! Aliquam, ea sit.
-                        </p>
-
-                        <p className="text-sm text-slate-700">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                            elit. Iure inventore error magnam consequuntur
-                            officia delectus ea? Ducimus veniam veritatis odit
-                            dignissimos ut ipsam aut. Exercitationem, sapiente
-                            quibusdam! Aliquam, ea sit.
-                        </p>
-                    </div>
+                            {tag?.tag_cta?.label && tag?.tag_cta?.link && (
+                                <Button
+                                    variant="outline"
+                                    className="w-full gap-x-3"
+                                    asChild
+                                >
+                                    <Link href={tag?.tag_cta?.link}>
+                                        {tag?.tag_cta?.label}
+                                    </Link>
+                                </Button>
+                            )}
+                        </div>
+                    )}
 
                     <SectionWrapper.Boxed className="bg-gray-100 !px-0">
                         <SectionWrapper.Heading level="h2">

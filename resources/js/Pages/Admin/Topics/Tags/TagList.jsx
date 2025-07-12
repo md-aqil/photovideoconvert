@@ -22,17 +22,42 @@ import TagForm from "./TagForm";
 const TabButton = ({ tag, onClick = () => {}, active = false }) => (
     <div
         key={tag.slug}
-        className={`flex gap-x-2 justify-between items-center border px-2 py-1 rounded ${active ? "border-green-200 bg-green-50" : "border-red-200 bg-red-50"}`}
+        className={`flex flex-col gap-y-1 border px-2 py-1 rounded ${active ? "border-green-200 bg-green-50" : "border-red-200 bg-red-50"}`}
     >
-        <span>{tag.title}</span>
-        <Button
-            size="sm"
-            variant="ghost"
-            className="p-0 h-6 w-6"
-            onClick={onClick}
-        >
-            <Pencil className="h-3 w-3" />
-        </Button>
+        <div className="flex gap-x-2 justify-between items-center">
+            <span>{tag.title}</span>
+            <Button
+                size="sm"
+                variant="ghost"
+                className="p-0 h-6 w-6"
+                onClick={onClick}
+            >
+                <Pencil className="h-3 w-3" />
+            </Button>
+        </div>
+        {/* {tag.tag_details && (
+            <div
+                className="text-xs text-muted-foreground mt-1"
+                dangerouslySetInnerHTML={{
+                    __html: tag.tag_details,
+                }}
+            />
+        )} */}
+        {/* {tag.tag_cta && tag.tag_cta.label && tag.tag_cta.link && (
+            <a
+                href={tag.tag_cta.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-1 text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded hover:underline"
+            >
+                {tag.tag_cta.label}
+            </a>
+        )}
+        {tag.tag_cta_description && (
+            <div className="text-xs text-muted-foreground mt-1">
+                {tag.tag_cta_description}
+            </div>
+        )} */}
     </div>
 );
 

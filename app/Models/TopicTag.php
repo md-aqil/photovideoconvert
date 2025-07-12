@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class TopicTag extends Model
 {
     protected $guarded = ['id'];
+    protected $casts = [
+        'tag_cta' => 'array',
+        'tag_cta_description' => 'string',
+    ];
 
     public function scopeActive($query)
     {
