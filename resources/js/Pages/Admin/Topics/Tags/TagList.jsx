@@ -120,7 +120,10 @@ export default function TagList({ topic, tags }) {
             </Card>
 
             <Dialog open={openFormDialog} onOpenChange={openFormDialogSet}>
-                <DialogContent>
+                <DialogContent
+                    className="max-w-7xl overflow-auto max-h-[calc(90dvh)]"
+                    onInteractOutside={(e) => e.preventDefault()}
+                >
                     <DialogHeader>
                         <DialogTitle>Add New Tag</DialogTitle>
                         <DialogDescription>

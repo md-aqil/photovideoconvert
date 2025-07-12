@@ -137,7 +137,6 @@ const Intro = ({ pageProp }) => (
                 {!pageProp?.auth?.user && (
                     <Button
                         asChild
-                        variant="outline"
                         size="lg"
                         className="bg-gradient-to-l hover:bg-gradient-to-r from-slate-900 to-slate-700 text-white"
                     >

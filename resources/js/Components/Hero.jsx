@@ -4,7 +4,8 @@ import { TypeAnimation } from "react-type-animation";
 import SectionWrapper from "./SectionWrapper";
 
 import { Button } from "@/shadcn/ui/button";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, CircleUserRound, GraduationCap } from "lucide-react";
+import { Link } from "@inertiajs/react";
 const TypingText = () => {
     return (
         <TypeAnimation
@@ -129,6 +130,36 @@ export default function Hero() {
                         Just Expert Advice Tailored for You—Because You Deserve
                         the Edge to Succeed.
                     </p>
+                    <div className="flex flex-col md:flex-row gap-4 justify-center">
+                        <Button
+                            className="px-4 py-6 bg-gradient-to-l hover:bg-gradient-to-r from-slate-900 to-slate-700 text-white"
+                            asChild
+                        >
+                            <Link
+                                href={route("mentors.register.create")}
+                                className="flex items-center gap-x-2"
+                            >
+                                <CircleUserRound
+                                    className={`text-fomoSecondary-0 h-5 w-5`}
+                                />
+                                Be a Mentor
+                            </Link>
+                        </Button>
+                        <Button
+                            className="px-4 py-6 bg-gradient-to-l hover:bg-gradient-to-r from-slate-900 to-slate-700 text-white"
+                            asChild
+                        >
+                            <Link
+                                href="/mentors"
+                                className="flex items-center gap-x-2"
+                            >
+                                <GraduationCap
+                                    className={`text-fomoSecondary-0 h-5 w-5`}
+                                />
+                                Explore Our Mentors
+                            </Link>
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>

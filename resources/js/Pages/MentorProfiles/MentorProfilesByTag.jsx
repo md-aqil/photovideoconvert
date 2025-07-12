@@ -26,6 +26,7 @@ import Header from "@/Layouts/Header";
 import PageBanner from "@/Components/PageBanner";
 import SectionWrapper from "@/Components/SectionWrapper";
 import { router } from "@inertiajs/react";
+import { FAQComponent } from "../HowItWorks/HowItWorks";
 
 export default function MentorProfilesByTag({ topics, mentors, tag }) {
     const handleTagChange = () => {
@@ -132,19 +133,62 @@ export default function MentorProfilesByTag({ topics, mentors, tag }) {
                 </div>
 
                 {/* Profile Cards Section */}
-                <div className="col-span-12 md:col-span-9 p-4">
-                    {mentors.length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                            {mentors.map((mentor) => (
-                                <ProfileImageCard
-                                    key={mentor.id}
-                                    mentor={mentor}
-                                />
-                            ))}
-                        </div>
-                    ) : (
-                        <NoDataAlert title="No mentors found!" />
-                    )}
+                <div className="col-span-12 md:col-span-9 p-4 !pt-0 space-y-4">
+                    <div className="bg-fomoPrimary-0/10 rounded-md p-4">
+                        <h2 className="text-lg font-semibold mb-2">
+                            About {tag ? tag.title : "Mentors"}
+                        </h2>
+                        <p className="text-sm text-slate-700">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Iure inventore error magnam consequuntur
+                            officia delectus ea? Ducimus veniam veritatis odit
+                            dignissimos ut ipsam aut. Exercitationem, sapiente
+                            quibusdam! Aliquam, ea sit.
+                        </p>
+                    </div>
+
+                    <div>
+                        {mentors.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                                {mentors.map((mentor) => (
+                                    <ProfileImageCard
+                                        key={mentor.id}
+                                        mentor={mentor}
+                                    />
+                                ))}
+                            </div>
+                        ) : (
+                            <NoDataAlert title="No mentors found!" />
+                        )}
+                    </div>
+
+                    <div className="bg-fomoPrimary-0/10 rounded-md p-4">
+                        <h2 className="text-lg font-semibold mb-2">
+                            Learn more
+                        </h2>
+                        <p className="text-sm text-slate-700">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Iure inventore error magnam consequuntur
+                            officia delectus ea? Ducimus veniam veritatis odit
+                            dignissimos ut ipsam aut. Exercitationem, sapiente
+                            quibusdam! Aliquam, ea sit.
+                        </p>
+
+                        <p className="text-sm text-slate-700">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Iure inventore error magnam consequuntur
+                            officia delectus ea? Ducimus veniam veritatis odit
+                            dignissimos ut ipsam aut. Exercitationem, sapiente
+                            quibusdam! Aliquam, ea sit.
+                        </p>
+                    </div>
+
+                    <SectionWrapper.Boxed className="bg-gray-100 !px-0">
+                        <SectionWrapper.Heading level="h2">
+                            Frequently Asked Questions
+                        </SectionWrapper.Heading>
+                        <FAQComponent className="!w-full !max-w-none p-0" />
+                    </SectionWrapper.Boxed>
                 </div>
             </SectionWrapper.FullWidth>
         </BlankLayout>

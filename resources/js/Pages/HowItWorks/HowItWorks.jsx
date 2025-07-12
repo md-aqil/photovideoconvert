@@ -10,6 +10,7 @@ import {
     AccordionTrigger,
 } from "@/shadcn/ui/accordion";
 import { Head } from "@inertiajs/react";
+import { cn } from "@/shadcn/utils";
 
 const steps = [
     {
@@ -142,7 +143,7 @@ const faqs = [
         ],
     },
 ];
-const HowItWorks = ({ page, topics }) => {
+const HowItWorks = ({ page, topics, className }) => {
     return (
         <div>
             <PageBanner title={"How It works"} />
@@ -234,7 +235,7 @@ const HowItWorks = ({ page, topics }) => {
                     ))}
                 </div>
             </SectionWrapper.Boxed>
-            <SectionWrapper.Boxed className="bg-gray-100">
+            <SectionWrapper.Boxed className={cn("bg-gray-100", className)}>
                 <SectionWrapper.Heading level="h2">
                     Frequently Asked Questions
                 </SectionWrapper.Heading>
@@ -244,9 +245,9 @@ const HowItWorks = ({ page, topics }) => {
     );
 };
 
-export const FAQComponent = () => {
+export const FAQComponent = ({ className }) => {
     return (
-        <div className="max-w-3xl mx-auto my-10">
+        <div className={cn("max-w-3xl mx-auto my-10", className)}>
             <Accordion type="single" collapsible>
                 {faqs.map((faq, index) => (
                     <div key={index}>
