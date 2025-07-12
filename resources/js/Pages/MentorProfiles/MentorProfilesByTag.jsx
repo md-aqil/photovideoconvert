@@ -94,9 +94,9 @@ export default function MentorProfilesByTag({ topics, mentors, tag }) {
 
     return (
         <BlankLayout
-            title={tag.title}
-            metaDescription={tag.description}
-            schema={tag?.schema}
+            title={tag ? tag.title : "Mentors"}
+            metaDescription={tag ? tag.description : "Mentors"}
+            schema={tag ? tag.schema : ""}
         >
             <Header />
             <PageBanner
