@@ -1,0 +1,25 @@
+"node_modules"
+node_modules/
+
+.env
+
+build/
+
+dist/
+
+*.log
+
+# FFmpeg binaries
+ffmpeg-bin/
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Icon?
+~*.*
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
