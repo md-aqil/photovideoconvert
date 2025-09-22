@@ -23,3 +23,41 @@ Icon?
 .idea/
 *.swp
 *.swo
+
+# Temporary files and directories
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Upload and converted files directories
+server/uploads/
+server/converted/
+
+# Log files
+*.log
+logs/
+*.log.*
+
+# Environment files
+.env.local
+.env.*.local
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by Jest
+coverage/
+
+# Build outputs
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Temporary folders
+.DS_Store
+desktop.ini
